@@ -10,7 +10,7 @@ package Application;
  */
 public class Item {
     private String itemCode;
-    private String itemName;
+    private String itemDesc;
     private String itemType;
 
     public String getItemCode() {
@@ -21,12 +21,12 @@ public class Item {
         this.itemCode = itemCode;
     }
 
-    public String getItemName() {
-        return itemName;
+    public String getItemDesc() {
+        return itemDesc;
     }
 
-    public void setItemName(String itemName) {
-        this.itemName = itemName;
+    public void setItemDesc(String itemDesc) {
+        this.itemDesc = itemDesc;
     }
 
     public String getItemType() {
