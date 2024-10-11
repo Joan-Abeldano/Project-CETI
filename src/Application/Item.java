@@ -13,6 +13,12 @@ public class Item {
     private String itemDesc;
     private String itemType;
 
+    public Item(String itemCode, String itemDesc, String itemType) {
+        this.itemCode = itemCode;
+        this.itemDesc = itemDesc;
+        this.itemType = itemType;
+    }
+
     public String getItemCode() {
         return itemCode;
     }
