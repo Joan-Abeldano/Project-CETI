@@ -4,10 +4,15 @@
  */
 package Application;
 
+import java.util.Date;
+
 /**
  *
  * @author labso20
  */
 public class Person {
-    
+    private String name;
+    private String group;
+    private Date startDate;
+    private Date endDate;
 }
