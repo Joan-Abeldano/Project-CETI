@@ -11,10 +11,19 @@ import java.util.Date;
  * @author labso20
  */
 public class Person {
+    private int id;
     private String name;
     private String group;
     private Date startDate;
     private Date endDate;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;

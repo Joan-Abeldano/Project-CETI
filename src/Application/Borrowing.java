@@ -9,9 +9,19 @@ package Application;
  * @author labso20
  */
 public class Borrowing {
+    private int id;
     private Item itemBorrowed;
     private String observation;
     private Person person;
+    private User userBorrower;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public Item getItemBorrowed() {
         return itemBorrowed;
@@ -35,6 +45,14 @@ public class Borrowing {
 
     public void setPerson(Person person) {
         this.person = person;
+    }
+
+    public User getUserBorrower() {
+        return userBorrower;
+    }
+
+    public void setUserBorrower(User userBorrower) {
+        this.userBorrower = userBorrower;
     }
     
     
