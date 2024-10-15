@@ -43,6 +43,11 @@ public class LoginFrame extends javax.swing.JFrame {
         loginPanel.setLayout(new java.awt.GridBagLayout());
 
         loginButton.setText("Login");
+        loginButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loginButtonActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
@@ -94,8 +99,18 @@ public class LoginFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void registerGoToButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerGoToButtonActionPerformed
-        // TODO add your handling code here:
+        loginPanel.setVisible(false);
+        registerPanel.setVisible(true);
     }//GEN-LAST:event_registerGoToButtonActionPerformed
+
+    private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new MainFrame().setVisible(true);
+            }
+        });
+        this.dispose();
+    }//GEN-LAST:event_loginButtonActionPerformed
 
     /**
      * @param args the command line arguments
