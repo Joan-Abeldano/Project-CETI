@@ -34,6 +34,7 @@ public class MainFrame extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        addBorrowingScreenPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -91,11 +92,15 @@ public class MainFrame extends javax.swing.JFrame {
 
         getContentPane().add(mainScreenPanel, "card2");
 
+        addBorrowingScreenPanel.setLayout(new java.awt.GridBagLayout());
+        getContentPane().add(addBorrowingScreenPanel, "card3");
+
         setSize(new java.awt.Dimension(810, 630));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel addBorrowingScreenPanel;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
