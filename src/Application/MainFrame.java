@@ -48,12 +48,15 @@ public class MainFrame extends javax.swing.JFrame {
         currentBorrowingsScreenPanel = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         currentBorrowingsFullTable = new javax.swing.JTable();
+        backButton1 = new javax.swing.JButton();
         historyScreenPanel = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         borrowingsHistoryTable = new javax.swing.JTable();
+        backButton2 = new javax.swing.JButton();
         inventoryScreenPanel = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         inventoryTable = new javax.swing.JTable();
+        backButton3 = new javax.swing.JButton();
         mainMenuBar = new javax.swing.JMenuBar();
         userMenu = new javax.swing.JMenu();
         viewUserItem = new javax.swing.JMenuItem();
@@ -216,6 +219,13 @@ public class MainFrame extends javax.swing.JFrame {
 
         currentBorrowingsScreenPanel.add(jScrollPane2, new java.awt.GridBagConstraints());
 
+        backButton1.setText("Back");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.insets = new java.awt.Insets(10, 0, 10, 0);
+        currentBorrowingsScreenPanel.add(backButton1, gridBagConstraints);
+
         getContentPane().add(currentBorrowingsScreenPanel, "card3");
 
         historyScreenPanel.setLayout(new java.awt.GridBagLayout());
@@ -235,6 +245,13 @@ public class MainFrame extends javax.swing.JFrame {
 
         historyScreenPanel.add(jScrollPane3, new java.awt.GridBagConstraints());
 
+        backButton2.setText("Back");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.insets = new java.awt.Insets(10, 0, 10, 0);
+        historyScreenPanel.add(backButton2, gridBagConstraints);
+
         getContentPane().add(historyScreenPanel, "card4");
 
         inventoryScreenPanel.setLayout(new java.awt.GridBagLayout());
@@ -253,6 +270,13 @@ public class MainFrame extends javax.swing.JFrame {
         jScrollPane4.setViewportView(inventoryTable);
 
         inventoryScreenPanel.add(jScrollPane4, new java.awt.GridBagConstraints());
+
+        backButton3.setText("Back");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.insets = new java.awt.Insets(10, 0, 10, 0);
+        inventoryScreenPanel.add(backButton3, gridBagConstraints);
 
         getContentPane().add(inventoryScreenPanel, "card5");
 
@@ -309,6 +333,9 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JDialog addBorrowingDialog;
     private javax.swing.JMenuItem addBorrowingItem;
     private javax.swing.JPanel addBorrowingScreenPanel;
+    private javax.swing.JButton backButton1;
+    private javax.swing.JButton backButton2;
+    private javax.swing.JButton backButton3;
     private javax.swing.JTable borrowingsHistoryTable;
     private javax.swing.JMenu borrowingsMenu;
     private javax.swing.JTable currentBorrowingsFullTable;
