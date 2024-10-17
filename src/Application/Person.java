@@ -4,8 +4,6 @@
  */
 package Application;
 
-import java.util.Date;
-
 /**
  *
  * @author labso20
