@@ -12,6 +12,11 @@ public class Item {
     private String itemCode;
     private String itemDesc;
     private String itemType;
+    
+    private int itemNumber;
+    private String itemInventory;
+    private String itemPossesion;
+    private String itemGroup;
 
     public Item(String itemCode, String itemDesc, String itemType) {
         this.itemCode = itemCode;
