@@ -25,8 +25,7 @@ public class DatabaseController {
         try (Connection conn = connect();
             PreparedStatement pstmt = conn.prepareStatement(SQL)) {
             pstmt.setInt(1,borrowing.getId());
-            pstmt.setString(2, borrowing.getItemBorrowed().getItemDesc());
-            pstmt.setString(3, borrowing.getItemBorrowed().getItemType());
+
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
