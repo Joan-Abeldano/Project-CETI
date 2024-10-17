@@ -4,6 +4,8 @@
  */
 package Application;
 
+import java.util.Date;
+
 /**
  *
  * @author labso20
@@ -11,9 +13,10 @@ package Application;
 public class Borrowing {
     private int id;
     private Item itemBorrowed;
-    private String observation;
     private Person person;
     private User userBorrower;
+    private Date startDate;
+    private Date endDate;
 
     public int getId() {
         return id;
@@ -31,14 +34,6 @@ public class Borrowing {
         this.itemBorrowed = itemBorrowed;
     }
 
-    public String getObservation() {
-        return observation;
-    }
-
-    public void setObservation(String observation) {
-        this.observation = observation;
-    }
-
     public Person getPerson() {
         return person;
     }
@@ -54,6 +49,21 @@ public class Borrowing {
     public void setUserBorrower(User userBorrower) {
         this.userBorrower = userBorrower;
     }
-    
+
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
     
 }
