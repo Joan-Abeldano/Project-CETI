@@ -41,7 +41,7 @@ public class LoginDBController {
         String SQL = "SELECT * FROM users";
         try (Connection conn = connect();
              PreparedStatement pstmt = conn.prepareStatement(SQL);
-             ResultSet resultSet = pstmt.executeQuery()) { // Added semicolon here
+             ResultSet resultSet = pstmt.executeQuery()) {
             while (resultSet.next()) {
                 int id = resultSet.getInt("id");
                 String name = resultSet.getString("name");

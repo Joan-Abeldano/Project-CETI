@@ -70,7 +70,6 @@ public class MainFrame extends javax.swing.JFrame {
         addBorrowingDialog.setTitle("Add Borrowing");
         addBorrowingDialog.setMinimumSize(new java.awt.Dimension(338, 300));
         addBorrowingDialog.setModal(true);
-        addBorrowingDialog.setPreferredSize(new java.awt.Dimension(400, 300));
         addBorrowingDialog.setResizable(false);
         addBorrowingDialog.setSize(new java.awt.Dimension(400, 300));
         addBorrowingDialog.getContentPane().setLayout(new java.awt.CardLayout());
