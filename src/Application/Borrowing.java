@@ -17,6 +17,7 @@ public class Borrowing {
     private User userBorrower;
     private Date startDate;
     private Date endDate;
+    private boolean ended;
 
     public int getId() {
         return id;
@@ -64,6 +65,14 @@ public class Borrowing {
 
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
+    }
+
+    public boolean isEnded() {
+        return ended;
+    }
+
+    public void setEnded(boolean ended) {
+        this.ended = ended;
     }
     
 }
