@@ -20,12 +20,14 @@ public class DatabaseController {
         return DriverManager.getConnection(url, user, password);
     }
     
-    public void insertBorrowing(Borrowing borrowing) {
-        String SQL = "INSERT INTO borrowings(id, ) VALUES (?, ?, ?, ?, ?)";
+    public void insertUser(User user) {
+        String SQL = "INSERT INTO users(id, name, password, role) VALUES (?, ?, ?, ?)";
         try (Connection conn = connect();
             PreparedStatement pstmt = conn.prepareStatement(SQL)) {
-            pstmt.setInt(1,borrowing.getId());
-
+            pstmt.setInt(1,user.getId());
+            pstmt.setString(2, user.getName());
+            pstmt.setString(3, user.getPassword());
+            pstmt.setString(4, user.getRole());
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
