@@ -21,13 +21,13 @@ public class DatabaseController {
     }
     
     public void insertUser(User user) {
-        String SQL = "INSERT INTO users(id, name, password, role) VALUES (?, ?, ?, ?)";
+        String SQL = "INSERT INTO users(name, password, role) VALUES (?, ?, ?)";
         try (Connection conn = connect();
             PreparedStatement pstmt = conn.prepareStatement(SQL)) {
-            pstmt.setInt(1,user.getId());
-            pstmt.setString(2, user.getName());
-            pstmt.setString(3, user.getPassword());
-            pstmt.setString(4, user.getRole());
+            pstmt.setString(1, user.getName());
+            pstmt.setString(2, user.getPassword());
+            pstmt.setString(3, user.getRole());
+            pstmt.execute();
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }

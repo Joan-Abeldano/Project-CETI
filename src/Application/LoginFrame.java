@@ -35,9 +35,9 @@ public class LoginFrame extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         registerPanel = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        registerButton = new javax.swing.JButton();
+        userRegisterText = new javax.swing.JTextField();
+        passwordRegisterText = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
 
@@ -98,27 +98,32 @@ public class LoginFrame extends javax.swing.JFrame {
 
         registerPanel.setLayout(new java.awt.GridBagLayout());
 
-        jButton1.setText("Register");
+        registerButton.setText("Register");
+        registerButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                registerButtonActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.insets = new java.awt.Insets(10, 0, 10, 0);
-        registerPanel.add(jButton1, gridBagConstraints);
+        registerPanel.add(registerButton, gridBagConstraints);
 
-        jTextField1.setPreferredSize(new java.awt.Dimension(100, 24));
+        userRegisterText.setPreferredSize(new java.awt.Dimension(100, 24));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.insets = new java.awt.Insets(10, 0, 10, 0);
-        registerPanel.add(jTextField1, gridBagConstraints);
+        registerPanel.add(userRegisterText, gridBagConstraints);
 
-        jTextField2.setPreferredSize(new java.awt.Dimension(100, 24));
+        passwordRegisterText.setPreferredSize(new java.awt.Dimension(100, 24));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.insets = new java.awt.Insets(10, 0, 10, 0);
-        registerPanel.add(jTextField2, gridBagConstraints);
+        registerPanel.add(passwordRegisterText, gridBagConstraints);
 
         jLabel3.setText("Password");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -153,6 +158,12 @@ public class LoginFrame extends javax.swing.JFrame {
         });
         this.dispose();
     }//GEN-LAST:event_loginButtonActionPerformed
+
+    private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
+        DatabaseController controller = new DatabaseController();
+        User user = new User(userRegisterText.getText(),passwordRegisterText.getText(),"Admin");
+        controller.insertUser(user);
+    }//GEN-LAST:event_registerButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -190,18 +201,18 @@ public class LoginFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JButton loginButton;
     private javax.swing.JPanel loginPanel;
     private javax.swing.JTextField passwordLoginField;
+    private javax.swing.JTextField passwordRegisterText;
+    private javax.swing.JButton registerButton;
     private javax.swing.JButton registerGoToButton;
     private javax.swing.JPanel registerPanel;
     private javax.swing.JTextField userLoginField;
+    private javax.swing.JTextField userRegisterText;
     // End of variables declaration//GEN-END:variables
 }
