@@ -7,6 +7,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.sql.ResultSet;
 /**
  *
  * @author labso20
@@ -31,5 +34,27 @@ public class DatabaseController {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
+    }
+    
+    public User[] getUsers() {
+        List<User> userList = new ArrayList<>();
+        String SQL = "SELECT * FROM users";
+        try (Connection conn = connect();
+             PreparedStatement pstmt = conn.prepareStatement(SQL);
+             ResultSet resultSet = pstmt.executeQuery()) { // Added semicolon here
+            while (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                String name = resultSet.getString("name");
+                String pass = resultSet.getString("password");
+                String role = resultSet.getString("role");
+
+                User userObj = new User(name, pass, role);
+                userList.add(userObj);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+        return userList.toArray(new User[0]);
     }
 }

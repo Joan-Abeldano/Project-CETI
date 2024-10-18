@@ -151,18 +151,27 @@ public class LoginFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_registerGoToButtonActionPerformed
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MainFrame().setVisible(true);
+        DatabaseController dbc = new DatabaseController();
+        User[] allUsers = dbc.getUsers();
+        User user = new User(userLoginField.getText(),passwordLoginField.getText(),"Admin");
+        for (User userLoop : allUsers) {
+            if (userLoop.getName().equals(user.getName()) && userLoop.getPassword().equals(user.getPassword())) {
+                java.awt.EventQueue.invokeLater(new Runnable() {
+                    public void run() {
+                        new MainFrame().setVisible(true);
+                    }
+                });
+                this.dispose();
             }
-        });
-        this.dispose();
+        }
     }//GEN-LAST:event_loginButtonActionPerformed
 
     private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
         DatabaseController controller = new DatabaseController();
         User user = new User(userRegisterText.getText(),passwordRegisterText.getText(),"Admin");
         controller.insertUser(user);
+        loginPanel.setVisible(true);
+        registerPanel.setVisible(false);
     }//GEN-LAST:event_registerButtonActionPerformed
 
     /**
