@@ -14,7 +14,7 @@ import java.sql.ResultSet;
  *
  * @author labso20
  */
-public class DatabaseController {
+public class LoginDBController {
     private final String url = "jdbc:postgresql://localhost:5432/CETI";
     private final String user = "postgres";
     private final String password = "Joan";

@@ -151,7 +151,7 @@ public class LoginFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_registerGoToButtonActionPerformed
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
-        DatabaseController dbc = new DatabaseController();
+        LoginDBController dbc = new LoginDBController();
         User[] allUsers = dbc.getUsers();
         User user = new User(userLoginField.getText(),passwordLoginField.getText(),"Admin");
         for (User userLoop : allUsers) {
@@ -167,7 +167,7 @@ public class LoginFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_loginButtonActionPerformed
 
     private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
-        DatabaseController controller = new DatabaseController();
+        LoginDBController controller = new LoginDBController();
         User user = new User(userRegisterText.getText(),passwordRegisterText.getText(),"Admin");
         controller.insertUser(user);
         loginPanel.setVisible(true);
