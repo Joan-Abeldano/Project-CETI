@@ -24,12 +24,11 @@ public class LoginDBController {
     }
     
     public void insertUser(User user) {
-        String SQL = "INSERT INTO users(name, password, role) VALUES (?, ?, ?)";
+        String SQL = "INSERT INTO users(name, password) VALUES (?, ?)";
         try (Connection conn = connect();
             PreparedStatement pstmt = conn.prepareStatement(SQL)) {
             pstmt.setString(1, user.getName());
             pstmt.setString(2, user.getPassword());
-            pstmt.setString(3, user.getRole());
             pstmt.execute();
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
@@ -46,9 +45,8 @@ public class LoginDBController {
                 int id = resultSet.getInt("id");
                 String name = resultSet.getString("name");
                 String pass = resultSet.getString("password");
-                String role = resultSet.getString("role");
 
-                User userObj = new User(name, pass, role);
+                User userObj = new User(name, pass);
                 userList.add(userObj);
             }
         } catch (SQLException ex) {
