@@ -9,31 +9,40 @@ package Application;
  * @author labso20
  */
 public class Person {
-    private int id;
-    private String name;
-    private String group;
+    private int personId;
+    private String personName;
+    private String personLastName;
+    private String personGroup;
 
-    public int getId() {
-        return id;
+    public int getPersonId() {
+        return personId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setPersonId(int personId) {
+        this.personId = personId;
     }
 
-    public String getName() {
-        return name;
+    public String getPersonName() {
+        return personName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setPersonName(String personName) {
+        this.personName = personName;
     }
 
-    public String getGroup() {
-        return group;
+    public String getPersonLastName() {
+        return personLastName;
     }
 
-    public void setGroup(String group) {
-        this.group = group;
+    public void setPersonLastName(String personLastName) {
+        this.personLastName = personLastName;
+    }
+
+    public String getPersonGroup() {
+        return personGroup;
+    }
+
+    public void setPersonGroup(String personGroup) {
+        this.personGroup = personGroup;
     }
 }

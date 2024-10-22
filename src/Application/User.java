@@ -9,37 +9,37 @@ package Application;
  * @author labso23
  */
 public class User {
-    private int id;
-    private String name;
-    private String password;
+    private int userId;
+    private String userName;
+    private String userPassword;
 
     public User(String name, String password) {
-        this.id = id;
-        this.name = name;
-        this.password = password;
+        this.userId = userId;
+        this.userName = name;
+        this.userPassword = password;
     }
 
-    public int getId() {
-        return id;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
-    public String getName() {
-        return name;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
-    public String getPassword() {
-        return password;
+    public String getUserPassword() {
+        return userPassword;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setUserPassword(String userPassword) {
+        this.userPassword = userPassword;
     }
 }

@@ -27,8 +27,8 @@ public class LoginDBController {
         String SQL = "INSERT INTO users(name, password) VALUES (?, ?)";
         try (Connection conn = connect();
             PreparedStatement pstmt = conn.prepareStatement(SQL)) {
-            pstmt.setString(1, user.getName());
-            pstmt.setString(2, user.getPassword());
+            pstmt.setString(1, user.getUserName());
+            pstmt.setString(2, user.getUserPassword());
             pstmt.execute();
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());

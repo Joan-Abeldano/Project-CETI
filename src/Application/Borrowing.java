@@ -11,7 +11,7 @@ import java.util.Date;
  * @author labso20
  */
 public class Borrowing {
-    private int id;
+    private int borrowingId;
     private Item itemBorrowed;
     private Person person;
     private User userBorrower;
@@ -19,12 +19,12 @@ public class Borrowing {
     private Date endDate;
     private boolean ended;
 
-    public int getId() {
-        return id;
+    public int getBorrowingId() {
+        return borrowingId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setBorrowingId(int borrowingId) {
+        this.borrowingId = borrowingId;
     }
 
     public Item getItemBorrowed() {

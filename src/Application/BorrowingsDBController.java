@@ -24,4 +24,8 @@ public class BorrowingsDBController {
     public Connection connect() throws SQLException {
         return DriverManager.getConnection(url, user, password);
     }
+    
+    public void insertBorrowing(Borrowing borrowing) {
+        String SQL = "INSERT INTO borrowings() VALUES ();";
+    }
 }

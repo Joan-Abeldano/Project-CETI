@@ -155,7 +155,7 @@ public class LoginFrame extends javax.swing.JFrame {
         User[] allUsers = dbc.getUsers();
         User user = new User(userLoginField.getText(),passwordLoginField.getText());
         for (User userLoop : allUsers) {
-            if (userLoop.getName().equals(user.getName()) && userLoop.getPassword().equals(user.getPassword())) {
+            if (userLoop.getUserName().equals(user.getUserName()) && userLoop.getUserPassword().equals(user.getUserPassword())) {
                 java.awt.EventQueue.invokeLater(new Runnable() {
                     public void run() {
                         new MainFrame().setVisible(true);
