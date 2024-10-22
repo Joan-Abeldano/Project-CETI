@@ -26,6 +26,40 @@ public class BorrowingsDBController {
     }
     
     public void insertBorrowing(Borrowing borrowing) {
-        String SQL = "INSERT INTO borrowings() VALUES ();";
+        String SQL = "INSERT INTO borrowings(startDate,userId,itemInventory,personId) VALUES (?,?,?,?);";
+        try (Connection conn = connect();
+            PreparedStatement pstmt = conn.prepareStatement(SQL)) {
+            pstmt.setString(1,borrowing.getStartDateString());
+            pstmt.setInt(2, borrowing.getUserBorrower().getUserId());
+            pstmt.setInt(3, borrowing.getItemBorrowed().getItemInventory());
+            pstmt.setInt(4, borrowing.getPerson().getPersonId());
+            pstmt.execute();
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+    
+    public Borrowing[] getBorrowings() {
+        List<Borrowing> borrowingList = new ArrayList<>();
+        String SQL = "SELECT * FROM borrowings";
+        try (Connection conn = connect();
+             PreparedStatement pstmt = conn.prepareStatement(SQL);
+             ResultSet resultSet = pstmt.executeQuery()) {
+            while (resultSet.next()) {
+                int borrowingId = resultSet.getInt("borrowingId");
+                String startDate = resultSet.getString("startDate");
+                String endDate = resultSet.getString("endDate");
+                int userId = resultSet.getInt("userId");
+                int itemInventory = resultSet.getInt("itemInventory");
+                int personId = resultSet.getInt("personId");
+                boolean ended = resultSet.getBoolean("ended");
+
+                //Borrowing borrowingObj = new Borrowing();
+                //borrowingList.add(borrowingObj);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return borrowingList.toArray(new Borrowing[0]);
     }
 }

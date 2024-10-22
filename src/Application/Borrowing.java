@@ -4,6 +4,8 @@
  */
 package Application;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -18,6 +20,16 @@ public class Borrowing {
     private Date startDate;
     private Date endDate;
     private boolean ended;
+
+    public Borrowing(int borrowingId, Item itemBorrowed, Person person, User userBorrower, Date startDate, Date endDate, boolean ended) {
+        this.borrowingId = borrowingId;
+        this.itemBorrowed = itemBorrowed;
+        this.person = person;
+        this.userBorrower = userBorrower;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.ended = ended;
+    }
 
     public int getBorrowingId() {
         return borrowingId;
@@ -55,6 +67,13 @@ public class Borrowing {
         return startDate;
     }
 
+    public String getStartDateString() {
+        String pattern = "MM/dd/yyyy HH:mm:ss";
+        DateFormat df = new SimpleDateFormat(pattern);      
+        String startDateString = df.format(this.startDate);
+        return startDateString;
+    }
+    
     public void setStartDate(Date startDate) {
         this.startDate = startDate;
     }

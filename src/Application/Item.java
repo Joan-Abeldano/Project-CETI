@@ -10,7 +10,7 @@ package Application;
  */
 public class Item {
     private int itemNumber;
-    private String itemInventory;
+    private int itemInventory;
     private String itemPossesion;
     private String itemGroup;
     private String itemCategory;
@@ -24,7 +24,7 @@ public class Item {
     private String itemState;
     private String itemOwner;
 
-    public Item(int itemNumber, String itemInventory, String itemPossesion, String itemGroup, String itemCategory, String itemSubCategory, String itemType, String itemBrand, String itemModel, String itemSerie, String itemColor, float itemPrice, String itemState, String itemOwner) {
+    public Item(int itemNumber, int itemInventory, String itemPossesion, String itemGroup, String itemCategory, String itemSubCategory, String itemType, String itemBrand, String itemModel, String itemSerie, String itemColor, float itemPrice, String itemState, String itemOwner) {
         this.itemNumber = itemNumber;
         this.itemInventory = itemInventory;
         this.itemPossesion = itemPossesion;
@@ -49,11 +49,11 @@ public class Item {
         this.itemNumber = itemNumber;
     }
 
-    public String getItemInventory() {
+    public int getItemInventory() {
         return itemInventory;
     }
 
-    public void setItemInventory(String itemInventory) {
+    public void setItemInventory(int itemInventory) {
         this.itemInventory = itemInventory;
     }
 

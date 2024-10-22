@@ -24,7 +24,7 @@ public class LoginDBController {
     }
     
     public void insertUser(User user) {
-        String SQL = "INSERT INTO users(name, password) VALUES (?, ?)";
+        String SQL = "INSERT INTO users(userName, userPassword) VALUES (?, ?)";
         try (Connection conn = connect();
             PreparedStatement pstmt = conn.prepareStatement(SQL)) {
             pstmt.setString(1, user.getUserName());
@@ -42,9 +42,8 @@ public class LoginDBController {
              PreparedStatement pstmt = conn.prepareStatement(SQL);
              ResultSet resultSet = pstmt.executeQuery()) {
             while (resultSet.next()) {
-                int id = resultSet.getInt("id");
-                String name = resultSet.getString("name");
-                String pass = resultSet.getString("password");
+                String name = resultSet.getString("userName");
+                String pass = resultSet.getString("userPassword");
 
                 User userObj = new User(name, pass);
                 userList.add(userObj);
