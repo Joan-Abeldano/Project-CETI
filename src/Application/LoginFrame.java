@@ -71,6 +71,7 @@ public class LoginFrame extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(10, 0, 10, 0);
         loginPanel.add(registerGoToButton, gridBagConstraints);
 
+        userLoginField.setText("Joan");
         userLoginField.setPreferredSize(new java.awt.Dimension(100, 22));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -78,6 +79,7 @@ public class LoginFrame extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(10, 0, 10, 0);
         loginPanel.add(userLoginField, gridBagConstraints);
 
+        passwordLoginField.setText("1234");
         passwordLoginField.setPreferredSize(new java.awt.Dimension(100, 22));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;

@@ -39,6 +39,8 @@ public class MainFrame extends javax.swing.JFrame {
         groupLabel = new javax.swing.JLabel();
         itemLabel = new javax.swing.JLabel();
         borrowingInfoDialog = new javax.swing.JDialog();
+        borrowingInfoScreenPanel = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
         endBorrowingDialog = new javax.swing.JDialog();
         mainScreenPanel = new javax.swing.JPanel();
         addBorrowingButton = new javax.swing.JButton();
@@ -69,6 +71,7 @@ public class MainFrame extends javax.swing.JFrame {
         viewInventoryItem = new javax.swing.JMenuItem();
         aboutMenu = new javax.swing.JMenu();
 
+        addBorrowingDialog.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addBorrowingDialog.setTitle("Add Borrowing");
         addBorrowingDialog.setMinimumSize(new java.awt.Dimension(338, 300));
         addBorrowingDialog.setModal(true);
@@ -118,29 +121,49 @@ public class MainFrame extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 5);
         addBorrowingScreenPanel.add(dateLabel, gridBagConstraints);
 
         nameLabel.setText("Name");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
+        gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 5);
         addBorrowingScreenPanel.add(nameLabel, gridBagConstraints);
 
         groupLabel.setText("Group");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
+        gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 5);
         addBorrowingScreenPanel.add(groupLabel, gridBagConstraints);
 
         itemLabel.setText("Item");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
+        gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 5);
         addBorrowingScreenPanel.add(itemLabel, gridBagConstraints);
 
         addBorrowingDialog.getContentPane().add(addBorrowingScreenPanel, "card2");
 
         addBorrowingDialog.setLocationRelativeTo(null);
+
+        borrowingInfoDialog.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        borrowingInfoDialog.setTitle("Borrowing Information");
+        borrowingInfoDialog.setModal(true);
+        borrowingInfoDialog.setResizable(false);
+        borrowingInfoDialog.setSize(new java.awt.Dimension(400, 300));
+        borrowingInfoDialog.getContentPane().setLayout(new java.awt.CardLayout());
+
+        borrowingInfoScreenPanel.setLayout(new java.awt.GridBagLayout());
+
+        jLabel1.setText("Item Inventory:");
+        borrowingInfoScreenPanel.add(jLabel1, new java.awt.GridBagConstraints());
+
+        borrowingInfoDialog.getContentPane().add(borrowingInfoScreenPanel, "card2");
+
+        borrowingInfoDialog.setLocationRelativeTo(null);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -161,6 +184,11 @@ public class MainFrame extends javax.swing.JFrame {
         mainScreenPanel.add(addBorrowingButton, gridBagConstraints);
 
         viewCurrentBorrowingsButton.setText("View Current Borrowings");
+        viewCurrentBorrowingsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewCurrentBorrowingsButtonActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
@@ -327,6 +355,10 @@ public class MainFrame extends javax.swing.JFrame {
         addBorrowingDialog.setVisible(true);
     }//GEN-LAST:event_addBorrowingButtonActionPerformed
 
+    private void viewCurrentBorrowingsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewCurrentBorrowingsButtonActionPerformed
+        borrowingInfoDialog.setVisible(true);
+    }//GEN-LAST:event_viewCurrentBorrowingsButtonActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu aboutMenu;
     private javax.swing.JButton addBorrowingButton;
@@ -338,6 +370,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton backButton2;
     private javax.swing.JButton backButton3;
     private javax.swing.JDialog borrowingInfoDialog;
+    private javax.swing.JPanel borrowingInfoScreenPanel;
     private javax.swing.JTable borrowingsHistoryTable;
     private javax.swing.JMenu borrowingsMenu;
     private javax.swing.JTable currentBorrowingsFullTable;
@@ -352,6 +385,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JTable inventoryTable;
     private javax.swing.JTextField itemInput;
     private javax.swing.JLabel itemLabel;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
