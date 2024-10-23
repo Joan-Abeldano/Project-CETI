@@ -38,6 +38,8 @@ public class MainFrame extends javax.swing.JFrame {
         nameLabel = new javax.swing.JLabel();
         groupLabel = new javax.swing.JLabel();
         itemLabel = new javax.swing.JLabel();
+        borrowingInfoDialog = new javax.swing.JDialog();
+        endBorrowingDialog = new javax.swing.JDialog();
         mainScreenPanel = new javax.swing.JPanel();
         addBorrowingButton = new javax.swing.JButton();
         viewCurrentBorrowingsButton = new javax.swing.JButton();
@@ -335,11 +337,13 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton backButton1;
     private javax.swing.JButton backButton2;
     private javax.swing.JButton backButton3;
+    private javax.swing.JDialog borrowingInfoDialog;
     private javax.swing.JTable borrowingsHistoryTable;
     private javax.swing.JMenu borrowingsMenu;
     private javax.swing.JTable currentBorrowingsFullTable;
     private javax.swing.JPanel currentBorrowingsScreenPanel;
     private javax.swing.JLabel dateLabel;
+    private javax.swing.JDialog endBorrowingDialog;
     private javax.swing.JMenuItem endSessionItem;
     private javax.swing.JLabel groupLabel;
     private javax.swing.JPanel historyScreenPanel;

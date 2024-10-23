@@ -43,8 +43,8 @@ public class BorrowingsDBController {
         List<Borrowing> borrowingList = new ArrayList<>();
         String SQL = "SELECT * FROM borrowings";
         try (Connection conn = connect();
-             PreparedStatement pstmt = conn.prepareStatement(SQL);
-             ResultSet resultSet = pstmt.executeQuery()) {
+            PreparedStatement pstmt = conn.prepareStatement(SQL);
+            ResultSet resultSet = pstmt.executeQuery()) {
             while (resultSet.next()) {
                 int borrowingId = resultSet.getInt("borrowingId");
                 String startDate = resultSet.getString("startDate");
