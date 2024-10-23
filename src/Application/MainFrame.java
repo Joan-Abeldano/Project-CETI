@@ -225,6 +225,11 @@ public class MainFrame extends javax.swing.JFrame {
         borrowingInfoScreenPanel.add(borrowerInfoLabel, gridBagConstraints);
 
         endBorrowingGoToButton.setText("End Borrowing");
+        endBorrowingGoToButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                endBorrowingGoToButtonActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 7;
@@ -266,6 +271,8 @@ public class MainFrame extends javax.swing.JFrame {
         endBorrowingScreenPanel.add(jLabel1, gridBagConstraints);
 
         endBorrowingDialog.getContentPane().add(endBorrowingScreenPanel, java.awt.BorderLayout.CENTER);
+
+        endBorrowingDialog.setLocationRelativeTo(null);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -460,6 +467,10 @@ public class MainFrame extends javax.swing.JFrame {
     private void viewCurrentBorrowingsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewCurrentBorrowingsButtonActionPerformed
         borrowingInfoDialog.setVisible(true);
     }//GEN-LAST:event_viewCurrentBorrowingsButtonActionPerformed
+
+    private void endBorrowingGoToButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_endBorrowingGoToButtonActionPerformed
+        endBorrowingDialog.setVisible(true);
+    }//GEN-LAST:event_endBorrowingGoToButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu aboutMenu;
