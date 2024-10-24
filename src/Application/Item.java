@@ -40,6 +40,10 @@ public class Item {
         this.itemState = itemState;
         this.itemOwner = itemOwner;
     }
+    
+    public Item(int itemInventory) {
+        this.itemInventory = itemInventory;
+    }
 
     public int getItemNumber() {
         return itemNumber;
