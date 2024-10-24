@@ -4,6 +4,8 @@
  */
 package Application;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Joan
@@ -83,6 +85,7 @@ public class MainFrame extends javax.swing.JFrame {
         inventoryMenu = new javax.swing.JMenu();
         viewInventoryItem = new javax.swing.JMenuItem();
         aboutMenu = new javax.swing.JMenu();
+        aboutUsItem = new javax.swing.JMenuItem();
 
         addBorrowingDialog.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addBorrowingDialog.setTitle("Add Borrowing");
@@ -498,6 +501,15 @@ public class MainFrame extends javax.swing.JFrame {
         mainMenuBar.add(inventoryMenu);
 
         aboutMenu.setText("About");
+
+        aboutUsItem.setText("About Us");
+        aboutUsItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aboutUsItemActionPerformed(evt);
+            }
+        });
+        aboutMenu.add(aboutUsItem);
+
         mainMenuBar.add(aboutMenu);
 
         setJMenuBar(mainMenuBar);
@@ -562,8 +574,13 @@ public class MainFrame extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_endSessionItemActionPerformed
 
+    private void aboutUsItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutUsItemActionPerformed
+        JOptionPane.showMessageDialog(null, "I'm Batman");
+    }//GEN-LAST:event_aboutUsItemActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu aboutMenu;
+    private javax.swing.JMenuItem aboutUsItem;
     private javax.swing.JButton addBorrowingButton;
     private javax.swing.JButton addBorrowingConfirmButton;
     private javax.swing.JDialog addBorrowingDialog;
