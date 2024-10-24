@@ -63,15 +63,15 @@ public class MainFrame extends javax.swing.JFrame {
         currentBorrowingsScreenPanel = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         currentBorrowingsFullTable = new javax.swing.JTable();
-        backButton1 = new javax.swing.JButton();
+        backCurrentBorrowingsScreenButton = new javax.swing.JButton();
         historyScreenPanel = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         borrowingsHistoryTable = new javax.swing.JTable();
-        backButton2 = new javax.swing.JButton();
+        backHistoryScreenButton = new javax.swing.JButton();
         inventoryScreenPanel = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         inventoryTable = new javax.swing.JTable();
-        backButton3 = new javax.swing.JButton();
+        backInventoryScreenButton = new javax.swing.JButton();
         mainMenuBar = new javax.swing.JMenuBar();
         userMenu = new javax.swing.JMenu();
         viewUserItem = new javax.swing.JMenuItem();
@@ -305,6 +305,11 @@ public class MainFrame extends javax.swing.JFrame {
         mainScreenPanel.add(viewCurrentBorrowingsButton, gridBagConstraints);
 
         viewHistoryButton.setText("View History");
+        viewHistoryButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewHistoryButtonActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
@@ -312,6 +317,11 @@ public class MainFrame extends javax.swing.JFrame {
         mainScreenPanel.add(viewHistoryButton, gridBagConstraints);
 
         viewInventoryButton.setText("View Inventory");
+        viewInventoryButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewInventoryButtonActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 0;
@@ -357,12 +367,17 @@ public class MainFrame extends javax.swing.JFrame {
 
         currentBorrowingsScreenPanel.add(jScrollPane2, new java.awt.GridBagConstraints());
 
-        backButton1.setText("Back");
+        backCurrentBorrowingsScreenButton.setText("Back");
+        backCurrentBorrowingsScreenButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backCurrentBorrowingsScreenButtonActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.insets = new java.awt.Insets(10, 0, 10, 0);
-        currentBorrowingsScreenPanel.add(backButton1, gridBagConstraints);
+        currentBorrowingsScreenPanel.add(backCurrentBorrowingsScreenButton, gridBagConstraints);
 
         getContentPane().add(currentBorrowingsScreenPanel, "card3");
 
@@ -383,12 +398,17 @@ public class MainFrame extends javax.swing.JFrame {
 
         historyScreenPanel.add(jScrollPane3, new java.awt.GridBagConstraints());
 
-        backButton2.setText("Back");
+        backHistoryScreenButton.setText("Back");
+        backHistoryScreenButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backHistoryScreenButtonActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.insets = new java.awt.Insets(10, 0, 10, 0);
-        historyScreenPanel.add(backButton2, gridBagConstraints);
+        historyScreenPanel.add(backHistoryScreenButton, gridBagConstraints);
 
         getContentPane().add(historyScreenPanel, "card4");
 
@@ -409,12 +429,17 @@ public class MainFrame extends javax.swing.JFrame {
 
         inventoryScreenPanel.add(jScrollPane4, new java.awt.GridBagConstraints());
 
-        backButton3.setText("Back");
+        backInventoryScreenButton.setText("Back");
+        backInventoryScreenButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backInventoryScreenButtonActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.insets = new java.awt.Insets(10, 0, 10, 0);
-        inventoryScreenPanel.add(backButton3, gridBagConstraints);
+        inventoryScreenPanel.add(backInventoryScreenButton, gridBagConstraints);
 
         getContentPane().add(inventoryScreenPanel, "card5");
 
@@ -424,6 +449,11 @@ public class MainFrame extends javax.swing.JFrame {
         userMenu.add(viewUserItem);
 
         endSessionItem.setText("End Session");
+        endSessionItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                endSessionItemActionPerformed(evt);
+            }
+        });
         userMenu.add(endSessionItem);
 
         mainMenuBar.add(userMenu);
@@ -443,6 +473,11 @@ public class MainFrame extends javax.swing.JFrame {
         inventoryMenu.setText("Inventory");
 
         viewInventoryItem.setText("View Inventory");
+        viewInventoryItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewInventoryItemActionPerformed(evt);
+            }
+        });
         inventoryMenu.add(viewInventoryItem);
 
         mainMenuBar.add(inventoryMenu);
@@ -457,7 +492,7 @@ public class MainFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addBorrowingItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBorrowingItemActionPerformed
-        // TODO add your handling code here:
+        addBorrowingDialog.setVisible(true);
     }//GEN-LAST:event_addBorrowingItemActionPerformed
 
     private void addBorrowingButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBorrowingButtonActionPerformed
@@ -465,12 +500,52 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_addBorrowingButtonActionPerformed
 
     private void viewCurrentBorrowingsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewCurrentBorrowingsButtonActionPerformed
-        borrowingInfoDialog.setVisible(true);
+        currentBorrowingsScreenPanel.setVisible(true);
+        mainScreenPanel.setVisible(false);
     }//GEN-LAST:event_viewCurrentBorrowingsButtonActionPerformed
 
     private void endBorrowingGoToButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_endBorrowingGoToButtonActionPerformed
         endBorrowingDialog.setVisible(true);
     }//GEN-LAST:event_endBorrowingGoToButtonActionPerformed
+
+    private void viewInventoryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewInventoryButtonActionPerformed
+        inventoryScreenPanel.setVisible(true);
+        mainScreenPanel.setVisible(false);
+    }//GEN-LAST:event_viewInventoryButtonActionPerformed
+
+    private void viewHistoryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewHistoryButtonActionPerformed
+        historyScreenPanel.setVisible(true);
+        mainScreenPanel.setVisible(false);
+    }//GEN-LAST:event_viewHistoryButtonActionPerformed
+
+    private void backCurrentBorrowingsScreenButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backCurrentBorrowingsScreenButtonActionPerformed
+        currentBorrowingsScreenPanel.setVisible(false);
+        mainScreenPanel.setVisible(true);
+    }//GEN-LAST:event_backCurrentBorrowingsScreenButtonActionPerformed
+
+    private void backHistoryScreenButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backHistoryScreenButtonActionPerformed
+        historyScreenPanel.setVisible(false);
+        mainScreenPanel.setVisible(true);
+    }//GEN-LAST:event_backHistoryScreenButtonActionPerformed
+
+    private void backInventoryScreenButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backInventoryScreenButtonActionPerformed
+        inventoryScreenPanel.setVisible(false);
+        mainScreenPanel.setVisible(true);
+    }//GEN-LAST:event_backInventoryScreenButtonActionPerformed
+
+    private void viewInventoryItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewInventoryItemActionPerformed
+        inventoryScreenPanel.setVisible(true);
+        mainScreenPanel.setVisible(false);
+    }//GEN-LAST:event_viewInventoryItemActionPerformed
+
+    private void endSessionItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_endSessionItemActionPerformed
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new LoginFrame().setVisible(true);
+            }
+        });
+        this.dispose();
+    }//GEN-LAST:event_endSessionItemActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu aboutMenu;
@@ -479,9 +554,9 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JDialog addBorrowingDialog;
     private javax.swing.JMenuItem addBorrowingItem;
     private javax.swing.JPanel addBorrowingScreenPanel;
-    private javax.swing.JButton backButton1;
-    private javax.swing.JButton backButton2;
-    private javax.swing.JButton backButton3;
+    private javax.swing.JButton backCurrentBorrowingsScreenButton;
+    private javax.swing.JButton backHistoryScreenButton;
+    private javax.swing.JButton backInventoryScreenButton;
     private javax.swing.JLabel borrowerInfoLabel;
     private javax.swing.JDialog borrowingInfoDialog;
     private javax.swing.JPanel borrowingInfoScreenPanel;
