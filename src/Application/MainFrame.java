@@ -38,6 +38,8 @@ public class MainFrame extends javax.swing.JFrame {
         nameLabel = new javax.swing.JLabel();
         groupLabel = new javax.swing.JLabel();
         itemLabel = new javax.swing.JLabel();
+        personLastNameInput = new javax.swing.JTextField();
+        lastNameLabel = new javax.swing.JLabel();
         borrowingInfoDialog = new javax.swing.JDialog();
         borrowingInfoScreenPanel = new javax.swing.JPanel();
         itemInventoryInfoLabel = new javax.swing.JLabel();
@@ -51,7 +53,7 @@ public class MainFrame extends javax.swing.JFrame {
         endBorrowingDialog = new javax.swing.JDialog();
         endBorrowingScreenPanel = new javax.swing.JPanel();
         endBorrowingButton = new javax.swing.JButton();
-        endDateField = new javax.swing.JTextField();
+        endDateInput = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         mainScreenPanel = new javax.swing.JPanel();
         addBorrowingButton = new javax.swing.JButton();
@@ -124,7 +126,7 @@ public class MainFrame extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
-        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.gridwidth = 4;
         gridBagConstraints.insets = new java.awt.Insets(10, 0, 10, 0);
         addBorrowingScreenPanel.add(addBorrowingConfirmButton, gridBagConstraints);
 
@@ -135,7 +137,7 @@ public class MainFrame extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 5);
         addBorrowingScreenPanel.add(dateLabel, gridBagConstraints);
 
-        nameLabel.setText("Name");
+        nameLabel.setText("Name(s)");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -155,6 +157,19 @@ public class MainFrame extends javax.swing.JFrame {
         gridBagConstraints.gridy = 3;
         gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 5);
         addBorrowingScreenPanel.add(itemLabel, gridBagConstraints);
+
+        personLastNameInput.setPreferredSize(new java.awt.Dimension(100, 24));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 1;
+        addBorrowingScreenPanel.add(personLastNameInput, gridBagConstraints);
+
+        lastNameLabel.setText("Last Name(s)");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 5);
+        addBorrowingScreenPanel.add(lastNameLabel, gridBagConstraints);
 
         addBorrowingDialog.getContentPane().add(addBorrowingScreenPanel, "card2");
 
@@ -256,12 +271,12 @@ public class MainFrame extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 0, 5, 0);
         endBorrowingScreenPanel.add(endBorrowingButton, gridBagConstraints);
 
-        endDateField.setPreferredSize(new java.awt.Dimension(100, 24));
+        endDateInput.setPreferredSize(new java.awt.Dimension(100, 24));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.insets = new java.awt.Insets(5, 0, 5, 0);
-        endBorrowingScreenPanel.add(endDateField, gridBagConstraints);
+        endBorrowingScreenPanel.add(endDateInput, gridBagConstraints);
 
         jLabel1.setText("End Date");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -569,8 +584,8 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JDialog endBorrowingDialog;
     private javax.swing.JButton endBorrowingGoToButton;
     private javax.swing.JPanel endBorrowingScreenPanel;
-    private javax.swing.JTextField endDateField;
     private javax.swing.JLabel endDateInfoLabel;
+    private javax.swing.JTextField endDateInput;
     private javax.swing.JMenuItem endSessionItem;
     private javax.swing.JLabel groupInfoLabel;
     private javax.swing.JLabel groupLabel;
@@ -588,11 +603,13 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTable jTable1;
     private javax.swing.JLabel lastNameInfoLabel;
+    private javax.swing.JLabel lastNameLabel;
     private javax.swing.JMenuBar mainMenuBar;
     private javax.swing.JPanel mainScreenPanel;
     private javax.swing.JLabel nameInfoLabel;
     private javax.swing.JLabel nameLabel;
     private javax.swing.JTextField personGroupInput;
+    private javax.swing.JTextField personLastNameInput;
     private javax.swing.JTextField personNameInput;
     private javax.swing.JLabel startDateInfoLabel;
     private javax.swing.JTextField startDateInput;

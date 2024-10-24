@@ -14,6 +14,19 @@ public class Person {
     private String personLastName;
     private String personGroup;
 
+    public Person(String personName, String personLastName, String personGroup) {
+        this.personName = personName;
+        this.personLastName = personLastName;
+        this.personGroup = personGroup;
+    }
+
+    public Person(int personId, String personName, String personLastName, String personGroup) {
+        this.personId = personId;
+        this.personName = personName;
+        this.personLastName = personLastName;
+        this.personGroup = personGroup;
+    }
+
     public int getPersonId() {
         return personId;
     }
