@@ -10,7 +10,7 @@ import java.util.List;
  *
  * @author labso20
  */
-public class BorrowingsData {
+public class BorrowingsData { //Wtf is this class
     private List<Borrowing> borrowings;
 
     public List<Borrowing> getBorrowings() {

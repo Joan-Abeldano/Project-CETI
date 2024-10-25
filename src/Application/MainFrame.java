@@ -63,8 +63,7 @@ public class MainFrame extends javax.swing.JFrame {
         viewCurrentBorrowingsButton = new javax.swing.JButton();
         viewHistoryButton = new javax.swing.JButton();
         viewInventoryButton = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jLabel2 = new javax.swing.JLabel();
         currentBorrowingsScreenPanel = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         currentBorrowingsFullTable = new javax.swing.JTable();
@@ -79,7 +78,6 @@ public class MainFrame extends javax.swing.JFrame {
         backInventoryScreenButton = new javax.swing.JButton();
         mainMenuBar = new javax.swing.JMenuBar();
         userMenu = new javax.swing.JMenu();
-        viewUserItem = new javax.swing.JMenuItem();
         endSessionItem = new javax.swing.JMenuItem();
         borrowingsMenu = new javax.swing.JMenu();
         addBorrowingItem = new javax.swing.JMenuItem();
@@ -352,25 +350,13 @@ public class MainFrame extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 5);
         mainScreenPanel.add(viewInventoryButton, gridBagConstraints);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {},
-                {},
-                {},
-                {}
-            },
-            new String [] {
-
-            }
-        ));
-        jScrollPane1.setViewportView(jTable1);
-
+        jLabel2.setText("Aqui va algo");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.gridwidth = 4;
-        gridBagConstraints.insets = new java.awt.Insets(10, 0, 10, 0);
-        mainScreenPanel.add(jScrollPane1, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(50, 0, 50, 0);
+        mainScreenPanel.add(jLabel2, gridBagConstraints);
 
         getContentPane().add(mainScreenPanel, "card2");
 
@@ -458,9 +444,6 @@ public class MainFrame extends javax.swing.JFrame {
         getContentPane().add(inventoryScreenPanel, "card5");
 
         userMenu.setText("User");
-
-        viewUserItem.setText("View User");
-        userMenu.add(viewUserItem);
 
         endSessionItem.setText("End Session");
         endSessionItem.addActionListener(new java.awt.event.ActionListener() {
@@ -562,6 +545,7 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_viewInventoryItemActionPerformed
 
     private void endSessionItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_endSessionItemActionPerformed
+        //Need to put this in its own method...maybe
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new LoginFrame().setVisible(true);
@@ -575,6 +559,7 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_aboutUsItemActionPerformed
 
     private void addBorrowingConfirmButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBorrowingConfirmButtonActionPerformed
+        //This is a placeholder implementation
         DefaultTableModel model = (DefaultTableModel) currentBorrowingsFullTable.getModel();
         model.addRow(new Object[]{
             personNameInput.getText(),
@@ -622,11 +607,10 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel itemInventoryInfoLabel;
     private javax.swing.JLabel itemLabel;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lastNameInfoLabel;
     private javax.swing.JLabel lastNameLabel;
     private javax.swing.JMenuBar mainMenuBar;
@@ -643,6 +627,5 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton viewHistoryButton;
     private javax.swing.JButton viewInventoryButton;
     private javax.swing.JMenuItem viewInventoryItem;
-    private javax.swing.JMenuItem viewUserItem;
     // End of variables declaration//GEN-END:variables
 }

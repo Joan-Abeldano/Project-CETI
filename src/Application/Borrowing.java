@@ -22,6 +22,7 @@ public class Borrowing {
     private boolean ended;
 
     public Borrowing(int borrowingId, Item itemBorrowed, Person person, User userBorrower, Date startDate, Date endDate, boolean ended) {
+        //This is probably temp...maybe
         this.borrowingId = borrowingId;
         this.itemBorrowed = itemBorrowed;
         this.person = person;

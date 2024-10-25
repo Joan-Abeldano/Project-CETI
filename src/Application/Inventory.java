@@ -10,7 +10,7 @@ import java.util.List;
  *
  * @author labso20
  */
-public class Inventory {
+public class Inventory {//Wtf it this class
     private List<Item> items;
 
     public List<Item> getItems() {

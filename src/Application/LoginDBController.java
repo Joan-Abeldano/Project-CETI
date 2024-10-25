@@ -14,10 +14,11 @@ import java.sql.ResultSet;
  *
  * @author labso20
  */
-public class LoginDBController {
+public class LoginDBController { //This needs a father class
     private final String url = "jdbc:postgresql://localhost:5432/CETI";
     private final String user = "postgres";
     private final String password = "Joan";
+    //This goes straight into git fy
 
     public Connection connect() throws SQLException {
         return DriverManager.getConnection(url, user, password);
@@ -37,7 +38,7 @@ public class LoginDBController {
     
     public User[] getUsers() {
         List<User> userList = new ArrayList<>();
-        String SQL = "SELECT * FROM users";
+        String SQL = "SELECT * FROM users"; //Im to lazy
         try (Connection conn = connect();
              PreparedStatement pstmt = conn.prepareStatement(SQL);
              ResultSet resultSet = pstmt.executeQuery()) {

@@ -156,6 +156,7 @@ public class LoginFrame extends javax.swing.JFrame {
         LoginDBController dbc = new LoginDBController();
         User[] allUsers = dbc.getUsers();
         User user = new User(userLoginField.getText(),passwordLoginField.getText());
+        //Time complexity goes brrr
         for (User userLoop : allUsers) {
             if (userLoop.getUserName().equals(user.getUserName()) && userLoop.getUserPassword().equals(user.getUserPassword())) {
                 java.awt.EventQueue.invokeLater(new Runnable() {
@@ -169,6 +170,7 @@ public class LoginFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_loginButtonActionPerformed
 
     private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
+        //Most secure login ever
         LoginDBController controller = new LoginDBController();
         User user = new User(userRegisterText.getText(),passwordRegisterText.getText());
         controller.insertUser(user);

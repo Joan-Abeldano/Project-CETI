@@ -11,7 +11,7 @@ package Application;
 public class User {
     private int userId;
     private String userName;
-    private String userPassword;
+    private String userPassword; //This is totally secure. 100% secure. No one can hack this
 
     public User(String name, String password) {
         this.userName = name;

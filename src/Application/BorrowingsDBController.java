@@ -41,7 +41,8 @@ public class BorrowingsDBController {
     
     public Borrowing[] getBorrowings() {
         List<Borrowing> borrowingList = new ArrayList<>();
-        String SQL = "SELECT * FROM borrowings";
+        String SQL = "SELECT * FROM borrowings"; //I should maybe get the stuff i need but idc 
+        //Time complexity goes brrrrr
         try (Connection conn = connect();
             PreparedStatement pstmt = conn.prepareStatement(SQL);
             ResultSet resultSet = pstmt.executeQuery()) {

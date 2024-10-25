@@ -8,7 +8,7 @@ package Application;
  *
  * @author labso20
  */
-public class Person {
+public class Person { //Class name is mostly wrong but idc
     private int personId;
     private String personName;
     private String personLastName;

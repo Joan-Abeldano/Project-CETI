@@ -42,6 +42,7 @@ public class Item {
     }
     
     public Item(int itemInventory,String itemCategory) {
+        //Why items dont have a freaking name
         this.itemInventory = itemInventory;
         this.itemCategory = itemCategory;
     }
