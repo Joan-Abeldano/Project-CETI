@@ -5,6 +5,7 @@
 package Application;
 
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -126,6 +127,11 @@ public class MainFrame extends javax.swing.JFrame {
         addBorrowingScreenPanel.add(itemInput, gridBagConstraints);
 
         addBorrowingConfirmButton.setText("Confirm");
+        addBorrowingConfirmButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addBorrowingConfirmButtonActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
@@ -370,17 +376,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         currentBorrowingsScreenPanel.setLayout(new java.awt.GridBagLayout());
 
-        currentBorrowingsFullTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {},
-                {},
-                {},
-                {}
-            },
-            new String [] {
-
-            }
-        ));
+        currentBorrowingsFullTable.setModel(new javax.swing.table.DefaultTableModel(new Object[][] {}, new String[] {"Name","Last Name","Inventory","Category","Start Date"}));
         jScrollPane2.setViewportView(currentBorrowingsFullTable);
 
         currentBorrowingsScreenPanel.add(jScrollPane2, new java.awt.GridBagConstraints());
@@ -577,6 +573,18 @@ public class MainFrame extends javax.swing.JFrame {
     private void aboutUsItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutUsItemActionPerformed
         JOptionPane.showMessageDialog(null, "I'm Batman");
     }//GEN-LAST:event_aboutUsItemActionPerformed
+
+    private void addBorrowingConfirmButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBorrowingConfirmButtonActionPerformed
+        DefaultTableModel model = (DefaultTableModel) currentBorrowingsFullTable.getModel();
+        model.addRow(new Object[]{
+            personNameInput.getText(),
+            personLastNameInput.getText(),
+            itemInput.getText(),
+            "PC",
+            startDateInput.getText()
+        });
+        addBorrowingDialog.dispose();
+    }//GEN-LAST:event_addBorrowingConfirmButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu aboutMenu;

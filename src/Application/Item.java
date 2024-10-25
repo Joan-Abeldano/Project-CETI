@@ -41,8 +41,9 @@ public class Item {
         this.itemOwner = itemOwner;
     }
     
-    public Item(int itemInventory) {
+    public Item(int itemInventory,String itemCategory) {
         this.itemInventory = itemInventory;
+        this.itemCategory = itemCategory;
     }
 
     public int getItemNumber() {

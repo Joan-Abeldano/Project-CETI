@@ -14,10 +14,9 @@ public class Person {
     private String personLastName;
     private String personGroup;
 
-    public Person(String personName, String personLastName, String personGroup) {
+    public Person(String personName, String personLastName) {
         this.personName = personName;
         this.personLastName = personLastName;
-        this.personGroup = personGroup;
     }
 
     public Person(int personId, String personName, String personLastName, String personGroup) {
