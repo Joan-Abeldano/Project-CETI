@@ -25,8 +25,8 @@ public class LoginFrame extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
+        registerPanel = new javax.swing.JPanel();
         loginPanel = new javax.swing.JPanel();
         loginButton = new javax.swing.JButton();
         registerGoToButton = new javax.swing.JButton();
@@ -34,13 +34,13 @@ public class LoginFrame extends javax.swing.JFrame {
         passwordLoginField = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        registerPanel = new javax.swing.JPanel();
+        jRadioButton1 = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
         getContentPane().setLayout(new java.awt.CardLayout());
 
-        loginPanel.setLayout(new java.awt.GridBagLayout());
+        registerPanel.setLayout(new java.awt.GridBagLayout());
 
         loginButton.setText("Login");
         loginButton.addActionListener(new java.awt.event.ActionListener() {
@@ -48,11 +48,6 @@ public class LoginFrame extends javax.swing.JFrame {
                 loginButtonActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.insets = new java.awt.Insets(10, 0, 10, 0);
-        loginPanel.add(loginButton, gridBagConstraints);
 
         registerGoToButton.setText("Register");
         registerGoToButton.addActionListener(new java.awt.event.ActionListener() {
@@ -60,38 +55,70 @@ public class LoginFrame extends javax.swing.JFrame {
                 registerGoToButtonActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 5;
-        gridBagConstraints.insets = new java.awt.Insets(10, 0, 10, 0);
-        loginPanel.add(registerGoToButton, gridBagConstraints);
 
         userLoginField.setPreferredSize(new java.awt.Dimension(100, 22));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.insets = new java.awt.Insets(10, 0, 10, 0);
-        loginPanel.add(userLoginField, gridBagConstraints);
 
         passwordLoginField.setPreferredSize(new java.awt.Dimension(100, 22));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.insets = new java.awt.Insets(10, 0, 10, 0);
-        loginPanel.add(passwordLoginField, gridBagConstraints);
 
         jLabel1.setText("Password");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
-        loginPanel.add(jLabel1, gridBagConstraints);
 
         jLabel2.setText("User");
-        loginPanel.add(jLabel2, new java.awt.GridBagConstraints());
 
-        getContentPane().add(loginPanel, "card2");
+        jRadioButton1.setText("vista");
+        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton1ActionPerformed(evt);
+            }
+        });
 
-        registerPanel.setLayout(new java.awt.GridBagLayout());
+        javax.swing.GroupLayout loginPanelLayout = new javax.swing.GroupLayout(loginPanel);
+        loginPanel.setLayout(loginPanelLayout);
+        loginPanelLayout.setHorizontalGroup(
+            loginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(loginPanelLayout.createSequentialGroup()
+                .addGap(117, 117, 117)
+                .addGroup(loginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(loginPanelLayout.createSequentialGroup()
+                        .addGap(38, 38, 38)
+                        .addComponent(jLabel2))
+                    .addComponent(userLoginField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(loginPanelLayout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addComponent(jLabel1))
+                    .addGroup(loginPanelLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(loginButton))
+                    .addGroup(loginPanelLayout.createSequentialGroup()
+                        .addGap(11, 11, 11)
+                        .addComponent(registerGoToButton))
+                    .addGroup(loginPanelLayout.createSequentialGroup()
+                        .addComponent(passwordLoginField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jRadioButton1)))
+                .addContainerGap(71, Short.MAX_VALUE))
+        );
+        loginPanelLayout.setVerticalGroup(
+            loginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, loginPanelLayout.createSequentialGroup()
+                .addContainerGap(20, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addGap(14, 14, 14)
+                .addComponent(userLoginField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(jLabel1)
+                .addGap(9, 9, 9)
+                .addGroup(loginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(passwordLoginField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jRadioButton1))
+                .addGap(19, 19, 19)
+                .addComponent(loginButton)
+                .addGap(20, 20, 20)
+                .addComponent(registerGoToButton)
+                .addContainerGap())
+        );
+
+        registerPanel.add(loginPanel, new java.awt.GridBagConstraints());
+
         getContentPane().add(registerPanel, "card3");
 
         setSize(new java.awt.Dimension(414, 307));
@@ -111,6 +138,10 @@ public class LoginFrame extends javax.swing.JFrame {
         });
         this.dispose();
     }//GEN-LAST:event_loginButtonActionPerformed
+
+    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -150,6 +181,7 @@ public class LoginFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JButton loginButton;
     private javax.swing.JPanel loginPanel;
     private javax.swing.JTextField passwordLoginField;
