@@ -300,9 +300,11 @@ public class MainFrame extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(new java.awt.CardLayout());
 
+        mainScreenPanel.setBackground(new java.awt.Color(182, 226, 240));
         mainScreenPanel.setLayout(new java.awt.GridBagLayout());
 
-        addBorrowingButton.setText("Add Borrowing");
+        addBorrowingButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/agregar-producto(1).png"))); // NOI18N
+        addBorrowingButton.setText("Agregar Préstamo");
         addBorrowingButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addBorrowingButtonActionPerformed(evt);
@@ -314,7 +316,8 @@ public class MainFrame extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 5);
         mainScreenPanel.add(addBorrowingButton, gridBagConstraints);
 
-        viewCurrentBorrowingsButton.setText("View Current Borrowings");
+        viewCurrentBorrowingsButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/historial-de-pedidos(2).png"))); // NOI18N
+        viewCurrentBorrowingsButton.setText("Préstamos Activos");
         viewCurrentBorrowingsButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 viewCurrentBorrowingsButtonActionPerformed(evt);
@@ -326,7 +329,8 @@ public class MainFrame extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 5);
         mainScreenPanel.add(viewCurrentBorrowingsButton, gridBagConstraints);
 
-        viewHistoryButton.setText("View History");
+        viewHistoryButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/historial-de-pedidos(1)(1).png"))); // NOI18N
+        viewHistoryButton.setText("Ver Historial");
         viewHistoryButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 viewHistoryButtonActionPerformed(evt);
@@ -338,7 +342,8 @@ public class MainFrame extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 5);
         mainScreenPanel.add(viewHistoryButton, gridBagConstraints);
 
-        viewInventoryButton.setText("View Inventory");
+        viewInventoryButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/cajas(1).png"))); // NOI18N
+        viewInventoryButton.setText("Ver Inventario");
         viewInventoryButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 viewInventoryButtonActionPerformed(evt);
@@ -350,7 +355,7 @@ public class MainFrame extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 5);
         mainScreenPanel.add(viewInventoryButton, gridBagConstraints);
 
-        jLabel2.setText("Aqui va algo");
+        jLabel2.setText("Aqui va algo pero no sé que");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -360,6 +365,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         getContentPane().add(mainScreenPanel, "card2");
 
+        currentBorrowingsScreenPanel.setBackground(new java.awt.Color(182, 226, 240));
         currentBorrowingsScreenPanel.setLayout(new java.awt.GridBagLayout());
 
         currentBorrowingsFullTable.setModel(new javax.swing.table.DefaultTableModel(new Object[][] {}, new String[] {"Name","Last Name","Inventory","Category","Start Date"}));
@@ -381,6 +387,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         getContentPane().add(currentBorrowingsScreenPanel, "card3");
 
+        historyScreenPanel.setBackground(new java.awt.Color(182, 226, 240));
         historyScreenPanel.setLayout(new java.awt.GridBagLayout());
 
         borrowingsHistoryTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -412,6 +419,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         getContentPane().add(historyScreenPanel, "card4");
 
+        inventoryScreenPanel.setBackground(new java.awt.Color(182, 226, 240));
         inventoryScreenPanel.setLayout(new java.awt.GridBagLayout());
 
         inventoryTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -443,9 +451,9 @@ public class MainFrame extends javax.swing.JFrame {
 
         getContentPane().add(inventoryScreenPanel, "card5");
 
-        userMenu.setText("User");
+        userMenu.setText("Usuario");
 
-        endSessionItem.setText("End Session");
+        endSessionItem.setText("Cerrar Sesión");
         endSessionItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 endSessionItemActionPerformed(evt);
@@ -455,9 +463,9 @@ public class MainFrame extends javax.swing.JFrame {
 
         mainMenuBar.add(userMenu);
 
-        borrowingsMenu.setText("Borrowings");
+        borrowingsMenu.setText("Préstamos");
 
-        addBorrowingItem.setText("Add Borrowing");
+        addBorrowingItem.setText("Agregar Préstamo");
         addBorrowingItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addBorrowingItemActionPerformed(evt);
@@ -467,9 +475,9 @@ public class MainFrame extends javax.swing.JFrame {
 
         mainMenuBar.add(borrowingsMenu);
 
-        inventoryMenu.setText("Inventory");
+        inventoryMenu.setText("Inventario");
 
-        viewInventoryItem.setText("View Inventory");
+        viewInventoryItem.setText("Ver Inventario");
         viewInventoryItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 viewInventoryItemActionPerformed(evt);
@@ -479,9 +487,9 @@ public class MainFrame extends javax.swing.JFrame {
 
         mainMenuBar.add(inventoryMenu);
 
-        aboutMenu.setText("About");
+        aboutMenu.setText("Acerca de");
 
-        aboutUsItem.setText("About Us");
+        aboutUsItem.setText("Nosotros");
         aboutUsItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 aboutUsItemActionPerformed(evt);
