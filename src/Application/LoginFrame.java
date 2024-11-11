@@ -4,6 +4,12 @@
  */
 package Application;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.plaf.metal.MetalLookAndFeel;
+
 /**
  *
  * @author Joan
@@ -29,7 +35,6 @@ public class LoginFrame extends javax.swing.JFrame {
 
         loginPanel = new javax.swing.JPanel();
         loginButton = new javax.swing.JButton();
-        registerGoToButton = new javax.swing.JButton();
         userLoginField = new javax.swing.JTextField();
         passwordLoginField = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
@@ -45,9 +50,10 @@ public class LoginFrame extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(new java.awt.CardLayout());
 
+        loginPanel.setBackground(new java.awt.Color(182, 226, 240));
         loginPanel.setLayout(new java.awt.GridBagLayout());
 
-        loginButton.setText("Login");
+        loginButton.setText("Ingresar");
         loginButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 loginButtonActionPerformed(evt);
@@ -58,18 +64,6 @@ public class LoginFrame extends javax.swing.JFrame {
         gridBagConstraints.gridy = 4;
         gridBagConstraints.insets = new java.awt.Insets(10, 0, 10, 0);
         loginPanel.add(loginButton, gridBagConstraints);
-
-        registerGoToButton.setText("Register");
-        registerGoToButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                registerGoToButtonActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 5;
-        gridBagConstraints.insets = new java.awt.Insets(10, 0, 10, 0);
-        loginPanel.add(registerGoToButton, gridBagConstraints);
 
         userLoginField.setText("Joan");
         userLoginField.setPreferredSize(new java.awt.Dimension(100, 22));
@@ -87,13 +81,13 @@ public class LoginFrame extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(10, 0, 10, 0);
         loginPanel.add(passwordLoginField, gridBagConstraints);
 
-        jLabel1.setText("Password");
+        jLabel1.setText("Contraseña");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
         loginPanel.add(jLabel1, gridBagConstraints);
 
-        jLabel2.setText("User");
+        jLabel2.setText("Usuario");
         loginPanel.add(jLabel2, new java.awt.GridBagConstraints());
 
         getContentPane().add(loginPanel, "card2");
@@ -147,26 +141,30 @@ public class LoginFrame extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void registerGoToButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerGoToButtonActionPerformed
-        loginPanel.setVisible(false);
-        registerPanel.setVisible(true);
-    }//GEN-LAST:event_registerGoToButtonActionPerformed
-
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
-        LoginDBController dbc = new LoginDBController();
-        User[] allUsers = dbc.getUsers();
-        User user = new User(userLoginField.getText(),passwordLoginField.getText());
-        //Time complexity goes brrr
-        for (User userLoop : allUsers) {
-            if (userLoop.getUserName().equals(user.getUserName()) && userLoop.getUserPassword().equals(user.getUserPassword())) {
-                java.awt.EventQueue.invokeLater(new Runnable() {
-                    public void run() {
-                        new MainFrame().setVisible(true);
-                    }
-                });
-                this.dispose();
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new MainFrame().setVisible(true);
             }
-        }
+        });
+        this.dispose();
+        
+//        LoginDBController dbc = new LoginDBController();
+//        User[] allUsers = dbc.getUsers();
+//        User user = new User(userLoginField.getText(),passwordLoginField.getText());
+//        //Time complexity goes brrr
+//        for (User userLoop : allUsers) {
+//            if (userLoop.getUserName().equals(user.getUserName()) && userLoop.getUserPassword().equals(user.getUserPassword())) {
+//                java.awt.EventQueue.invokeLater(new Runnable() {
+//                    public void run() {
+//                        new MainFrame().setVisible(true);
+//                    }
+//                });
+//                this.dispose();
+//            }
+//        }
+
+
     }//GEN-LAST:event_loginButtonActionPerformed
 
     private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
@@ -208,9 +206,16 @@ public class LoginFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                try {
+                    UIManager.setLookAndFeel(new MetalLookAndFeel());
+                } catch (UnsupportedLookAndFeelException ex) {
+                    Logger.getLogger(LoginFrame.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 new LoginFrame().setVisible(true);
             }
         });
+        
+        //Why tf am i putting so much code in a fk frame
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -223,7 +228,6 @@ public class LoginFrame extends javax.swing.JFrame {
     private javax.swing.JTextField passwordLoginField;
     private javax.swing.JTextField passwordRegisterText;
     private javax.swing.JButton registerButton;
-    private javax.swing.JButton registerGoToButton;
     private javax.swing.JPanel registerPanel;
     private javax.swing.JTextField userLoginField;
     private javax.swing.JTextField userRegisterText;

@@ -16,7 +16,7 @@ import java.sql.ResultSet;
  *
  * @author labso20
  */
-public class BorrowingsDBController {
+public class BorrowingsDBController { //This needs a father class
     private final String url = "jdbc:postgresql://localhost:5432/CETI";
     private final String user = "postgres";
     private final String password = "Joan";
@@ -25,6 +25,7 @@ public class BorrowingsDBController {
         return DriverManager.getConnection(url, user, password);
     }
     
+    //Why did i use the word "borrowing", i hate it
     public void insertBorrowing(Borrowing borrowing) {
         String SQL = "INSERT INTO borrowings(startDate,userId,itemInventory,personId) VALUES (?,?,?,?);";
         try (Connection conn = connect();
@@ -39,6 +40,7 @@ public class BorrowingsDBController {
         }
     }
     
+    //Again, this word sounds horrible
     public Borrowing[] getBorrowings() {
         List<Borrowing> borrowingList = new ArrayList<>();
         String SQL = "SELECT * FROM borrowings"; //I should maybe get the stuff i need but idc 

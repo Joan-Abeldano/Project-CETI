@@ -36,7 +36,9 @@ public class LoginDBController { //This needs a father class
         }
     }
     
-    public User[] getUsers() {
+    //This implementation is not good at all
+    //Ill leave it here forever
+    public User[] getUsers() { //This method name is a bit cool
         List<User> userList = new ArrayList<>();
         String SQL = "SELECT * FROM users"; //Im to lazy
         try (Connection conn = connect();
@@ -54,5 +56,6 @@ public class LoginDBController { //This needs a father class
         }
 
         return userList.toArray(new User[0]);
+        //Why not a list, idk
     }
 }
