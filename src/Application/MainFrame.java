@@ -305,6 +305,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         mainScreenPanel.setLayout(new java.awt.GridBagLayout());
 
+        addBorrowingButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/agregar-producto(1).png"))); // NOI18N
         addBorrowingButton.setText("Add Borrowing");
         addBorrowingButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -317,6 +318,7 @@ public class MainFrame extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 5);
         mainScreenPanel.add(addBorrowingButton, gridBagConstraints);
 
+        viewCurrentBorrowingsButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/historial-de-pedidos(2).png"))); // NOI18N
         viewCurrentBorrowingsButton.setText("View Current Borrowings");
         viewCurrentBorrowingsButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -329,6 +331,7 @@ public class MainFrame extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 5);
         mainScreenPanel.add(viewCurrentBorrowingsButton, gridBagConstraints);
 
+        viewHistoryButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/historial-de-pedidos(1)(1).png"))); // NOI18N
         viewHistoryButton.setText("View History");
         viewHistoryButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -341,6 +344,7 @@ public class MainFrame extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 5);
         mainScreenPanel.add(viewHistoryButton, gridBagConstraints);
 
+        viewInventoryButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/cajas(1).png"))); // NOI18N
         viewInventoryButton.setText("View Inventory");
         viewInventoryButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

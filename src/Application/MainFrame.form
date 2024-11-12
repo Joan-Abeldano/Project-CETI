@@ -448,6 +448,9 @@
       <SubComponents>
         <Component class="javax.swing.JButton" name="addBorrowingButton">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/icons/agregar-producto(1).png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Add Borrowing"/>
           </Properties>
           <Events>
@@ -461,6 +464,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="viewCurrentBorrowingsButton">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/icons/historial-de-pedidos(2).png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="View Current Borrowings"/>
           </Properties>
           <Events>
@@ -474,6 +480,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="viewHistoryButton">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/icons/historial-de-pedidos(1)(1).png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="View History"/>
           </Properties>
           <Events>
@@ -487,6 +496,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="viewInventoryButton">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/icons/cajas(1).png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="View Inventory"/>
           </Properties>
           <Events>
