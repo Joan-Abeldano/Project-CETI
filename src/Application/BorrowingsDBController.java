@@ -5,26 +5,15 @@
 package Application;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 import java.sql.ResultSet;
 
 /**
  *
  * @author labso20
  */
-public class BorrowingsDBController { //This needs a father class
-    private final String url = "jdbc:postgresql://localhost:5432/CETI";
-    private final String user = "postgres";
-    private final String password = "Joan";
-
-    public Connection connect() throws SQLException {
-        return DriverManager.getConnection(url, user, password);
-    }
-    
+public class BorrowingsDBController extends DBController{ //This needs a father class
     //Why did i use the word "borrowing", i hate it
     public void insertBorrowing(Borrowing borrowing) {
         String SQL = "INSERT INTO borrowings(startDate,userId,itemInventory,personId) VALUES (?,?,?,?);";
@@ -41,28 +30,16 @@ public class BorrowingsDBController { //This needs a father class
     }
     
     //Again, this word sounds horrible
-    public Borrowing[] getBorrowings() {
-        List<Borrowing> borrowingList = new ArrayList<>();
+    public ResultSet getBorrowings() {
         String SQL = "SELECT * FROM borrowings"; //I should maybe get the stuff i need but idc 
         //Time complexity goes brrrrr
         try (Connection conn = connect();
             PreparedStatement pstmt = conn.prepareStatement(SQL);
             ResultSet resultSet = pstmt.executeQuery()) {
-            while (resultSet.next()) {
-                int borrowingId = resultSet.getInt("borrowingId");
-                String startDate = resultSet.getString("startDate");
-                String endDate = resultSet.getString("endDate");
-                int userId = resultSet.getInt("userId");
-                int itemInventory = resultSet.getInt("itemInventory");
-                int personId = resultSet.getInt("personId");
-                boolean ended = resultSet.getBoolean("ended");
-
-                //Borrowing borrowingObj = new Borrowing();
-                //borrowingList.add(borrowingObj);
-            }
+                return resultSet;
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
-        return borrowingList.toArray(new Borrowing[0]);
+        return null;
     }
 }
