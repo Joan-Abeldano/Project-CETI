@@ -339,6 +339,11 @@
             <Property name="text" type="java.lang.String" value="User"/>
           </Properties>
           <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="addUserItem">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Add User"/>
+              </Properties>
+            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="endSessionItem">
               <Properties>
                 <Property name="text" type="java.lang.String" value="End Session"/>
@@ -376,6 +381,16 @@
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="viewInventoryItemActionPerformed"/>
               </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="importCsvItem">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Import CSV"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="addItemItem">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Add Item"/>
+              </Properties>
             </MenuItem>
           </SubComponents>
         </Menu>

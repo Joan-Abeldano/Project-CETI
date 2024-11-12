@@ -28,8 +28,6 @@ public class CurrentBorrowing {
         this.itemInventory = itemInventory;
         this.itemCategory = itemCategory;
         this.startDate = startDate;
-        //Someone said i should add the end date here
-        //Thats why i should do it all by myself lol
     }
 
     public String getPersonName() {

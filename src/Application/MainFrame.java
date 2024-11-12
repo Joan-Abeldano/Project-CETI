@@ -78,11 +78,14 @@ public class MainFrame extends javax.swing.JFrame {
         backInventoryScreenButton = new javax.swing.JButton();
         mainMenuBar = new javax.swing.JMenuBar();
         userMenu = new javax.swing.JMenu();
+        addUserItem = new javax.swing.JMenuItem();
         endSessionItem = new javax.swing.JMenuItem();
         borrowingsMenu = new javax.swing.JMenu();
         addBorrowingItem = new javax.swing.JMenuItem();
         inventoryMenu = new javax.swing.JMenu();
         viewInventoryItem = new javax.swing.JMenuItem();
+        importCsvItem = new javax.swing.JMenuItem();
+        addItemItem = new javax.swing.JMenuItem();
         aboutMenu = new javax.swing.JMenu();
         aboutUsItem = new javax.swing.JMenuItem();
 
@@ -445,6 +448,9 @@ public class MainFrame extends javax.swing.JFrame {
 
         userMenu.setText("User");
 
+        addUserItem.setText("Add User");
+        userMenu.add(addUserItem);
+
         endSessionItem.setText("End Session");
         endSessionItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -476,6 +482,12 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
         inventoryMenu.add(viewInventoryItem);
+
+        importCsvItem.setText("Import CSV");
+        inventoryMenu.add(importCsvItem);
+
+        addItemItem.setText("Add Item");
+        inventoryMenu.add(addItemItem);
 
         mainMenuBar.add(inventoryMenu);
 
@@ -560,15 +572,20 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void addBorrowingConfirmButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBorrowingConfirmButtonActionPerformed
         //This is a placeholder implementation
-        DefaultTableModel model = (DefaultTableModel) currentBorrowingsFullTable.getModel();
-        model.addRow(new Object[]{
-            personNameInput.getText(),
-            personLastNameInput.getText(),
-            itemInput.getText(),
-            "PC",
-            startDateInput.getText()
-        });
-        addBorrowingDialog.dispose();
+        if (!personNameInput.getText().equals("") && !startDateInput.getText().equals("") && !personLastNameInput.getText().equals("") && !personGroupInput.getText().equals("") && !itemInput.getText().equals("")){
+            DefaultTableModel model = (DefaultTableModel) currentBorrowingsFullTable.getModel();
+            model.addRow(new Object[]{
+                personNameInput.getText(),
+                personLastNameInput.getText(),
+                itemInput.getText(),
+                "PC",
+                startDateInput.getText()
+            });
+            addBorrowingDialog.dispose();
+        }
+        else{
+            JOptionPane.showMessageDialog(null,"Rellena todos los campos");
+        }
     }//GEN-LAST:event_addBorrowingConfirmButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -579,6 +596,8 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JDialog addBorrowingDialog;
     private javax.swing.JMenuItem addBorrowingItem;
     private javax.swing.JPanel addBorrowingScreenPanel;
+    private javax.swing.JMenuItem addItemItem;
+    private javax.swing.JMenuItem addUserItem;
     private javax.swing.JButton backCurrentBorrowingsScreenButton;
     private javax.swing.JButton backHistoryScreenButton;
     private javax.swing.JButton backInventoryScreenButton;
@@ -600,6 +619,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel groupInfoLabel;
     private javax.swing.JLabel groupLabel;
     private javax.swing.JPanel historyScreenPanel;
+    private javax.swing.JMenuItem importCsvItem;
     private javax.swing.JMenu inventoryMenu;
     private javax.swing.JPanel inventoryScreenPanel;
     private javax.swing.JTable inventoryTable;
