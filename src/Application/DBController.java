@@ -7,6 +7,8 @@ package Application;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.ResultSet;
+import java.sql.PreparedStatement;
 
 /**
  *
@@ -21,5 +23,14 @@ public class DBController {
         return DriverManager.getConnection(url, user, password);
     }
     
-    
+    public ResultSet getQueryResult(String SQL) {
+        try (Connection conn = connect();
+            PreparedStatement pstmt = conn.prepareStatement(SQL);
+            ResultSet resultSet = pstmt.executeQuery()) {
+            return resultSet;
+        } catch(SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return null;
+    }
 }

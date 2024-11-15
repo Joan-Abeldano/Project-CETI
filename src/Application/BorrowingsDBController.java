@@ -7,7 +7,6 @@ package Application;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.ResultSet;
 
 /**
  *
@@ -29,17 +28,5 @@ public class BorrowingsDBController extends DBController{ //This needs a father 
         }
     }
     
-    //Again, this word sounds horrible
-    public ResultSet getBorrowings() {
-        String SQL = "SELECT * FROM borrowings"; //I should maybe get the stuff i need but idc 
-        //Time complexity goes brrrrr
-        try (Connection conn = connect();
-            PreparedStatement pstmt = conn.prepareStatement(SQL);
-            ResultSet resultSet = pstmt.executeQuery()) {
-                return resultSet;
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-        }
-        return null;
-    }
+    
 }
