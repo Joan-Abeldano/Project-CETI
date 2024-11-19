@@ -303,10 +303,12 @@ public class MainFrame extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(new java.awt.CardLayout());
 
+        mainScreenPanel.setBackground(new java.awt.Color(0, 153, 204));
+        mainScreenPanel.setForeground(new java.awt.Color(255, 255, 255));
         mainScreenPanel.setLayout(new java.awt.GridBagLayout());
 
         addBorrowingButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/agregar-producto(1).png"))); // NOI18N
-        addBorrowingButton.setText("Add Borrowing");
+        addBorrowingButton.setText("Añadir Préstamo");
         addBorrowingButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addBorrowingButtonActionPerformed(evt);
@@ -319,7 +321,7 @@ public class MainFrame extends javax.swing.JFrame {
         mainScreenPanel.add(addBorrowingButton, gridBagConstraints);
 
         viewCurrentBorrowingsButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/historial-de-pedidos(2).png"))); // NOI18N
-        viewCurrentBorrowingsButton.setText("View Current Borrowings");
+        viewCurrentBorrowingsButton.setText("Ver Préstamos Actuales");
         viewCurrentBorrowingsButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 viewCurrentBorrowingsButtonActionPerformed(evt);
@@ -332,7 +334,7 @@ public class MainFrame extends javax.swing.JFrame {
         mainScreenPanel.add(viewCurrentBorrowingsButton, gridBagConstraints);
 
         viewHistoryButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/historial-de-pedidos(1)(1).png"))); // NOI18N
-        viewHistoryButton.setText("View History");
+        viewHistoryButton.setText("Ver Historial");
         viewHistoryButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 viewHistoryButtonActionPerformed(evt);
@@ -345,7 +347,7 @@ public class MainFrame extends javax.swing.JFrame {
         mainScreenPanel.add(viewHistoryButton, gridBagConstraints);
 
         viewInventoryButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/cajas(1).png"))); // NOI18N
-        viewInventoryButton.setText("View Inventory");
+        viewInventoryButton.setText("Ver Inventario");
         viewInventoryButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 viewInventoryButtonActionPerformed(evt);
@@ -367,6 +369,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         getContentPane().add(mainScreenPanel, "card2");
 
+        currentBorrowingsScreenPanel.setBackground(new java.awt.Color(0, 153, 204));
         currentBorrowingsScreenPanel.setLayout(new java.awt.GridBagLayout());
 
         currentBorrowingsFullTable.setModel(new javax.swing.table.DefaultTableModel(new Object[][] {}, new String[] {"Name","Last Name","Inventory","Category","Start Date"}));
@@ -388,6 +391,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         getContentPane().add(currentBorrowingsScreenPanel, "card3");
 
+        historyScreenPanel.setBackground(new java.awt.Color(0, 153, 204));
         historyScreenPanel.setLayout(new java.awt.GridBagLayout());
 
         borrowingsHistoryTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -419,6 +423,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         getContentPane().add(historyScreenPanel, "card4");
 
+        inventoryScreenPanel.setBackground(new java.awt.Color(0, 153, 204));
         inventoryScreenPanel.setLayout(new java.awt.GridBagLayout());
 
         inventoryTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -450,12 +455,12 @@ public class MainFrame extends javax.swing.JFrame {
 
         getContentPane().add(inventoryScreenPanel, "card5");
 
-        userMenu.setText("User");
+        userMenu.setText("Usuario");
 
-        addUserItem.setText("Add User");
+        addUserItem.setText("Añadir usuario");
         userMenu.add(addUserItem);
 
-        endSessionItem.setText("End Session");
+        endSessionItem.setText("Cerrar sesión");
         endSessionItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 endSessionItemActionPerformed(evt);
@@ -465,9 +470,9 @@ public class MainFrame extends javax.swing.JFrame {
 
         mainMenuBar.add(userMenu);
 
-        borrowingsMenu.setText("Borrowings");
+        borrowingsMenu.setText("Préstamos");
 
-        addBorrowingItem.setText("Add Borrowing");
+        addBorrowingItem.setText("Añadir Préstamos");
         addBorrowingItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addBorrowingItemActionPerformed(evt);
@@ -477,9 +482,9 @@ public class MainFrame extends javax.swing.JFrame {
 
         mainMenuBar.add(borrowingsMenu);
 
-        inventoryMenu.setText("Inventory");
+        inventoryMenu.setText("Inventario");
 
-        viewInventoryItem.setText("View Inventory");
+        viewInventoryItem.setText("Ver Inventario");
         viewInventoryItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 viewInventoryItemActionPerformed(evt);
@@ -487,17 +492,17 @@ public class MainFrame extends javax.swing.JFrame {
         });
         inventoryMenu.add(viewInventoryItem);
 
-        importCsvItem.setText("Import CSV");
+        importCsvItem.setText("Importar CSV");
         inventoryMenu.add(importCsvItem);
 
-        addItemItem.setText("Add Item");
+        addItemItem.setText("Añadir Item");
         inventoryMenu.add(addItemItem);
 
         mainMenuBar.add(inventoryMenu);
 
-        aboutMenu.setText("About");
+        aboutMenu.setText("Acerca de");
 
-        aboutUsItem.setText("About Us");
+        aboutUsItem.setText("Sobre nosotros");
         aboutUsItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 aboutUsItemActionPerformed(evt);
