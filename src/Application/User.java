@@ -13,6 +13,12 @@ public class User {
     private String userName;
     private String userPassword; //This is totally secure. 100% secure. No one can hack this
 
+    public User(int id,String name, String password) {
+        this.userId = id;
+        this.userName = name;
+        this.userPassword = password;
+    }
+    
     public User(String name, String password) {
         this.userName = name;
         this.userPassword = password;

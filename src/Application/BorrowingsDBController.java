@@ -12,8 +12,7 @@ import java.sql.SQLException;
  *
  * @author labso20
  */
-public class BorrowingsDBController extends DBController{ //This needs a father class
-    //Why did i use the word "borrowing", i hate it
+public class BorrowingsDBController extends DBController{
     public void insertBorrowing(Borrowing borrowing) {
         String SQL = "INSERT INTO borrowings(startDate,userId,itemInventory,personId) VALUES (?,?,?,?);";
         try (Connection conn = connect();
@@ -28,5 +27,33 @@ public class BorrowingsDBController extends DBController{ //This needs a father 
         }
     }
     
+    public void deleteBorrowing(Borrowing borrowing) {
+        String SQL = "DELETE FROM borrowings WHERE borrowingId="+borrowing.getBorrowingId()+";";
+        try (Connection conn = connect();
+            PreparedStatement pstmt = conn.prepareStatement(SQL)){
+            pstmt.executeUpdate();
+        } catch(SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
     
+    public void updateBorrowing(Borrowing borrowing) {
+        String SQL = "UPDATE borrowings SET startDate="+borrowing.getStartDate()+", endDate="+borrowing.getEndDate()+", userId="+borrowing.getUserBorrower().getUserId()+", itemInventory="+borrowing.getItemBorrowed().getItemInventory()+", personId="+borrowing.getPerson().getPersonId()+" WHERE borrowingId="+borrowing.getBorrowingId()+";";
+        try (Connection conn = connect();
+            PreparedStatement pstmt = conn.prepareStatement(SQL)){
+            pstmt.executeUpdate();
+        }catch(SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+    
+    public void endBorrowing(Borrowing borrowing) {
+        String SQL = "UPDATE borrowings SET endDate="+borrowing.getEndDate()+", ended=true WHERE borrowingId="+borrowing.getBorrowingId()+";";
+        try (Connection conn = connect();
+            PreparedStatement pstmt = conn.prepareStatement(SQL)){
+            pstmt.executeUpdate();
+        }catch(SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
 }

@@ -6,14 +6,13 @@ package Application;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.ResultSet;
 /**
  *
  * @author labso20
  */
-public class LoginDBController extends DBController{ //This needs a father class
+public class LoginDBController extends DBController{
     public void insertUser(User user) {
-        String SQL = "INSERT INTO users(userName, userPassword) VALUES (?, ?)";
+        String SQL = "INSERT INTO users(userName, userPassword) VALUES (?, ?);";
         try (Connection conn = connect();
             PreparedStatement pstmt = conn.prepareStatement(SQL)) {
             pstmt.setString(1, user.getUserName());
@@ -24,17 +23,23 @@ public class LoginDBController extends DBController{ //This needs a father class
         }
     }
     
-    //This implementation is not good at all
-    //Ill leave it here forever
-    public ResultSet getUsers() { //This method name is a bit cool
-        String SQL = "SELECT * FROM users"; //Im to lazy
+    public void deleteUser(User user) {
+        String SQL = "DELETE FROM users WHERE userId="+user.getUserId()+";";
         try (Connection conn = connect();
-            PreparedStatement pstmt = conn.prepareStatement(SQL);
-            ResultSet resultSet = pstmt.executeQuery()) {
-            return resultSet;
-        } catch (SQLException ex) {
+            PreparedStatement pstmt = conn.prepareStatement(SQL)){
+            pstmt.executeUpdate();
+        } catch(SQLException ex) {
             System.out.println(ex.getMessage());
         }
-        return null;
+    }
+    
+    public void updateUser(User user) {
+        String SQL = "UPDATE users SET userName='"+user.getUserName()+"', userPassword='"+user.getUserPassword()+"' WHERE userId="+user.getUserId()+";";
+        try (Connection conn = connect();
+            PreparedStatement pstmt = conn.prepareStatement(SQL)){
+            pstmt.executeUpdate();
+        }catch(SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 }
