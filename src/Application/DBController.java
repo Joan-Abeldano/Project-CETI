@@ -9,6 +9,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.ResultSet;
 import java.sql.PreparedStatement;
+import java.util.ArrayList;
 
 /**
  *
@@ -23,14 +24,19 @@ public class DBController {
         return DriverManager.getConnection(url, user, password);
     }
     
-    public ResultSet getQueryResult(String SQL) {
+    public ArrayList<User> getQueryResult(String SQL) {
+        ArrayList<User> arr = new ArrayList<>();
         try (Connection conn = connect();
             PreparedStatement pstmt = conn.prepareStatement(SQL);
             ResultSet resultSet = pstmt.executeQuery()) {
-            return resultSet;
+            while(resultSet.next()){
+                User user = new User(resultSet.getString("userName"),resultSet.getString("userPassword"));
+                arr.add(user);
+            }
+            return arr;
         } catch(SQLException ex) {
             System.out.println(ex.getMessage());
+            return null;
         }
-        return null;
     }
 }

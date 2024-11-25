@@ -58,6 +58,7 @@ public class BorrowingsDBController extends DBController{
     }
     
     private void restartSerialId() {
+        String SQL = "SELECT max(borrowingId) FROM borrowings;";
         
     }
 }
