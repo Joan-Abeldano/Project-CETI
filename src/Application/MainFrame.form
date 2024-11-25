@@ -336,17 +336,17 @@
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="userMenu">
           <Properties>
-            <Property name="text" type="java.lang.String" value="User"/>
+            <Property name="text" type="java.lang.String" value="Usuario"/>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="addUserItem">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Add User"/>
+                <Property name="text" type="java.lang.String" value="A&#xf1;adir usuario"/>
               </Properties>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="endSessionItem">
               <Properties>
-                <Property name="text" type="java.lang.String" value="End Session"/>
+                <Property name="text" type="java.lang.String" value="Cerrar sesi&#xf3;n"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="endSessionItemActionPerformed"/>
@@ -356,12 +356,12 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="borrowingsMenu">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Borrowings"/>
+            <Property name="text" type="java.lang.String" value="Pr&#xe9;stamos"/>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="addBorrowingItem">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Add Borrowing"/>
+                <Property name="text" type="java.lang.String" value="A&#xf1;adir Pr&#xe9;stamos"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addBorrowingItemActionPerformed"/>
@@ -371,12 +371,12 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="inventoryMenu">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Inventory"/>
+            <Property name="text" type="java.lang.String" value="Inventario"/>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="viewInventoryItem">
               <Properties>
-                <Property name="text" type="java.lang.String" value="View Inventory"/>
+                <Property name="text" type="java.lang.String" value="Ver Inventario"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="viewInventoryItemActionPerformed"/>
@@ -384,24 +384,24 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="importCsvItem">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Import CSV"/>
+                <Property name="text" type="java.lang.String" value="Importar CSV"/>
               </Properties>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="addItemItem">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Add Item"/>
+                <Property name="text" type="java.lang.String" value="A&#xf1;adir Item"/>
               </Properties>
             </MenuItem>
           </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="aboutMenu">
           <Properties>
-            <Property name="text" type="java.lang.String" value="About"/>
+            <Property name="text" type="java.lang.String" value="Acerca de"/>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="aboutUsItem">
               <Properties>
-                <Property name="text" type="java.lang.String" value="About Us"/>
+                <Property name="text" type="java.lang.String" value="Sobre nosotros"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="aboutUsItemActionPerformed"/>
@@ -438,6 +438,14 @@
   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignCardLayout"/>
   <SubComponents>
     <Container class="javax.swing.JPanel" name="mainScreenPanel">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="cc" green="99" red="0" type="rgb"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
+      </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
           <CardConstraints cardName="card2"/>
@@ -451,7 +459,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/icons/agregar-producto(1).png"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Add Borrowing"/>
+            <Property name="text" type="java.lang.String" value="A&#xf1;adir Pr&#xe9;stamo"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addBorrowingButtonActionPerformed"/>
@@ -467,7 +475,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/icons/historial-de-pedidos(2).png"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="View Current Borrowings"/>
+            <Property name="text" type="java.lang.String" value="Ver Pr&#xe9;stamos Actuales"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="viewCurrentBorrowingsButtonActionPerformed"/>
@@ -483,7 +491,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/icons/historial-de-pedidos(1)(1).png"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="View History"/>
+            <Property name="text" type="java.lang.String" value="Ver Historial"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="viewHistoryButtonActionPerformed"/>
@@ -499,7 +507,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/icons/cajas(1).png"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="View Inventory"/>
+            <Property name="text" type="java.lang.String" value="Ver Inventario"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="viewInventoryButtonActionPerformed"/>
@@ -523,6 +531,11 @@
       </SubComponents>
     </Container>
     <Container class="javax.swing.JPanel" name="currentBorrowingsScreenPanel">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="cc" green="99" red="0" type="rgb"/>
+        </Property>
+      </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
           <CardConstraints cardName="card3"/>
@@ -574,6 +587,11 @@
       </SubComponents>
     </Container>
     <Container class="javax.swing.JPanel" name="historyScreenPanel">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="cc" green="99" red="0" type="rgb"/>
+        </Property>
+      </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
           <CardConstraints cardName="card4"/>
@@ -625,6 +643,11 @@
       </SubComponents>
     </Container>
     <Container class="javax.swing.JPanel" name="inventoryScreenPanel">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="cc" green="99" red="0" type="rgb"/>
+        </Property>
+      </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
           <CardConstraints cardName="card5"/>
