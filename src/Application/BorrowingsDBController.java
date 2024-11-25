@@ -56,4 +56,8 @@ public class BorrowingsDBController extends DBController{
             System.out.println(ex.getMessage());
         }
     }
+    
+    private void restartSerialId() {
+        
+    }
 }
