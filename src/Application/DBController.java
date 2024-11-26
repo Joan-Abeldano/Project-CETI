@@ -10,6 +10,8 @@ import java.sql.SQLException;
 import java.sql.ResultSet;
 import java.sql.PreparedStatement;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  *
@@ -24,16 +26,19 @@ public class DBController {
         return DriverManager.getConnection(url, user, password);
     }
     
-    public ArrayList<User> getQueryResult(String SQL) {
-        ArrayList<User> arr = new ArrayList<>();
+    public ArrayList<Map<String, Object>> getQueryResult(String SQL) {
+        ArrayList<Map<String, Object>> result = new ArrayList<>();
         try (Connection conn = connect();
             PreparedStatement pstmt = conn.prepareStatement(SQL);
-            ResultSet resultSet = pstmt.executeQuery()) {
-            while(resultSet.next()){
-                User user = new User(resultSet.getString("userName"),resultSet.getString("userPassword"));
-                arr.add(user);
+            ResultSet rs = pstmt.executeQuery()) {
+            while (rs.next()) {
+            Map<String, Object> resMap = new HashMap<>();
+            for (int i = 1; i <= rs.getMetaData().getColumnCount(); i++) {
+                resMap.put(rs.getMetaData().getColumnName(i), rs.getObject(i));
             }
-            return arr;
+            result.add(resMap);
+        }
+            return result;
         } catch(SQLException ex) {
             System.out.println(ex.getMessage());
             return null;

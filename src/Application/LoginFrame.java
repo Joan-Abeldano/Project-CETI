@@ -6,6 +6,7 @@ package Application;
 
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.UIManager;
@@ -193,30 +194,17 @@ public class LoginFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new MainFrame().setVisible(true);
-//            }
-//        });
-//        this.dispose();
-        
         LoginDBController dbc = new LoginDBController();
-        String SQL = "SELECT * FROM users;";
-        ArrayList<User> allUsers = dbc.getQueryResult(SQL);
-        User user = new User(userLoginField.getText(),passwordLoginField.getText());
-        //Time complexity goes brrr
-        for (User userLoop : allUsers) {
-            if (userLoop.getUserName().equals(user.getUserName()) && userLoop.getUserPassword().equals(user.getUserPassword())) {
-                java.awt.EventQueue.invokeLater(new Runnable() {
-                    public void run() {
-                        new MainFrame().setVisible(true);
-                    }
-                });
-                this.dispose();
-            }
+        String SQL = "SELECT * FROM users WHERE userName = \'"+userLoginField.getText()+"\' AND userPassword = \'"+passwordLoginField.getText()+"\';";
+        ArrayList<Map<String, Object>> allUsers = dbc.getQueryResult(SQL);
+        if (!allUsers.isEmpty()){
+            java.awt.EventQueue.invokeLater(new Runnable() {
+                public void run() {
+                    new MainFrame().setVisible(true);
+                }
+            });
+            this.dispose();
         }
-
-
     }//GEN-LAST:event_loginButtonActionPerformed
 
     private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
