@@ -18,9 +18,9 @@ public class BorrowingsDBController extends DBController{
         try (Connection conn = connect();
             PreparedStatement pstmt = conn.prepareStatement(SQL)) {
             pstmt.setString(1,borrowing.getStartDateString());
-            pstmt.setInt(2, borrowing.getUserBorrower().getUserId());
-            pstmt.setInt(3, borrowing.getItemBorrowed().getItemInventory());
-            pstmt.setInt(4, borrowing.getPerson().getPersonId());
+            pstmt.setInt(2, borrowing.getUserBorrower());
+            pstmt.setInt(3, borrowing.getItemBorrowed());
+            pstmt.setInt(4, borrowing.getPerson());
             pstmt.execute();
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
@@ -38,7 +38,7 @@ public class BorrowingsDBController extends DBController{
     }
     
     public void updateBorrowing(Borrowing borrowing) {
-        String SQL = "UPDATE borrowings SET startDate=\'"+borrowing.getStartDate()+"\', endDate=\'"+borrowing.getEndDate()+"\', userId="+borrowing.getUserBorrower().getUserId()+", itemInventory="+borrowing.getItemBorrowed().getItemInventory()+", personId="+borrowing.getPerson().getPersonId()+" WHERE borrowingId="+borrowing.getBorrowingId()+";";
+        String SQL = "UPDATE borrowings SET startDate=\'"+borrowing.getStartDate()+"\', endDate=\'"+borrowing.getEndDate()+"\', userId="+borrowing.getUserBorrower()+", itemInventory="+borrowing.getItemBorrowed()+", personId="+borrowing.getPerson()+" WHERE borrowingId="+borrowing.getBorrowingId()+";";
         try (Connection conn = connect();
             PreparedStatement pstmt = conn.prepareStatement(SQL)){
             pstmt.executeUpdate();

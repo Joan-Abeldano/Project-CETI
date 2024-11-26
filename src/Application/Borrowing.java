@@ -14,15 +14,14 @@ import java.util.Date;
  */
 public class Borrowing {
     private int borrowingId;
-    private Item itemBorrowed;
-    private Person person;
-    private User userBorrower;
+    private int itemBorrowed;
+    private int person;
+    private int userBorrower;
     private Date startDate;
     private Date endDate;
     private boolean ended;
 
-    public Borrowing(int borrowingId, Item itemBorrowed, Person person, User userBorrower, Date startDate, Date endDate, boolean ended) {
-        //This is probably temp...maybe
+    public Borrowing(int borrowingId, int itemBorrowed, int person, int userBorrower, Date startDate, Date endDate, boolean ended) {
         this.borrowingId = borrowingId;
         this.itemBorrowed = itemBorrowed;
         this.person = person;
@@ -40,27 +39,27 @@ public class Borrowing {
         this.borrowingId = borrowingId;
     }
 
-    public Item getItemBorrowed() {
+    public int getItemBorrowed() {
         return itemBorrowed;
     }
 
-    public void setItemBorrowed(Item itemBorrowed) {
+    public void setItemBorrowed(int itemBorrowed) {
         this.itemBorrowed = itemBorrowed;
     }
 
-    public Person getPerson() {
+    public int getPerson() {
         return person;
     }
 
-    public void setPerson(Person person) {
+    public void setPerson(int person) {
         this.person = person;
     }
 
-    public User getUserBorrower() {
+    public int getUserBorrower() {
         return userBorrower;
     }
 
-    public void setUserBorrower(User userBorrower) {
+    public void setUserBorrower(int userBorrower) {
         this.userBorrower = userBorrower;
     }
 
@@ -81,6 +80,13 @@ public class Borrowing {
 
     public Date getEndDate() {
         return endDate;
+    }
+    
+    public String getEndDateString() {
+        String pattern = "MM/dd/yyyy HH:mm:ss";
+        DateFormat df = new SimpleDateFormat(pattern);      
+        String endDateString = df.format(this.endDate);
+        return endDateString;
     }
 
     public void setEndDate(Date endDate) {
