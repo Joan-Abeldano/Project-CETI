@@ -3,28 +3,31 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Application;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+
 /**
  *
  * @author labso20
  */
-public class LoginDBController extends DBController{
-    public void insertUser(User user) {
-        String SQL = "INSERT INTO users(userName, userPassword) VALUES (?, ?);";
+public class PersonDBController extends DBController{
+    public void insertPerson(Person person) {
+        String SQL = "INSERT INTO people(personName, personLastName, personGroup) VALUES (?, ?, ?);";
         try (Connection conn = connect();
             PreparedStatement pstmt = conn.prepareStatement(SQL)) {
-            pstmt.setString(1, user.getUserName());
-            pstmt.setString(2, user.getUserPassword());
+            pstmt.setString(1, person.getPersonName());
+            pstmt.setString(2, person.getPersonLastName());
+            pstmt.setString(3, person.getPersonGroup());
             pstmt.execute();
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
     }
     
-    public void deleteUser(User user) {
-        String SQL = "DELETE FROM users WHERE userId="+user.getUserId()+";";
+    public void deletePerson(Person person) {
+        String SQL = "DELETE FROM people WHERE personId="+person.getPersonId()+";";
         try (Connection conn = connect();
             PreparedStatement pstmt = conn.prepareStatement(SQL)){
             pstmt.executeUpdate();
@@ -33,8 +36,8 @@ public class LoginDBController extends DBController{
         }
     }
     
-    public void updateUser(User user) {
-        String SQL = "UPDATE users SET userName=\'"+user.getUserName()+"\', userPassword=\'"+user.getUserPassword()+"\' WHERE userId="+user.getUserId()+";";
+    public void updatePerson(Person person) {
+        String SQL = "UPDATE people SET personName=\'"+person.getPersonName()+"\', personLastName=\'"+person.getPersonLastName()+"\', personGroup=\'"+person.getPersonGroup()+"\' WHERE personId="+person.getPersonId()+";";
         try (Connection conn = connect();
             PreparedStatement pstmt = conn.prepareStatement(SQL)){
             pstmt.executeUpdate();

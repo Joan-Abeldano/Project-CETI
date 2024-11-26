@@ -38,7 +38,7 @@ public class BorrowingsDBController extends DBController{
     }
     
     public void updateBorrowing(Borrowing borrowing) {
-        String SQL = "UPDATE borrowings SET startDate="+borrowing.getStartDate()+", endDate="+borrowing.getEndDate()+", userId="+borrowing.getUserBorrower().getUserId()+", itemInventory="+borrowing.getItemBorrowed().getItemInventory()+", personId="+borrowing.getPerson().getPersonId()+" WHERE borrowingId="+borrowing.getBorrowingId()+";";
+        String SQL = "UPDATE borrowings SET startDate=\'"+borrowing.getStartDate()+"\', endDate=\'"+borrowing.getEndDate()+"\', userId="+borrowing.getUserBorrower().getUserId()+", itemInventory="+borrowing.getItemBorrowed().getItemInventory()+", personId="+borrowing.getPerson().getPersonId()+" WHERE borrowingId="+borrowing.getBorrowingId()+";";
         try (Connection conn = connect();
             PreparedStatement pstmt = conn.prepareStatement(SQL)){
             pstmt.executeUpdate();
@@ -48,7 +48,7 @@ public class BorrowingsDBController extends DBController{
     }
     
     public void endBorrowing(Borrowing borrowing) {
-        String SQL = "UPDATE borrowings SET endDate="+borrowing.getEndDate()+", ended=true WHERE borrowingId="+borrowing.getBorrowingId()+";";
+        String SQL = "UPDATE borrowings SET endDate=\'"+borrowing.getEndDate()+"\', ended=true WHERE borrowingId="+borrowing.getBorrowingId()+";";
         try (Connection conn = connect();
             PreparedStatement pstmt = conn.prepareStatement(SQL)){
             pstmt.executeUpdate();

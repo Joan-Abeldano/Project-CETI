@@ -47,7 +47,7 @@ public class ItemDBController extends DBController{
     }
     
     public void updateItem(Item item) {
-        String SQL = "UPDATE items SET itemPossesion="+item.getItemPossesion()+", itemGroup="+item.getItemGroup()+", itemCategory="+item.getItemCategory()+", itemSubCategory="+item.getItemSubCategory()+", itemType="+item.getItemType()+", itemBrand="+item.getItemBrand()+", itemModel="+item.getItemModel()+", itemSerie="+item.getItemSerie()+", itemColor="+item.getItemColor()+", itemPrice="+item.getItemPrice()+", itemState="+item.getItemState()+", itemOwner="+item.getItemOwner()+" WHERE itemInventory="+item.getItemInventory()+";";
+        String SQL = "UPDATE items SET itemPossesion=\'"+item.getItemPossesion()+"\', itemGroup=\'"+item.getItemGroup()+"\', itemCategory=\'"+item.getItemCategory()+"\', itemSubCategory=\'"+item.getItemSubCategory()+"\', itemType=\'"+item.getItemType()+"\', itemBrand=\'"+item.getItemBrand()+"\', itemModel=\'"+item.getItemModel()+"\', itemSerie=\'"+item.getItemSerie()+"\', itemColor=\'"+item.getItemColor()+"\', itemPrice="+item.getItemPrice()+", itemState=\'"+item.getItemState()+"\', itemOwner=\'"+item.getItemOwner()+"\' WHERE itemInventory="+item.getItemInventory()+";";
         try (Connection conn = connect();
             PreparedStatement pstmt = conn.prepareStatement(SQL)){
             pstmt.executeUpdate();
