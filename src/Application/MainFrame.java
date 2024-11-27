@@ -955,22 +955,29 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_addItemItemActionPerformed
 
     private void addBorrowingConfirmButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBorrowingConfirmButton1ActionPerformed
-        Item item = new Item(Integer.parseInt(inventarioInput.getText()),
-        posesionInput.getText(),
-        grupoInput.getText(),
-        categoriaInput.getText(),
-        subcategoriaInput.getText(),
-        tipoInput.getText(),
-        marcaInput.getText(),
-        modeloInput.getText(),
-        serieInput.getText(),
-        colorInput.getText(),
-        Float.parseFloat(precioInput.getText()),
-        estadoInput.getText(),
-        propietarioInput.getText());
-        ItemDBController idbc = new ItemDBController();
-        idbc.insertItem(item);
-        limpiar();
+        if(validarTipo() && validarVacio()){
+            Item item = new Item(Integer.parseInt(inventarioInput.getText()),
+            posesionInput.getText(),
+            grupoInput.getText(),
+            categoriaInput.getText(),
+            subcategoriaInput.getText(),
+            tipoInput.getText(),
+            marcaInput.getText(),
+            modeloInput.getText(),
+            serieInput.getText(),
+            colorInput.getText(),
+            Float.parseFloat(precioInput.getText()),
+            estadoInput.getText(),
+            propietarioInput.getText());
+            ItemDBController idbc = new ItemDBController();
+            idbc.insertItem(item);
+            JOptionPane.showMessageDialog(null, "Insertado exitosamente");
+            limpiar();
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Algun campo está vacio o algun dato es erroneo");
+        }
+        
     }//GEN-LAST:event_addBorrowingConfirmButton1ActionPerformed
 
     private void limpiar() {
@@ -989,6 +996,37 @@ public class MainFrame extends javax.swing.JFrame {
         propietarioInput.setText("");
     }
     
+    private boolean validarVacio() {
+        if(inventarioInput.getText().isEmpty() ||
+        posesionInput.getText().isEmpty() ||
+        grupoInput.getText().isEmpty() ||
+        categoriaInput.getText().isEmpty() ||
+        subcategoriaInput.getText().isEmpty() ||
+        tipoInput.getText().isEmpty() ||
+        marcaInput.getText().isEmpty() ||
+        modeloInput.getText().isEmpty() ||
+        serieInput.getText().isEmpty() ||
+        colorInput.getText().isEmpty() ||
+        precioInput.getText().isEmpty() ||
+        estadoInput.getText().isEmpty() ||
+        propietarioInput.getText().isEmpty()){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+    
+    private boolean validarTipo() {
+        try{
+            Integer.parseInt(inventarioInput.getText());
+            Float.parseFloat(precioInput.getText());
+            return true;
+        }
+        catch(Exception e){
+            return false;
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu aboutMenu;
     private javax.swing.JMenuItem aboutUsItem;
