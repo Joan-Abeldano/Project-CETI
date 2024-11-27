@@ -4,6 +4,8 @@
  */
 package Application;
 
+import java.util.ArrayList;
+import java.util.Map;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -445,22 +447,9 @@ public class MainFrame extends javax.swing.JFrame {
         getContentPane().add(historyScreenPanel, "card4");
 
         inventoryScreenPanel.setBackground(new java.awt.Color(0, 0, 0));
-        inventoryScreenPanel.setLayout(new java.awt.GridBagLayout());
 
-        inventoryTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {},
-                {},
-                {},
-                {}
-            },
-            new String [] {
-
-            }
-        ));
+        inventoryTable.setModel(new javax.swing.table.DefaultTableModel(new Object[][] {}, new String[] {"Inventario","Numero","Posesion","Grupo","Categoria","SubCategoria","Tipo","Marca","Modelo","Serie","Color","Precio","Estado","Propietario"}));
         jScrollPane4.setViewportView(inventoryTable);
-
-        inventoryScreenPanel.add(jScrollPane4, new java.awt.GridBagConstraints());
 
         backInventoryScreenButton.setText("Atrás");
         backInventoryScreenButton.addActionListener(new java.awt.event.ActionListener() {
@@ -468,11 +457,29 @@ public class MainFrame extends javax.swing.JFrame {
                 backInventoryScreenButtonActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.insets = new java.awt.Insets(10, 0, 10, 0);
-        inventoryScreenPanel.add(backInventoryScreenButton, gridBagConstraints);
+
+        javax.swing.GroupLayout inventoryScreenPanelLayout = new javax.swing.GroupLayout(inventoryScreenPanel);
+        inventoryScreenPanel.setLayout(inventoryScreenPanelLayout);
+        inventoryScreenPanelLayout.setHorizontalGroup(
+            inventoryScreenPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(inventoryScreenPanelLayout.createSequentialGroup()
+                .addGroup(inventoryScreenPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(inventoryScreenPanelLayout.createSequentialGroup()
+                        .addGap(374, 374, 374)
+                        .addComponent(backInventoryScreenButton))
+                    .addGroup(inventoryScreenPanelLayout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 733, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(42, 42, 42))
+        );
+        inventoryScreenPanelLayout.setVerticalGroup(
+            inventoryScreenPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(inventoryScreenPanelLayout.createSequentialGroup()
+                .addGap(60, 60, 60)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(backInventoryScreenButton))
+        );
 
         getContentPane().add(inventoryScreenPanel, "card5");
 
@@ -531,6 +538,11 @@ public class MainFrame extends javax.swing.JFrame {
         inventoryMenu.add(importCsvItem);
 
         addItemItem.setText("Añadir Item");
+        addItemItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addItemItemActionPerformed(evt);
+            }
+        });
         inventoryMenu.add(addItemItem);
 
         mainMenuBar.add(inventoryMenu);
@@ -575,6 +587,27 @@ public class MainFrame extends javax.swing.JFrame {
     private void viewInventoryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewInventoryButtonActionPerformed
         inventoryScreenPanel.setVisible(true);
         mainScreenPanel.setVisible(false);
+        ItemDBController idbc = new ItemDBController();
+        String SQL="SELECT * FROM items;";
+        ArrayList<Map<String, Object>> results = idbc.getQueryResult(SQL);
+        DefaultTableModel model = (DefaultTableModel) inventoryTable.getModel();
+            for(Map<String, Object> rs : results){
+                model.addRow(new Object[]{
+                    rs.get("iteminventory"),
+                    rs.get("itemnumber"),
+                    rs.get("itempossesion"),
+                    rs.get("itemgroup"),
+                    rs.get("itemcategory"),
+                    rs.get("itemsubcategory"),
+                    rs.get("itemtype"),
+                    rs.get("itembrand"),
+                    rs.get("itemmodel"),
+                    rs.get("itemserie"),
+                    rs.get("itemcolor"),
+                    rs.get("itemprice"),
+                    rs.get("itemstate"),
+                    rs.get("itemowner")
+                });}
     }//GEN-LAST:event_viewInventoryButtonActionPerformed
 
     private void viewHistoryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewHistoryButtonActionPerformed
@@ -647,6 +680,10 @@ public class MainFrame extends javax.swing.JFrame {
         });
         this.dispose();
     }//GEN-LAST:event_addUserItemActionPerformed
+
+    private void addItemItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addItemItemActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_addItemItemActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu aboutMenu;
