@@ -90,13 +90,14 @@ public class MainFrame extends javax.swing.JFrame {
         aboutUsItem = new javax.swing.JMenuItem();
 
         addBorrowingDialog.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        addBorrowingDialog.setTitle("Add Borrowing");
+        addBorrowingDialog.setTitle("Añadir Prestamo");
         addBorrowingDialog.setMinimumSize(new java.awt.Dimension(338, 300));
         addBorrowingDialog.setModal(true);
         addBorrowingDialog.setResizable(false);
         addBorrowingDialog.setSize(new java.awt.Dimension(400, 300));
         addBorrowingDialog.getContentPane().setLayout(new java.awt.CardLayout());
 
+        addBorrowingScreenPanel.setBackground(new java.awt.Color(51, 51, 51));
         addBorrowingScreenPanel.setLayout(new java.awt.GridBagLayout());
 
         startDateInput.setPreferredSize(new java.awt.Dimension(100, 24));
@@ -127,7 +128,9 @@ public class MainFrame extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(10, 0, 10, 0);
         addBorrowingScreenPanel.add(itemInput, gridBagConstraints);
 
-        addBorrowingConfirmButton.setText("Confirm");
+        addBorrowingConfirmButton.setBackground(new java.awt.Color(102, 0, 0));
+        addBorrowingConfirmButton.setForeground(new java.awt.Color(255, 255, 255));
+        addBorrowingConfirmButton.setText("Confirmar");
         addBorrowingConfirmButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addBorrowingConfirmButtonActionPerformed(evt);
@@ -140,27 +143,31 @@ public class MainFrame extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(10, 0, 10, 0);
         addBorrowingScreenPanel.add(addBorrowingConfirmButton, gridBagConstraints);
 
-        dateLabel.setText("Date");
+        dateLabel.setForeground(new java.awt.Color(255, 255, 255));
+        dateLabel.setText("Fecha");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 5);
         addBorrowingScreenPanel.add(dateLabel, gridBagConstraints);
 
-        nameLabel.setText("Name(s)");
+        nameLabel.setForeground(new java.awt.Color(255, 255, 255));
+        nameLabel.setText("Nombre(s)");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 5);
         addBorrowingScreenPanel.add(nameLabel, gridBagConstraints);
 
-        groupLabel.setText("Group");
+        groupLabel.setForeground(new java.awt.Color(255, 255, 255));
+        groupLabel.setText("Grupo");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 5);
         addBorrowingScreenPanel.add(groupLabel, gridBagConstraints);
 
+        itemLabel.setForeground(new java.awt.Color(255, 255, 255));
         itemLabel.setText("Item");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -174,7 +181,8 @@ public class MainFrame extends javax.swing.JFrame {
         gridBagConstraints.gridy = 1;
         addBorrowingScreenPanel.add(personLastNameInput, gridBagConstraints);
 
-        lastNameLabel.setText("Last Name(s)");
+        lastNameLabel.setForeground(new java.awt.Color(255, 255, 255));
+        lastNameLabel.setText("Apellido(s)");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 1;
@@ -303,10 +311,12 @@ public class MainFrame extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(new java.awt.CardLayout());
 
-        mainScreenPanel.setBackground(new java.awt.Color(0, 153, 204));
+        mainScreenPanel.setBackground(new java.awt.Color(0, 0, 0));
         mainScreenPanel.setForeground(new java.awt.Color(255, 255, 255));
         mainScreenPanel.setLayout(new java.awt.GridBagLayout());
 
+        addBorrowingButton.setBackground(new java.awt.Color(102, 0, 0));
+        addBorrowingButton.setForeground(new java.awt.Color(255, 255, 255));
         addBorrowingButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/agregar-producto(1).png"))); // NOI18N
         addBorrowingButton.setText("Añadir Préstamo");
         addBorrowingButton.addActionListener(new java.awt.event.ActionListener() {
@@ -320,7 +330,9 @@ public class MainFrame extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 5);
         mainScreenPanel.add(addBorrowingButton, gridBagConstraints);
 
-        viewCurrentBorrowingsButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/historial-de-pedidos(2).png"))); // NOI18N
+        viewCurrentBorrowingsButton.setBackground(new java.awt.Color(102, 0, 0));
+        viewCurrentBorrowingsButton.setForeground(new java.awt.Color(255, 255, 255));
+        viewCurrentBorrowingsButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/actual(1).png"))); // NOI18N
         viewCurrentBorrowingsButton.setText("Ver Préstamos Actuales");
         viewCurrentBorrowingsButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -333,7 +345,9 @@ public class MainFrame extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 5);
         mainScreenPanel.add(viewCurrentBorrowingsButton, gridBagConstraints);
 
-        viewHistoryButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/historial-de-pedidos(1)(1).png"))); // NOI18N
+        viewHistoryButton.setBackground(new java.awt.Color(102, 0, 0));
+        viewHistoryButton.setForeground(new java.awt.Color(255, 255, 255));
+        viewHistoryButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/historial(1).png"))); // NOI18N
         viewHistoryButton.setText("Ver Historial");
         viewHistoryButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -346,6 +360,8 @@ public class MainFrame extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 5);
         mainScreenPanel.add(viewHistoryButton, gridBagConstraints);
 
+        viewInventoryButton.setBackground(new java.awt.Color(102, 0, 0));
+        viewInventoryButton.setForeground(new java.awt.Color(255, 255, 255));
         viewInventoryButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/cajas(1).png"))); // NOI18N
         viewInventoryButton.setText("Ver Inventario");
         viewInventoryButton.addActionListener(new java.awt.event.ActionListener() {
@@ -359,7 +375,10 @@ public class MainFrame extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 5);
         mainScreenPanel.add(viewInventoryButton, gridBagConstraints);
 
-        jLabel2.setText("Aqui va algo");
+        jLabel2.setBackground(new java.awt.Color(102, 0, 0));
+        jLabel2.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(102, 0, 0));
+        jLabel2.setText("Gestor de Prestamos del CETI");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -369,15 +388,17 @@ public class MainFrame extends javax.swing.JFrame {
 
         getContentPane().add(mainScreenPanel, "card2");
 
-        currentBorrowingsScreenPanel.setBackground(new java.awt.Color(0, 153, 204));
+        currentBorrowingsScreenPanel.setBackground(new java.awt.Color(0, 0, 0));
         currentBorrowingsScreenPanel.setLayout(new java.awt.GridBagLayout());
 
+        currentBorrowingsFullTable.setBackground(new java.awt.Color(255, 255, 255));
         currentBorrowingsFullTable.setModel(new javax.swing.table.DefaultTableModel(new Object[][] {}, new String[] {"Name","Last Name","Inventory","Category","Start Date"}));
+        currentBorrowingsFullTable.setSelectionBackground(new java.awt.Color(204, 255, 255));
         jScrollPane2.setViewportView(currentBorrowingsFullTable);
 
         currentBorrowingsScreenPanel.add(jScrollPane2, new java.awt.GridBagConstraints());
 
-        backCurrentBorrowingsScreenButton.setText("Back");
+        backCurrentBorrowingsScreenButton.setText("Atrás");
         backCurrentBorrowingsScreenButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backCurrentBorrowingsScreenButtonActionPerformed(evt);
@@ -391,7 +412,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         getContentPane().add(currentBorrowingsScreenPanel, "card3");
 
-        historyScreenPanel.setBackground(new java.awt.Color(0, 153, 204));
+        historyScreenPanel.setBackground(new java.awt.Color(0, 0, 0));
         historyScreenPanel.setLayout(new java.awt.GridBagLayout());
 
         borrowingsHistoryTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -409,7 +430,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         historyScreenPanel.add(jScrollPane3, new java.awt.GridBagConstraints());
 
-        backHistoryScreenButton.setText("Back");
+        backHistoryScreenButton.setText("Atrás");
         backHistoryScreenButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backHistoryScreenButtonActionPerformed(evt);
@@ -423,7 +444,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         getContentPane().add(historyScreenPanel, "card4");
 
-        inventoryScreenPanel.setBackground(new java.awt.Color(0, 153, 204));
+        inventoryScreenPanel.setBackground(new java.awt.Color(0, 0, 0));
         inventoryScreenPanel.setLayout(new java.awt.GridBagLayout());
 
         inventoryTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -441,7 +462,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         inventoryScreenPanel.add(jScrollPane4, new java.awt.GridBagConstraints());
 
-        backInventoryScreenButton.setText("Back");
+        backInventoryScreenButton.setText("Atrás");
         backInventoryScreenButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backInventoryScreenButtonActionPerformed(evt);
@@ -455,6 +476,11 @@ public class MainFrame extends javax.swing.JFrame {
 
         getContentPane().add(inventoryScreenPanel, "card5");
 
+        mainMenuBar.setBackground(new java.awt.Color(102, 0, 0));
+        mainMenuBar.setForeground(new java.awt.Color(255, 255, 255));
+
+        userMenu.setBackground(new java.awt.Color(102, 0, 0));
+        userMenu.setForeground(new java.awt.Color(255, 255, 255));
         userMenu.setText("Usuario");
 
         addUserItem.setText("Añadir usuario");
@@ -470,6 +496,8 @@ public class MainFrame extends javax.swing.JFrame {
 
         mainMenuBar.add(userMenu);
 
+        borrowingsMenu.setBackground(new java.awt.Color(102, 0, 0));
+        borrowingsMenu.setForeground(new java.awt.Color(255, 255, 255));
         borrowingsMenu.setText("Préstamos");
 
         addBorrowingItem.setText("Añadir Préstamos");
@@ -482,6 +510,8 @@ public class MainFrame extends javax.swing.JFrame {
 
         mainMenuBar.add(borrowingsMenu);
 
+        inventoryMenu.setBackground(new java.awt.Color(102, 0, 0));
+        inventoryMenu.setForeground(new java.awt.Color(255, 255, 255));
         inventoryMenu.setText("Inventario");
 
         viewInventoryItem.setText("Ver Inventario");
@@ -500,6 +530,8 @@ public class MainFrame extends javax.swing.JFrame {
 
         mainMenuBar.add(inventoryMenu);
 
+        aboutMenu.setBackground(new java.awt.Color(102, 0, 0));
+        aboutMenu.setForeground(new java.awt.Color(255, 255, 255));
         aboutMenu.setText("Acerca de");
 
         aboutUsItem.setText("Sobre nosotros");
