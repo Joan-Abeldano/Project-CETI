@@ -392,7 +392,7 @@ public class MainFrame extends javax.swing.JFrame {
         currentBorrowingsScreenPanel.setLayout(new java.awt.GridBagLayout());
 
         currentBorrowingsFullTable.setBackground(new java.awt.Color(255, 255, 255));
-        currentBorrowingsFullTable.setModel(new javax.swing.table.DefaultTableModel(new Object[][] {}, new String[] {"Name","Last Name","Inventory","Category","Start Date"}));
+        currentBorrowingsFullTable.setModel(new javax.swing.table.DefaultTableModel(new Object[][] {}, new String[] {"Nombre","Apellido","Inventario","Categoría","Fecha Inicio"}));
         currentBorrowingsFullTable.setSelectionBackground(new java.awt.Color(204, 255, 255));
         jScrollPane2.setViewportView(currentBorrowingsFullTable);
 

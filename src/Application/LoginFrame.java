@@ -36,12 +36,6 @@ public class LoginFrame extends javax.swing.JFrame {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
-        registerPanel = new javax.swing.JPanel();
-        registerButton = new javax.swing.JButton();
-        userRegisterText = new javax.swing.JTextField();
-        passwordRegisterText = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         loginPanel = new javax.swing.JPanel();
         loginButton = new javax.swing.JButton();
         userLoginField = new javax.swing.JTextField();
@@ -49,55 +43,17 @@ public class LoginFrame extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        registerPanel = new javax.swing.JPanel();
+        registerButton = new javax.swing.JButton();
+        userRegisterText = new javax.swing.JTextField();
+        passwordRegisterText = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
         getContentPane().setLayout(new java.awt.CardLayout());
-
-        registerPanel.setLayout(new java.awt.GridBagLayout());
-
-        registerButton.setText("Register");
-        registerButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                registerButtonActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.insets = new java.awt.Insets(10, 0, 10, 0);
-        registerPanel.add(registerButton, gridBagConstraints);
-
-        userRegisterText.setPreferredSize(new java.awt.Dimension(100, 24));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.insets = new java.awt.Insets(10, 0, 10, 0);
-        registerPanel.add(userRegisterText, gridBagConstraints);
-
-        passwordRegisterText.setPreferredSize(new java.awt.Dimension(100, 24));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.insets = new java.awt.Insets(10, 0, 10, 0);
-        registerPanel.add(passwordRegisterText, gridBagConstraints);
-
-        jLabel3.setText("Password");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 5);
-        registerPanel.add(jLabel3, gridBagConstraints);
-
-        jLabel4.setText("User");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 5);
-        registerPanel.add(jLabel4, gridBagConstraints);
-
-        getContentPane().add(registerPanel, "card3");
 
         loginPanel.setBackground(new java.awt.Color(0, 0, 0));
         loginPanel.setLayout(new java.awt.GridBagLayout());
@@ -190,6 +146,94 @@ public class LoginFrame extends javax.swing.JFrame {
         loginPanel.add(jLabel5, gridBagConstraints);
 
         getContentPane().add(loginPanel, "card2");
+
+        registerPanel.setBackground(new java.awt.Color(0, 0, 0));
+        registerPanel.setLayout(new java.awt.GridBagLayout());
+
+        registerButton.setBackground(new java.awt.Color(102, 0, 0));
+        registerButton.setForeground(new java.awt.Color(255, 255, 255));
+        registerButton.setText("Registrar");
+        registerButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                registerButtonActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.insets = new java.awt.Insets(10, 0, 10, 0);
+        registerPanel.add(registerButton, gridBagConstraints);
+
+        userRegisterText.setForeground(new java.awt.Color(204, 204, 204));
+        userRegisterText.setText("Usuario");
+        userRegisterText.setPreferredSize(new java.awt.Dimension(100, 24));
+        userRegisterText.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                userRegisterTextFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                userRegisterTextFocusLost(evt);
+            }
+        });
+        userRegisterText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                userRegisterTextActionPerformed(evt);
+            }
+        });
+        userRegisterText.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                userRegisterTextKeyPressed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.insets = new java.awt.Insets(10, 0, 10, 0);
+        registerPanel.add(userRegisterText, gridBagConstraints);
+
+        passwordRegisterText.setForeground(new java.awt.Color(204, 204, 204));
+        passwordRegisterText.setText("Contraseña");
+        passwordRegisterText.setPreferredSize(new java.awt.Dimension(100, 24));
+        passwordRegisterText.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                passwordRegisterTextFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                passwordRegisterTextFocusLost(evt);
+            }
+        });
+        passwordRegisterText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                passwordRegisterTextActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.insets = new java.awt.Insets(10, 0, 10, 0);
+        registerPanel.add(passwordRegisterText, gridBagConstraints);
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/contraseña(1).png"))); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 5);
+        registerPanel.add(jLabel3, gridBagConstraints);
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/user(1).png"))); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 5);
+        registerPanel.add(jLabel4, gridBagConstraints);
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/11zon_cropped.png"))); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        registerPanel.add(jLabel6, gridBagConstraints);
+
+        getContentPane().add(registerPanel, "card3");
 
         setSize(new java.awt.Dimension(414, 307));
         setLocationRelativeTo(null);
@@ -285,6 +329,54 @@ if (userLoginField.getText().isEmpty()) {
 
     }//GEN-LAST:event_passwordLoginFieldActionPerformed
 
+    private void userRegisterTextKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_userRegisterTextKeyPressed
+     if (userRegisterText.getText().equals("Usuario")) {
+    userRegisterText.setText("");
+    userRegisterText.setForeground(Color.BLACK);
+     }
+    }//GEN-LAST:event_userRegisterTextKeyPressed
+
+    private void userRegisterTextFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_userRegisterTextFocusGained
+    if (userRegisterText.getText().isEmpty()) {
+    userRegisterText.setText("Usuario");
+    userRegisterText.setForeground(Color.gray);
+    }
+    }//GEN-LAST:event_userRegisterTextFocusGained
+
+    private void userRegisterTextFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_userRegisterTextFocusLost
+    if (userRegisterText.getText().isEmpty()) {
+    userRegisterText.setText("Usuario");
+    userRegisterText.setForeground(Color.GRAY);
+}
+    }//GEN-LAST:event_userRegisterTextFocusLost
+
+    private void passwordRegisterTextFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_passwordRegisterTextFocusGained
+    if (passwordRegisterText.getText().equals("Contraseña")) {
+    passwordRegisterText.setText("");
+    passwordRegisterText.setForeground(Color.black);     
+    }
+    }//GEN-LAST:event_passwordRegisterTextFocusGained
+
+    private void passwordRegisterTextFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_passwordRegisterTextFocusLost
+    if (passwordRegisterText.getText().isEmpty()) {
+    passwordRegisterText.setText("Contraseña");
+    passwordRegisterText.setForeground(Color.GRAY);
+}
+    }//GEN-LAST:event_passwordRegisterTextFocusLost
+
+    private void userRegisterTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userRegisterTextActionPerformed
+    passwordRegisterText.requestFocus();
+    }//GEN-LAST:event_userRegisterTextActionPerformed
+
+    private void passwordRegisterTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordRegisterTextActionPerformed
+         //Most secure login ever
+        LoginDBController controller = new LoginDBController();
+        User user = new User(userRegisterText.getText(),passwordRegisterText.getText());
+        controller.insertUser(user);
+        loginPanel.setVisible(true);
+        registerPanel.setVisible(false);  
+    }//GEN-LAST:event_passwordRegisterTextActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -333,6 +425,7 @@ if (userLoginField.getText().isEmpty()) {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JButton loginButton;
     private javax.swing.JPanel loginPanel;
     private javax.swing.JTextField passwordLoginField;
