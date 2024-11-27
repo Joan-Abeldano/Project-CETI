@@ -20,6 +20,7 @@ public class MainFrame extends javax.swing.JFrame {
      */
     public MainFrame() {
         initComponents();
+        addItemDialog.setLocationRelativeTo(null);
     }
 
     /**
@@ -60,6 +61,35 @@ public class MainFrame extends javax.swing.JFrame {
         endBorrowingButton = new javax.swing.JButton();
         endDateInput = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+        addItemDialog = new javax.swing.JDialog();
+        addBorrowingScreenPanel1 = new javax.swing.JPanel();
+        addBorrowingConfirmButton1 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        inventarioInput = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        posesionInput = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        grupoInput = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        categoriaInput = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        subcategoriaInput = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        tipoInput = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        marcaInput = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        modeloInput = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        serieInput = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        colorInput = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        precioInput = new javax.swing.JTextField();
+        jLabel14 = new javax.swing.JLabel();
+        estadoInput = new javax.swing.JTextField();
+        jLabel15 = new javax.swing.JLabel();
+        propietarioInput = new javax.swing.JTextField();
         mainScreenPanel = new javax.swing.JPanel();
         addBorrowingButton = new javax.swing.JButton();
         viewCurrentBorrowingsButton = new javax.swing.JButton();
@@ -308,6 +338,244 @@ public class MainFrame extends javax.swing.JFrame {
         endBorrowingDialog.getContentPane().add(endBorrowingScreenPanel, java.awt.BorderLayout.CENTER);
 
         endBorrowingDialog.setLocationRelativeTo(null);
+
+        addItemDialog.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addItemDialog.setTitle("Añadir Item");
+        addItemDialog.setMinimumSize(new java.awt.Dimension(338, 300));
+        addItemDialog.setModal(true);
+        addItemDialog.setResizable(false);
+        addItemDialog.setSize(new java.awt.Dimension(316, 550));
+        addItemDialog.getContentPane().setLayout(new java.awt.CardLayout());
+
+        addBorrowingScreenPanel1.setBackground(new java.awt.Color(51, 51, 51));
+        addBorrowingScreenPanel1.setLayout(new java.awt.GridBagLayout());
+
+        addBorrowingConfirmButton1.setBackground(new java.awt.Color(102, 0, 0));
+        addBorrowingConfirmButton1.setForeground(new java.awt.Color(255, 255, 255));
+        addBorrowingConfirmButton1.setText("Añadir");
+        addBorrowingConfirmButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addBorrowingConfirmButton1ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 14;
+        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.insets = new java.awt.Insets(10, 0, 10, 0);
+        addBorrowingScreenPanel1.add(addBorrowingConfirmButton1, gridBagConstraints);
+
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Inventario");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
+        addBorrowingScreenPanel1.add(jLabel3, gridBagConstraints);
+
+        inventarioInput.setPreferredSize(new java.awt.Dimension(200, 20));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
+        addBorrowingScreenPanel1.add(inventarioInput, gridBagConstraints);
+
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Posesión");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
+        addBorrowingScreenPanel1.add(jLabel4, gridBagConstraints);
+
+        posesionInput.setPreferredSize(new java.awt.Dimension(200, 20));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
+        addBorrowingScreenPanel1.add(posesionInput, gridBagConstraints);
+
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("Grupo");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
+        addBorrowingScreenPanel1.add(jLabel5, gridBagConstraints);
+
+        grupoInput.setPreferredSize(new java.awt.Dimension(200, 20));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
+        addBorrowingScreenPanel1.add(grupoInput, gridBagConstraints);
+
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Categoría");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
+        addBorrowingScreenPanel1.add(jLabel6, gridBagConstraints);
+
+        categoriaInput.setPreferredSize(new java.awt.Dimension(200, 20));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
+        addBorrowingScreenPanel1.add(categoriaInput, gridBagConstraints);
+
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setText("SubCategoría");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
+        addBorrowingScreenPanel1.add(jLabel7, gridBagConstraints);
+
+        subcategoriaInput.setPreferredSize(new java.awt.Dimension(200, 20));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
+        addBorrowingScreenPanel1.add(subcategoriaInput, gridBagConstraints);
+
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setText("Tipo");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
+        addBorrowingScreenPanel1.add(jLabel8, gridBagConstraints);
+
+        tipoInput.setPreferredSize(new java.awt.Dimension(200, 20));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
+        addBorrowingScreenPanel1.add(tipoInput, gridBagConstraints);
+
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel9.setText("Marca");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 7;
+        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
+        addBorrowingScreenPanel1.add(jLabel9, gridBagConstraints);
+
+        marcaInput.setPreferredSize(new java.awt.Dimension(200, 20));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 7;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
+        addBorrowingScreenPanel1.add(marcaInput, gridBagConstraints);
+
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel10.setText("Modelo");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 8;
+        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
+        addBorrowingScreenPanel1.add(jLabel10, gridBagConstraints);
+
+        modeloInput.setPreferredSize(new java.awt.Dimension(200, 20));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 8;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
+        addBorrowingScreenPanel1.add(modeloInput, gridBagConstraints);
+
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel11.setText("Serie");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 9;
+        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
+        addBorrowingScreenPanel1.add(jLabel11, gridBagConstraints);
+
+        serieInput.setPreferredSize(new java.awt.Dimension(200, 20));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 9;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
+        addBorrowingScreenPanel1.add(serieInput, gridBagConstraints);
+
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel12.setText("Color");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 10;
+        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
+        addBorrowingScreenPanel1.add(jLabel12, gridBagConstraints);
+
+        colorInput.setPreferredSize(new java.awt.Dimension(200, 20));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 10;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
+        addBorrowingScreenPanel1.add(colorInput, gridBagConstraints);
+
+        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel13.setText("Precio");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 11;
+        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
+        addBorrowingScreenPanel1.add(jLabel13, gridBagConstraints);
+
+        precioInput.setPreferredSize(new java.awt.Dimension(200, 20));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 11;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
+        addBorrowingScreenPanel1.add(precioInput, gridBagConstraints);
+
+        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel14.setText("Estado");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 12;
+        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
+        addBorrowingScreenPanel1.add(jLabel14, gridBagConstraints);
+
+        estadoInput.setPreferredSize(new java.awt.Dimension(200, 20));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 12;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
+        addBorrowingScreenPanel1.add(estadoInput, gridBagConstraints);
+
+        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel15.setText("Propietario");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 13;
+        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
+        addBorrowingScreenPanel1.add(jLabel15, gridBagConstraints);
+
+        propietarioInput.setPreferredSize(new java.awt.Dimension(200, 20));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 13;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
+        addBorrowingScreenPanel1.add(propietarioInput, gridBagConstraints);
+
+        addItemDialog.getContentPane().add(addBorrowingScreenPanel1, "card2");
+
+        addBorrowingDialog.setLocationRelativeTo(null);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -587,10 +855,11 @@ public class MainFrame extends javax.swing.JFrame {
     private void viewInventoryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewInventoryButtonActionPerformed
         inventoryScreenPanel.setVisible(true);
         mainScreenPanel.setVisible(false);
+        DefaultTableModel model = (DefaultTableModel) inventoryTable.getModel();
+        model.setRowCount(0);
         ItemDBController idbc = new ItemDBController();
         String SQL="SELECT * FROM items;";
         ArrayList<Map<String, Object>> results = idbc.getQueryResult(SQL);
-        DefaultTableModel model = (DefaultTableModel) inventoryTable.getModel();
             for(Map<String, Object> rs : results){
                 model.addRow(new Object[]{
                     rs.get("iteminventory"),
@@ -682,17 +951,55 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_addUserItemActionPerformed
 
     private void addItemItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addItemItemActionPerformed
-        // TODO add your handling code here:
+    addItemDialog.setVisible(true);
     }//GEN-LAST:event_addItemItemActionPerformed
 
+    private void addBorrowingConfirmButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBorrowingConfirmButton1ActionPerformed
+        Item item = new Item(Integer.parseInt(inventarioInput.getText()),
+        posesionInput.getText(),
+        grupoInput.getText(),
+        categoriaInput.getText(),
+        subcategoriaInput.getText(),
+        tipoInput.getText(),
+        marcaInput.getText(),
+        modeloInput.getText(),
+        serieInput.getText(),
+        colorInput.getText(),
+        Float.parseFloat(precioInput.getText()),
+        estadoInput.getText(),
+        propietarioInput.getText());
+        ItemDBController idbc = new ItemDBController();
+        idbc.insertItem(item);
+        limpiar();
+    }//GEN-LAST:event_addBorrowingConfirmButton1ActionPerformed
+
+    private void limpiar() {
+        inventarioInput.setText("");
+        posesionInput.setText("");
+        grupoInput.setText("");
+        categoriaInput.setText("");
+        subcategoriaInput.setText("");
+        tipoInput.setText("");
+        marcaInput.setText("");
+        modeloInput.setText("");
+        serieInput.setText("");
+        colorInput.setText("");
+        precioInput.setText("");
+        estadoInput.setText("");
+        propietarioInput.setText("");
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu aboutMenu;
     private javax.swing.JMenuItem aboutUsItem;
     private javax.swing.JButton addBorrowingButton;
     private javax.swing.JButton addBorrowingConfirmButton;
+    private javax.swing.JButton addBorrowingConfirmButton1;
     private javax.swing.JDialog addBorrowingDialog;
     private javax.swing.JMenuItem addBorrowingItem;
     private javax.swing.JPanel addBorrowingScreenPanel;
+    private javax.swing.JPanel addBorrowingScreenPanel1;
+    private javax.swing.JDialog addItemDialog;
     private javax.swing.JMenuItem addItemItem;
     private javax.swing.JMenuItem addUserItem;
     private javax.swing.JButton backCurrentBorrowingsScreenButton;
@@ -703,6 +1010,8 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel borrowingInfoScreenPanel;
     private javax.swing.JTable borrowingsHistoryTable;
     private javax.swing.JMenu borrowingsMenu;
+    private javax.swing.JTextField categoriaInput;
+    private javax.swing.JTextField colorInput;
     private javax.swing.JTable currentBorrowingsFullTable;
     private javax.swing.JPanel currentBorrowingsScreenPanel;
     private javax.swing.JLabel dateLabel;
@@ -713,10 +1022,13 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel endDateInfoLabel;
     private javax.swing.JTextField endDateInput;
     private javax.swing.JMenuItem endSessionItem;
+    private javax.swing.JTextField estadoInput;
     private javax.swing.JLabel groupInfoLabel;
     private javax.swing.JLabel groupLabel;
+    private javax.swing.JTextField grupoInput;
     private javax.swing.JPanel historyScreenPanel;
     private javax.swing.JMenuItem importCsvItem;
+    private javax.swing.JTextField inventarioInput;
     private javax.swing.JMenu inventoryMenu;
     private javax.swing.JPanel inventoryScreenPanel;
     private javax.swing.JTable inventoryTable;
@@ -724,7 +1036,20 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel itemInventoryInfoLabel;
     private javax.swing.JLabel itemLabel;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
@@ -732,13 +1057,21 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel lastNameLabel;
     private javax.swing.JMenuBar mainMenuBar;
     private javax.swing.JPanel mainScreenPanel;
+    private javax.swing.JTextField marcaInput;
+    private javax.swing.JTextField modeloInput;
     private javax.swing.JLabel nameInfoLabel;
     private javax.swing.JLabel nameLabel;
     private javax.swing.JTextField personGroupInput;
     private javax.swing.JTextField personLastNameInput;
     private javax.swing.JTextField personNameInput;
+    private javax.swing.JTextField posesionInput;
+    private javax.swing.JTextField precioInput;
+    private javax.swing.JTextField propietarioInput;
+    private javax.swing.JTextField serieInput;
     private javax.swing.JLabel startDateInfoLabel;
     private javax.swing.JTextField startDateInput;
+    private javax.swing.JTextField subcategoriaInput;
+    private javax.swing.JTextField tipoInput;
     private javax.swing.JMenu userMenu;
     private javax.swing.JButton viewCurrentBorrowingsButton;
     private javax.swing.JButton viewHistoryButton;

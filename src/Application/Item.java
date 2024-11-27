@@ -24,8 +24,7 @@ public class Item {
     private String itemState;
     private String itemOwner;
 
-    public Item(int itemNumber, int itemInventory, String itemPossesion, String itemGroup, String itemCategory, String itemSubCategory, String itemType, String itemBrand, String itemModel, String itemSerie, String itemColor, float itemPrice, String itemState, String itemOwner) {
-        this.itemNumber = itemNumber;
+    public Item(int itemInventory, String itemPossesion, String itemGroup, String itemCategory, String itemSubCategory, String itemType, String itemBrand, String itemModel, String itemSerie, String itemColor, float itemPrice, String itemState, String itemOwner) {
         this.itemInventory = itemInventory;
         this.itemPossesion = itemPossesion;
         this.itemGroup = itemGroup;
