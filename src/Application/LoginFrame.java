@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.plaf.metal.MetalLookAndFeel;
@@ -117,6 +119,11 @@ public class LoginFrame extends javax.swing.JFrame {
                 passwordLoginFieldActionPerformed(evt);
             }
         });
+        passwordLoginField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                passwordLoginFieldKeyPressed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
@@ -138,9 +145,8 @@ public class LoginFrame extends javax.swing.JFrame {
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/11zon_cropped.png"))); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_START;
         gridBagConstraints.insets = new java.awt.Insets(9, 12, 0, 0);
         loginPanel.add(jLabel5, gridBagConstraints);
@@ -250,16 +256,27 @@ public class LoginFrame extends javax.swing.JFrame {
                 }
             });
             this.dispose();
+        }else{
+            JOptionPane.showMessageDialog(null,"Usuario y/o Contraseña son incorrectos","ERROR",JOptionPane.ERROR_MESSAGE);
+            limpiar();
         }
     }//GEN-LAST:event_loginButtonActionPerformed
 
     private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
         //Most secure login ever
         LoginDBController controller = new LoginDBController();
-        User user = new User(userRegisterText.getText(),passwordRegisterText.getText());
-        controller.insertUser(user);
-        loginPanel.setVisible(true);
-        registerPanel.setVisible(false);
+        if(!userRegisterText.getText().equals("Usuario") && !passwordRegisterText.getText().equals("Contraseña")){
+            User user = new User(userRegisterText.getText(),passwordRegisterText.getText());
+            controller.insertUser(user);
+            java.awt.EventQueue.invokeLater(new Runnable() {
+                public void run() {
+                    new MainFrame().setVisible(true);
+                }
+            });
+            this.dispose();
+        }else{
+            JOptionPane.showMessageDialog(null,"Los campos no pueden estar vacíos","ERROR",JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_registerButtonActionPerformed
 
     private void userLoginFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_userLoginFieldFocusGained
@@ -305,28 +322,20 @@ if (userLoginField.getText().isEmpty()) {
     }//GEN-LAST:event_userLoginFieldKeyPressed
 
     private void passwordLoginFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordLoginFieldActionPerformed
-          java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MainFrame().setVisible(true);
-            }
-        });
-        this.dispose();
-        
-//        LoginDBController dbc = new LoginDBController();
-//        User[] allUsers = dbc.getUsers();
-//        User user = new User(userLoginField.getText(),passwordLoginField.getText());
-//        //Time complexity goes brrr
-//        for (User userLoop : allUsers) {
-//            if (userLoop.getUserName().equals(user.getUserName()) && userLoop.getUserPassword().equals(user.getUserPassword())) {
-//                java.awt.EventQueue.invokeLater(new Runnable() {
-//                    public void run() {
-//                        new MainFrame().setVisible(true);
-//                    }
-//                });
-//                this.dispose();
-//            }
-//        }
-
+     LoginDBController dbc = new LoginDBController();
+        String SQL = "SELECT * FROM users WHERE userName = \'"+userLoginField.getText()+"\' AND userPassword = \'"+passwordLoginField.getText()+"\';";
+        ArrayList<Map<String, Object>> allUsers = dbc.getQueryResult(SQL);
+        if (!allUsers.isEmpty()){
+            java.awt.EventQueue.invokeLater(new Runnable() {
+                public void run() {
+                    new MainFrame().setVisible(true);
+                }
+            });
+            this.dispose();
+        }else{
+            JOptionPane.showMessageDialog(null,"Usuario y/o Contraseña son incorrectos","ERROR",JOptionPane.ERROR_MESSAGE);
+            limpiar();
+        }
     }//GEN-LAST:event_passwordLoginFieldActionPerformed
 
     private void userRegisterTextKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_userRegisterTextKeyPressed
@@ -369,14 +378,41 @@ if (userLoginField.getText().isEmpty()) {
     }//GEN-LAST:event_userRegisterTextActionPerformed
 
     private void passwordRegisterTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordRegisterTextActionPerformed
-         //Most secure login ever
-        LoginDBController controller = new LoginDBController();
-        User user = new User(userRegisterText.getText(),passwordRegisterText.getText());
-        controller.insertUser(user);
-        loginPanel.setVisible(true);
-        registerPanel.setVisible(false);  
+      LoginDBController controller = new LoginDBController();
+        if(!userRegisterText.getText().equals("Usuario") && !passwordRegisterText.getText().equals("Contraseña")){
+            User user = new User(userRegisterText.getText(),passwordRegisterText.getText());
+            controller.insertUser(user);
+            java.awt.EventQueue.invokeLater(new Runnable() {
+                public void run() {
+                    new MainFrame().setVisible(true);
+                }
+            });
+            this.dispose();
+        }else{
+            JOptionPane.showMessageDialog(null,"Los campos no pueden estar vacíos","ERROR",JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_passwordRegisterTextActionPerformed
 
+    private void passwordLoginFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passwordLoginFieldKeyPressed
+if (passwordRegisterText.getText().equals("Contraseña")) {
+    passwordRegisterText.setText("");
+    passwordRegisterText.setForeground(Color.BLACK);
+}        // TODO add your handling code here:
+    }//GEN-LAST:event_passwordLoginFieldKeyPressed
+
+    public JPanel getLoginPanel() {
+        return loginPanel;
+    }
+
+    public JPanel getRegisterPanel() {
+        return registerPanel;
+    }
+
+    private void limpiar(){
+        userLoginField.setText("");
+        passwordLoginField.setText("");
+        userLoginField.requestFocus();
+    }
     /**
      * @param args the command line arguments
      */

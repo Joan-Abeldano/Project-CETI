@@ -377,7 +377,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         jLabel2.setBackground(new java.awt.Color(102, 0, 0));
         jLabel2.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(102, 0, 0));
+        jLabel2.setForeground(new java.awt.Color(153, 0, 0));
         jLabel2.setText("Gestor de Prestamos del CETI");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -484,6 +484,11 @@ public class MainFrame extends javax.swing.JFrame {
         userMenu.setText("Usuario");
 
         addUserItem.setText("Añadir usuario");
+        addUserItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addUserItemActionPerformed(evt);
+            }
+        });
         userMenu.add(addUserItem);
 
         endSessionItem.setText("Cerrar sesión");
@@ -628,6 +633,20 @@ public class MainFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null,"Rellena todos los campos");
         }
     }//GEN-LAST:event_addBorrowingConfirmButtonActionPerformed
+
+    private void addUserItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addUserItemActionPerformed
+        //Need to put this in its own method...maybe
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                LoginFrame lf=new LoginFrame();
+                lf.setVisible(true);
+                lf.getLoginPanel().setVisible(false);
+                lf.getRegisterPanel().setVisible(true);
+                
+            }
+        });
+        this.dispose();
+    }//GEN-LAST:event_addUserItemActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu aboutMenu;
