@@ -14,6 +14,9 @@ import javax.swing.JPanel;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.plaf.metal.MetalLookAndFeel;
+import java.sql.Connection;
+import java.sql.SQLException;
+
 
 /**
  *
@@ -24,6 +27,10 @@ public class LoginFrame extends javax.swing.JFrame {
     /**
      * Creates new form LoginFrame
      */
+    
+    private String userLogin;
+    private String passwordLogin;
+    
     public LoginFrame() {
         initComponents();
     }
@@ -246,17 +253,20 @@ public class LoginFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
-        LoginDBController dbc = new LoginDBController();
-        String SQL = "SELECT * FROM users WHERE userName = \'"+userLoginField.getText()+"\' AND userPassword = \'"+passwordLoginField.getText()+"\';";
-        ArrayList<Map<String, Object>> allUsers = dbc.getQueryResult(SQL);
-        if (!allUsers.isEmpty()){
+        DBController dbc = new DBController();
+        userLogin = userLoginField.getText();
+        passwordLogin = passwordLoginField.getText();
+        dbc.setUser(userLogin);
+        dbc.setPassword(passwordLogin);
+        try {
+            Connection conn = dbc.connect();
             java.awt.EventQueue.invokeLater(new Runnable() {
                 public void run() {
-                    new MainFrame().setVisible(true);
+                    new MainFrame(userLogin,passwordLogin).setVisible(true);
                 }
             });
-            this.dispose();
-        }else{
+        }
+        catch(SQLException ex){
             JOptionPane.showMessageDialog(null,"Usuario y/o Contraseña son incorrectos","ERROR",JOptionPane.ERROR_MESSAGE);
             limpiar();
         }
@@ -270,7 +280,7 @@ public class LoginFrame extends javax.swing.JFrame {
             controller.insertUser(user);
             java.awt.EventQueue.invokeLater(new Runnable() {
                 public void run() {
-                    new MainFrame().setVisible(true);
+                    new MainFrame(userLogin,passwordLogin).setVisible(true);
                 }
             });
             this.dispose();
@@ -322,17 +332,20 @@ if (userLoginField.getText().isEmpty()) {
     }//GEN-LAST:event_userLoginFieldKeyPressed
 
     private void passwordLoginFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordLoginFieldActionPerformed
-     LoginDBController dbc = new LoginDBController();
-        String SQL = "SELECT * FROM users WHERE userName = \'"+userLoginField.getText()+"\' AND userPassword = \'"+passwordLoginField.getText()+"\';";
-        ArrayList<Map<String, Object>> allUsers = dbc.getQueryResult(SQL);
-        if (!allUsers.isEmpty()){
+        DBController dbc = new DBController();
+        userLogin = userLoginField.getText();
+        passwordLogin = passwordLoginField.getText();
+        dbc.setUser(userLogin);
+        dbc.setPassword(passwordLogin);
+        try {
+            Connection conn = dbc.connect();
             java.awt.EventQueue.invokeLater(new Runnable() {
                 public void run() {
-                    new MainFrame().setVisible(true);
+                    new MainFrame(userLogin,passwordLogin).setVisible(true);
                 }
             });
-            this.dispose();
-        }else{
+        }
+        catch(SQLException ex){
             JOptionPane.showMessageDialog(null,"Usuario y/o Contraseña son incorrectos","ERROR",JOptionPane.ERROR_MESSAGE);
             limpiar();
         }
@@ -378,13 +391,13 @@ if (userLoginField.getText().isEmpty()) {
     }//GEN-LAST:event_userRegisterTextActionPerformed
 
     private void passwordRegisterTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordRegisterTextActionPerformed
-      LoginDBController controller = new LoginDBController();
+        LoginDBController controller = new LoginDBController();
         if(!userRegisterText.getText().equals("Usuario") && !passwordRegisterText.getText().equals("Contraseña")){
             User user = new User(userRegisterText.getText(),passwordRegisterText.getText());
             controller.insertUser(user);
             java.awt.EventQueue.invokeLater(new Runnable() {
                 public void run() {
-                    new MainFrame().setVisible(true);
+                    new MainFrame(userLogin,passwordLogin).setVisible(true);
                 }
             });
             this.dispose();

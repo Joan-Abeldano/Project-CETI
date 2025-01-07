@@ -15,12 +15,17 @@ import javax.swing.table.DefaultTableModel;
  */
 public class MainFrame extends javax.swing.JFrame {
 
+    private String userLogin;
+    private String passwordLogin;
+    
     /**
      * Creates new form MainFrame
      */
-    public MainFrame() {
+    public MainFrame(String user,String password) {
         initComponents();
         addItemDialog.setLocationRelativeTo(null);
+        this.userLogin = user;
+        this.passwordLogin = password;
     }
 
     /**
@@ -803,6 +808,11 @@ public class MainFrame extends javax.swing.JFrame {
         inventoryMenu.add(viewInventoryItem);
 
         importCsvItem.setText("Importar CSV");
+        importCsvItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                importCsvItemActionPerformed(evt);
+            }
+        });
         inventoryMenu.add(importCsvItem);
 
         addItemItem.setText("Añadir Item");
@@ -979,6 +989,11 @@ public class MainFrame extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_addBorrowingConfirmButton1ActionPerformed
+
+    private void importCsvItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_importCsvItemActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_importCsvItemActionPerformed
 
     private void limpiar() {
         inventarioInput.setText("");

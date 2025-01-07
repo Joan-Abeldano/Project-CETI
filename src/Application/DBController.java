@@ -19,9 +19,17 @@ import java.util.Map;
  */
 public class DBController {
     private final String url = "jdbc:postgresql://132.18.53.20:5432/CETI";
-    private final String user = "postgres";
-    private final String password = "Joan";
+    private String user = "postgres";
+    private String password = "Joan";
 
+    public void setUser(String user) {
+        this.user = user;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+    
     public Connection connect() throws SQLException {
         return DriverManager.getConnection(url, user, password);
     }
