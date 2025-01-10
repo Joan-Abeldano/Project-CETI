@@ -868,6 +868,8 @@ public class MainFrame extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) inventoryTable.getModel();
         model.setRowCount(0);
         ItemDBController idbc = new ItemDBController();
+        idbc.setUser(userLogin);
+        idbc.setPassword(passwordLogin);
         String SQL="SELECT * FROM items;";
         ArrayList<Map<String, Object>> results = idbc.getQueryResult(SQL);
             for(Map<String, Object> rs : results){
@@ -954,7 +956,8 @@ public class MainFrame extends javax.swing.JFrame {
                 lf.setVisible(true);
                 lf.getLoginPanel().setVisible(false);
                 lf.getRegisterPanel().setVisible(true);
-                
+                lf.setUserLogin(userLogin);
+                lf.setPasswordLogin(passwordLogin);
             }
         });
         this.dispose();
@@ -980,6 +983,8 @@ public class MainFrame extends javax.swing.JFrame {
             estadoInput.getText(),
             propietarioInput.getText());
             ItemDBController idbc = new ItemDBController();
+            idbc.setUser(userLogin);
+            idbc.setPassword(passwordLogin);
             idbc.insertItem(item);
             JOptionPane.showMessageDialog(null, "Insertado exitosamente");
             limpiar();

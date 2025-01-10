@@ -252,6 +252,14 @@ public class LoginFrame extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    public void setUserLogin(String userLogin) {
+        this.userLogin = userLogin;
+    }
+
+    public void setPasswordLogin(String passwordLogin) {
+        this.passwordLogin = passwordLogin;
+    }
+
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
         DBController dbc = new DBController();
         userLogin = userLoginField.getText();
@@ -265,6 +273,7 @@ public class LoginFrame extends javax.swing.JFrame {
                     new MainFrame(userLogin,passwordLogin).setVisible(true);
                 }
             });
+            this.dispose();
         }
         catch(SQLException ex){
             JOptionPane.showMessageDialog(null,"Usuario y/o Contraseña son incorrectos","ERROR",JOptionPane.ERROR_MESSAGE);
@@ -277,6 +286,8 @@ public class LoginFrame extends javax.swing.JFrame {
         LoginDBController controller = new LoginDBController();
         if(!userRegisterText.getText().equals("Usuario") && !passwordRegisterText.getText().equals("Contraseña")){
             User user = new User(userRegisterText.getText(),passwordRegisterText.getText());
+            controller.setUser(userLogin);
+            controller.setPassword(passwordLogin);
             controller.insertUser(user);
             java.awt.EventQueue.invokeLater(new Runnable() {
                 public void run() {
@@ -338,14 +349,18 @@ if (userLoginField.getText().isEmpty()) {
         dbc.setUser(userLogin);
         dbc.setPassword(passwordLogin);
         try {
+            System.out.println(dbc.getUser());
+            System.out.println(dbc.getPassword());
             Connection conn = dbc.connect();
             java.awt.EventQueue.invokeLater(new Runnable() {
                 public void run() {
                     new MainFrame(userLogin,passwordLogin).setVisible(true);
                 }
             });
+            this.dispose();
         }
         catch(SQLException ex){
+            System.out.println(ex);
             JOptionPane.showMessageDialog(null,"Usuario y/o Contraseña son incorrectos","ERROR",JOptionPane.ERROR_MESSAGE);
             limpiar();
         }
@@ -394,6 +409,8 @@ if (userLoginField.getText().isEmpty()) {
         LoginDBController controller = new LoginDBController();
         if(!userRegisterText.getText().equals("Usuario") && !passwordRegisterText.getText().equals("Contraseña")){
             User user = new User(userRegisterText.getText(),passwordRegisterText.getText());
+            controller.setUser(userLogin);
+            controller.setPassword(passwordLogin);
             controller.insertUser(user);
             java.awt.EventQueue.invokeLater(new Runnable() {
                 public void run() {

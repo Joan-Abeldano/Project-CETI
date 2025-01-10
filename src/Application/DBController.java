@@ -19,8 +19,8 @@ import java.util.Map;
  */
 public class DBController {
     private final String url = "jdbc:postgresql://132.18.53.20:5432/CETI";
-    private String user = "postgres";
-    private String password = "Joan";
+    private String user = "";
+    private String password = "";
 
     public void setUser(String user) {
         this.user = user;
@@ -28,6 +28,14 @@ public class DBController {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getUser() {
+        return user;
+    }
+
+    public String getPassword() {
+        return password;
     }
     
     public Connection connect() throws SQLException {

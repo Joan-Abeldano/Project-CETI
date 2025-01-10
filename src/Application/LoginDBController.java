@@ -12,11 +12,9 @@ import java.sql.SQLException;
  */
 public class LoginDBController extends DBController{
     public void insertUser(User user) {
-        String SQL = "INSERT INTO users(userName, userPassword) VALUES (?, ?);";
+        String SQL = "CREATE USER "+user.getUserName()+" WITH REPLICATION PASSWORD \'"+user.getUserPassword()+"\';";
         try (Connection conn = connect();
             PreparedStatement pstmt = conn.prepareStatement(SQL)) {
-            pstmt.setString(1, user.getUserName());
-            pstmt.setString(2, user.getUserPassword());
             pstmt.execute();
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
