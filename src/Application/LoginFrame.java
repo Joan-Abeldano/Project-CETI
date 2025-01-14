@@ -288,7 +288,7 @@ public class LoginFrame extends javax.swing.JFrame {
             User user = new User(userRegisterText.getText(),passwordRegisterText.getText());
             controller.setUser(userLogin);
             controller.setPassword(passwordLogin);
-            controller.insertUser(user);
+            controller.insertUserAdmin(user);
             java.awt.EventQueue.invokeLater(new Runnable() {
                 public void run() {
                     new MainFrame(userLogin,passwordLogin).setVisible(true);
@@ -411,7 +411,7 @@ if (userLoginField.getText().isEmpty()) {
             User user = new User(userRegisterText.getText(),passwordRegisterText.getText());
             controller.setUser(userLogin);
             controller.setPassword(passwordLogin);
-            controller.insertUser(user);
+            controller.insertUserAdmin(user);
             java.awt.EventQueue.invokeLater(new Runnable() {
                 public void run() {
                     new MainFrame(userLogin,passwordLogin).setVisible(true);

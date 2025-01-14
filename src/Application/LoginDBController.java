@@ -11,10 +11,66 @@ import java.sql.SQLException;
  * @author labso20
  */
 public class LoginDBController extends DBController{
-    public void insertUser(User user) {
-        String SQL = "CREATE USER "+user.getUserName()+" WITH REPLICATION PASSWORD \'"+user.getUserPassword()+"\';";
+    public void insertUserAdmin(User user) {
+        String SQL = "CREATE USER "+user.getUserName()+" WITH PASSWORD \'"+user.getUserPassword()+"\' LOGIN CREATEROLE;";
         try (Connection conn = connect();
             PreparedStatement pstmt = conn.prepareStatement(SQL)) {
+            pstmt.execute();
+            grantAdminPrivileges(user,conn);
+            grantNoAdminPrivileges(user,conn);
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+    
+    public void insertUserNoAdmin(User user) {
+        String SQL = "CREATE USER "+user.getUserName()+" WITH PASSWORD \'"+user.getUserPassword()+"\' LOGIN;";
+        try (Connection conn = connect();
+            PreparedStatement pstmt = conn.prepareStatement(SQL)) {
+            pstmt.execute();
+            grantNoAdminPrivileges(user,conn);
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+    
+    private void grantAdminPrivileges(User user, Connection conn) {
+        String insertOnItems = "GRANT INSERT ON items TO "+user.getUserName();
+        String deleteOnItems = "GRANT DELETE ON items TO "+user.getUserName();
+        try {
+            PreparedStatement pstmt;
+            pstmt = conn.prepareStatement(insertOnItems);
+            pstmt.execute();
+            pstmt = conn.prepareStatement(deleteOnItems);
+            pstmt.execute();
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+    
+    private void grantNoAdminPrivileges(User user,Connection conn) {
+        String selectOnItems = "GRANT SELECT ON items TO "+user.getUserName();
+        String insertOnBorrowings = "GRANT INSERT ON borrowings TO "+user.getUserName();
+        String deleteOnBorrowings = "GRANT DELETE ON borrowings TO "+user.getUserName();
+        String selectOnBorrowings = "GRANT SELECT ON borrowings TO "+user.getUserName();
+        String insertOnPeople = "GRANT INSERT ON people TO "+user.getUserName();
+        String deleteOnPeople = "GRANT DELETE ON people TO "+user.getUserName();
+        String selectOnPeople = "GRANT SELECT ON people TO "+user.getUserName();
+        try {
+            PreparedStatement pstmt;
+            pstmt = conn.prepareStatement(selectOnItems);
+            pstmt.execute();
+            pstmt = conn.prepareStatement(insertOnBorrowings);
+            pstmt.execute();
+            pstmt = conn.prepareStatement(deleteOnBorrowings);
+            pstmt.execute();
+            pstmt = conn.prepareStatement(selectOnBorrowings);
+            pstmt.execute();
+            pstmt = conn.prepareStatement(insertOnPeople);
+            pstmt.execute();
+            pstmt = conn.prepareStatement(deleteOnPeople);
+            pstmt.execute();
+            pstmt = conn.prepareStatement(selectOnPeople);
             pstmt.execute();
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
@@ -22,7 +78,7 @@ public class LoginDBController extends DBController{
     }
     
     public void deleteUser(User user) {
-        String SQL = "DELETE FROM users WHERE userId="+user.getUserId()+";";
+        String SQL = "DROP USER "+user.getUserName()+";";
         try (Connection conn = connect();
             PreparedStatement pstmt = conn.prepareStatement(SQL)){
             pstmt.executeUpdate();
