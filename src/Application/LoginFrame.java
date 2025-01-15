@@ -62,6 +62,7 @@ public class LoginFrame extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -226,6 +227,19 @@ public class LoginFrame extends javax.swing.JFrame {
         gridBagConstraints.gridy = 0;
         registerPanel.add(jLabel6, gridBagConstraints);
 
+        jButton1.setBackground(new java.awt.Color(102, 0, 0));
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("Cancelar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 5;
+        registerPanel.add(jButton1, gridBagConstraints);
+
         getContentPane().add(registerPanel, "card3");
 
         setSize(new java.awt.Dimension(414, 307));
@@ -382,6 +396,10 @@ if (passwordRegisterText.getText().equals("Contraseña")) {
 }        // TODO add your handling code here:
     }//GEN-LAST:event_passwordLoginFieldKeyPressed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+     new MainFrame(userLogin,passwordLogin).setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     public JPanel getLoginPanel() {
         return loginPanel;
     }
@@ -451,6 +469,7 @@ if (passwordRegisterText.getText().equals("Contraseña")) {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboUsers;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
