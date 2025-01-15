@@ -210,7 +210,7 @@
           <SubComponents>
             <Component class="javax.swing.JLabel" name="itemInventoryInfoLabel">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Item Inventory:"/>
+                <Property name="text" type="java.lang.String" value="Num Inventario:"/>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -220,7 +220,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="nameInfoLabel">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Name:"/>
+                <Property name="text" type="java.lang.String" value="Nombre:"/>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -230,7 +230,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="lastNameInfoLabel">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Last Name:"/>
+                <Property name="text" type="java.lang.String" value="Apellidos:"/>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -240,7 +240,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="groupInfoLabel">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Group:"/>
+                <Property name="text" type="java.lang.String" value="Grupo:"/>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -250,7 +250,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="startDateInfoLabel">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Start Date:"/>
+                <Property name="text" type="java.lang.String" value="Fecha Inicio:"/>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -260,7 +260,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="endDateInfoLabel">
               <Properties>
-                <Property name="text" type="java.lang.String" value="End Date:"/>
+                <Property name="text" type="java.lang.String" value="Fecha Fin:"/>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -270,7 +270,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="borrowerInfoLabel">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Borrower:"/>
+                <Property name="text" type="java.lang.String" value="Prestatario:"/>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -280,7 +280,7 @@
             </Component>
             <Component class="javax.swing.JButton" name="endBorrowingGoToButton">
               <Properties>
-                <Property name="text" type="java.lang.String" value="End Borrowing"/>
+                <Property name="text" type="java.lang.String" value="Terminar Prestamo"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="endBorrowingGoToButtonActionPerformed"/>
@@ -321,7 +321,7 @@
           <SubComponents>
             <Component class="javax.swing.JButton" name="endBorrowingButton">
               <Properties>
-                <Property name="text" type="java.lang.String" value="End Borrowing"/>
+                <Property name="text" type="java.lang.String" value="Terminar Prestamo"/>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -343,7 +343,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel1">
               <Properties>
-                <Property name="text" type="java.lang.String" value="End Date"/>
+                <Property name="text" type="java.lang.String" value="Fecha Final"/>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">

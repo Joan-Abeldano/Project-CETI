@@ -239,14 +239,14 @@ public class MainFrame extends javax.swing.JFrame {
 
         borrowingInfoScreenPanel.setLayout(new java.awt.GridBagLayout());
 
-        itemInventoryInfoLabel.setText("Item Inventory:");
+        itemInventoryInfoLabel.setText("Num Inventario:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.insets = new java.awt.Insets(5, 0, 5, 0);
         borrowingInfoScreenPanel.add(itemInventoryInfoLabel, gridBagConstraints);
 
-        nameInfoLabel.setText("Name:");
+        nameInfoLabel.setText("Nombre:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -254,7 +254,7 @@ public class MainFrame extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 0, 5, 0);
         borrowingInfoScreenPanel.add(nameInfoLabel, gridBagConstraints);
 
-        lastNameInfoLabel.setText("Last Name:");
+        lastNameInfoLabel.setText("Apellidos:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
@@ -262,7 +262,7 @@ public class MainFrame extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 0, 5, 0);
         borrowingInfoScreenPanel.add(lastNameInfoLabel, gridBagConstraints);
 
-        groupInfoLabel.setText("Group:");
+        groupInfoLabel.setText("Grupo:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
@@ -270,7 +270,7 @@ public class MainFrame extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 0, 5, 0);
         borrowingInfoScreenPanel.add(groupInfoLabel, gridBagConstraints);
 
-        startDateInfoLabel.setText("Start Date:");
+        startDateInfoLabel.setText("Fecha Inicio:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
@@ -278,7 +278,7 @@ public class MainFrame extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 0, 5, 0);
         borrowingInfoScreenPanel.add(startDateInfoLabel, gridBagConstraints);
 
-        endDateInfoLabel.setText("End Date:");
+        endDateInfoLabel.setText("Fecha Fin:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 5;
@@ -286,7 +286,7 @@ public class MainFrame extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 0, 5, 0);
         borrowingInfoScreenPanel.add(endDateInfoLabel, gridBagConstraints);
 
-        borrowerInfoLabel.setText("Borrower:");
+        borrowerInfoLabel.setText("Prestatario:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 6;
@@ -294,7 +294,7 @@ public class MainFrame extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 0, 5, 0);
         borrowingInfoScreenPanel.add(borrowerInfoLabel, gridBagConstraints);
 
-        endBorrowingGoToButton.setText("End Borrowing");
+        endBorrowingGoToButton.setText("Terminar Prestamo");
         endBorrowingGoToButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 endBorrowingGoToButtonActionPerformed(evt);
@@ -318,7 +318,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         endBorrowingScreenPanel.setLayout(new java.awt.GridBagLayout());
 
-        endBorrowingButton.setText("End Borrowing");
+        endBorrowingButton.setText("Terminar Prestamo");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -333,7 +333,7 @@ public class MainFrame extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 0, 5, 0);
         endBorrowingScreenPanel.add(endDateInput, gridBagConstraints);
 
-        jLabel1.setText("End Date");
+        jLabel1.setText("Fecha Final");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
