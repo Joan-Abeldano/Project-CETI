@@ -397,7 +397,12 @@ if (passwordRegisterText.getText().equals("Contraseña")) {
     }//GEN-LAST:event_passwordLoginFieldKeyPressed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-     new MainFrame(userLogin,passwordLogin).setVisible(true);
+     java.awt.EventQueue.invokeLater(new Runnable() {
+                public void run() {
+                    new MainFrame(userLogin,passwordLogin).setVisible(true);
+                }
+            });
+            this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     public JPanel getLoginPanel() {
