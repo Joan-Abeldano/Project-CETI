@@ -4,9 +4,11 @@
  */
 package Application;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Map;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -17,7 +19,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     private String userLogin;
     private String passwordLogin;
-    
+    private LocalDate fechaActual;
     /**
      * Creates new form MainFrame
      */
@@ -138,6 +140,11 @@ public class MainFrame extends javax.swing.JFrame {
         addBorrowingScreenPanel.setLayout(new java.awt.GridBagLayout());
 
         startDateInput.setPreferredSize(new java.awt.Dimension(100, 24));
+        startDateInput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                startDateInputActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
@@ -145,6 +152,11 @@ public class MainFrame extends javax.swing.JFrame {
         addBorrowingScreenPanel.add(startDateInput, gridBagConstraints);
 
         personNameInput.setPreferredSize(new java.awt.Dimension(100, 24));
+        personNameInput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                personNameInputActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
@@ -152,6 +164,11 @@ public class MainFrame extends javax.swing.JFrame {
         addBorrowingScreenPanel.add(personNameInput, gridBagConstraints);
 
         personGroupInput.setPreferredSize(new java.awt.Dimension(100, 24));
+        personGroupInput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                personGroupInputActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
@@ -159,6 +176,11 @@ public class MainFrame extends javax.swing.JFrame {
         addBorrowingScreenPanel.add(personGroupInput, gridBagConstraints);
 
         itemInput.setPreferredSize(new java.awt.Dimension(100, 24));
+        itemInput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemInputActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
@@ -213,6 +235,11 @@ public class MainFrame extends javax.swing.JFrame {
         addBorrowingScreenPanel.add(itemLabel, gridBagConstraints);
 
         personLastNameInput.setPreferredSize(new java.awt.Dimension(100, 24));
+        personLastNameInput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                personLastNameInputActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 1;
@@ -667,8 +694,28 @@ public class MainFrame extends javax.swing.JFrame {
         currentBorrowingsScreenPanel.setLayout(new java.awt.GridBagLayout());
 
         currentBorrowingsFullTable.setBackground(new java.awt.Color(255, 255, 255));
-        currentBorrowingsFullTable.setModel(new javax.swing.table.DefaultTableModel(new Object[][] {}, new String[] {"Nombre","Apellido","Inventario","Categoría","Fecha Inicio"}));
+        currentBorrowingsFullTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Nombre", "Apellido", "Inventario", "Categoría", "Fecha Inicio"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         currentBorrowingsFullTable.setSelectionBackground(new java.awt.Color(204, 255, 255));
+        currentBorrowingsFullTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                currentBorrowingsFullTableMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(currentBorrowingsFullTable);
 
         currentBorrowingsScreenPanel.add(jScrollPane2, new java.awt.GridBagConstraints());
@@ -721,7 +768,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         inventoryScreenPanel.setBackground(new java.awt.Color(0, 0, 0));
 
-        inventoryTable.setModel(new javax.swing.table.DefaultTableModel(new Object[][] {}, new String[] {"Inventario","Numero","Posesion","Grupo","Categoria","SubCategoria","Tipo","Marca","Modelo","Serie","Color","Precio","Estado","Propietario"}));
+        inventoryTable.setModel(new javax.swing.table.DefaultTableModel(new Object[][] {}, new String[] {"Inventario","Posesion","Grupo","Categoria","SubCategoria","Tipo","Marca","Modelo","Serie","Color","Precio","Estado","Propietario"}));
         jScrollPane4.setViewportView(inventoryTable);
 
         backInventoryScreenButton.setText("Atrás");
@@ -850,7 +897,10 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_addBorrowingItemActionPerformed
 
     private void addBorrowingButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBorrowingButtonActionPerformed
+        fechaActual = LocalDate.now();
+        startDateInput.setText(fechaActual.toString());
         addBorrowingDialog.setVisible(true);
+        SwingUtilities.invokeLater(() -> personNameInput.requestFocusInWindow());
     }//GEN-LAST:event_addBorrowingButtonActionPerformed
 
     private void viewCurrentBorrowingsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewCurrentBorrowingsButtonActionPerformed
@@ -870,12 +920,11 @@ public class MainFrame extends javax.swing.JFrame {
         ItemDBController idbc = new ItemDBController();
         idbc.setUser(userLogin);
         idbc.setPassword(passwordLogin);
-        String SQL="SELECT * FROM items;";
+        String SQL="SELECT * FROM item_inventory;";
         ArrayList<Map<String, Object>> results = idbc.getQueryResult(SQL);
             for(Map<String, Object> rs : results){
                 model.addRow(new Object[]{
                     rs.get("iteminventory"),
-                    rs.get("itemnumber"),
                     rs.get("itempossesion"),
                     rs.get("itemgroup"),
                     rs.get("itemcategory"),
@@ -912,6 +961,29 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_backInventoryScreenButtonActionPerformed
 
     private void viewInventoryItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewInventoryItemActionPerformed
+        DefaultTableModel model = (DefaultTableModel) inventoryTable.getModel();
+        model.setRowCount(0);
+        ItemDBController idbc = new ItemDBController();
+        idbc.setUser(userLogin);
+        idbc.setPassword(passwordLogin);
+        String SQL="SELECT * FROM item_inventory;";
+        ArrayList<Map<String, Object>> results = idbc.getQueryResult(SQL);
+            for(Map<String, Object> rs : results){
+                model.addRow(new Object[]{
+                    rs.get("iteminventory"),
+                    rs.get("itempossesion"),
+                    rs.get("itemgroup"),
+                    rs.get("itemcategory"),
+                    rs.get("itemsubcategory"),
+                    rs.get("itemtype"),
+                    rs.get("itembrand"),
+                    rs.get("itemmodel"),
+                    rs.get("itemserie"),
+                    rs.get("itemcolor"),
+                    rs.get("itemprice"),
+                    rs.get("itemstate"),
+                    rs.get("itemowner")
+                });}
         inventoryScreenPanel.setVisible(true);
         mainScreenPanel.setVisible(false);
     }//GEN-LAST:event_viewInventoryItemActionPerformed
@@ -1000,6 +1072,49 @@ public class MainFrame extends javax.swing.JFrame {
         
     }//GEN-LAST:event_importCsvItemActionPerformed
 
+    private void currentBorrowingsFullTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_currentBorrowingsFullTableMouseClicked
+        if (evt.getClickCount() == 2 && !evt.isConsumed()) {
+                    evt.consume(); // Consumir el evento para evitar duplicados
+                    int filaSeleccionada = currentBorrowingsFullTable.getSelectedRow();
+                    if (filaSeleccionada != -1) { // Verificar que se seleccionó una fila
+                       borrowingInfoDialog.setVisible(true);
+                    }
+                }
+    }//GEN-LAST:event_currentBorrowingsFullTableMouseClicked
+
+    private void startDateInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startDateInputActionPerformed
+    personNameInput.requestFocus();            // TODO add your handling code here:
+    }//GEN-LAST:event_startDateInputActionPerformed
+
+    private void personNameInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_personNameInputActionPerformed
+    personLastNameInput.requestFocus();
+    }//GEN-LAST:event_personNameInputActionPerformed
+
+    private void personLastNameInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_personLastNameInputActionPerformed
+    personGroupInput.requestFocus();        // TODO add your handling code here:
+    }//GEN-LAST:event_personLastNameInputActionPerformed
+
+    private void personGroupInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_personGroupInputActionPerformed
+    itemInput.requestFocus();        // TODO add your handling code here:
+    }//GEN-LAST:event_personGroupInputActionPerformed
+
+    private void itemInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemInputActionPerformed
+     if (!personNameInput.getText().equals("") && !startDateInput.getText().equals("") && !personLastNameInput.getText().equals("") && !personGroupInput.getText().equals("") && !itemInput.getText().equals("")){
+            DefaultTableModel model = (DefaultTableModel) currentBorrowingsFullTable.getModel();
+            model.addRow(new Object[]{
+                personNameInput.getText(),
+                personLastNameInput.getText(),
+                itemInput.getText(),
+                "PC",
+                startDateInput.getText()
+            });
+            addBorrowingDialog.dispose();
+        }
+        else{
+            JOptionPane.showMessageDialog(null,"Rellena todos los campos");
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_itemInputActionPerformed
+
     private void limpiar() {
         inventarioInput.setText("");
         posesionInput.setText("");
@@ -1047,6 +1162,7 @@ public class MainFrame extends javax.swing.JFrame {
             return false;
         }
     }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu aboutMenu;
     private javax.swing.JMenuItem aboutUsItem;

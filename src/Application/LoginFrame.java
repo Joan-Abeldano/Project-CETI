@@ -270,7 +270,7 @@ public class LoginFrame extends javax.swing.JFrame {
             this.dispose();
         }
         catch(SQLException ex){
-            JOptionPane.showMessageDialog(null,"Usuario y/o Contraseña son incorrectos","ERROR",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null,"Contraseña incorrecta","ERROR",JOptionPane.ERROR_MESSAGE);
             limpiar();
         }
     }//GEN-LAST:event_loginButtonActionPerformed
@@ -327,7 +327,7 @@ public class LoginFrame extends javax.swing.JFrame {
         }
         catch(SQLException ex){
             System.out.println(ex);
-            JOptionPane.showMessageDialog(null,"Usuario y/o Contraseña son incorrectos","ERROR",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null,"Contraseña incorrecta","ERROR",JOptionPane.ERROR_MESSAGE);
             limpiar();
         }
     }//GEN-LAST:event_passwordLoginFieldActionPerformed

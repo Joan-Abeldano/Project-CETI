@@ -14,7 +14,7 @@ import java.sql.SQLException;
  */
 public class ItemDBController extends DBController{
     public void insertItem(Item item) {
-        String SQL = "INSERT INTO items(itemInventory,itemPossesion,itemGroup,itemCategory,itemSubCategory,itemType,itemBrand,itemModel,itemSerie,itemColor,itemPrice,itemState,itemOwner) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?);";
+        String SQL = "INSERT INTO item_inventory(itemInventory,itemPossesion,itemGroup,itemCategory,itemSubCategory,itemType,itemBrand,itemModel,itemSerie,itemColor,itemPrice,itemState,itemOwner) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?);";
         try (Connection conn = connect();
             PreparedStatement pstmt = conn.prepareStatement(SQL)) {
             pstmt.setInt(1, item.getItemInventory());
@@ -37,7 +37,7 @@ public class ItemDBController extends DBController{
     }
     
     public void deleteItem(Item item) {
-        String SQL = "DELETE FROM items WHERE itemInventory="+item.getItemInventory()+";";
+        String SQL = "DELETE FROM item_inventory WHERE itemInventory="+item.getItemInventory()+";";
         try (Connection conn = connect();
             PreparedStatement pstmt = conn.prepareStatement(SQL)){
             pstmt.executeUpdate();
@@ -47,7 +47,7 @@ public class ItemDBController extends DBController{
     }
     
     public void updateItem(Item item) {
-        String SQL = "UPDATE items SET itemPossesion=\'"+item.getItemPossesion()+"\', itemGroup=\'"+item.getItemGroup()+"\', itemCategory=\'"+item.getItemCategory()+"\', itemSubCategory=\'"+item.getItemSubCategory()+"\', itemType=\'"+item.getItemType()+"\', itemBrand=\'"+item.getItemBrand()+"\', itemModel=\'"+item.getItemModel()+"\', itemSerie=\'"+item.getItemSerie()+"\', itemColor=\'"+item.getItemColor()+"\', itemPrice="+item.getItemPrice()+", itemState=\'"+item.getItemState()+"\', itemOwner=\'"+item.getItemOwner()+"\' WHERE itemInventory="+item.getItemInventory()+";";
+        String SQL = "UPDATE item_inventory SET itemPossesion=\'"+item.getItemPossesion()+"\', itemGroup=\'"+item.getItemGroup()+"\', itemCategory=\'"+item.getItemCategory()+"\', itemSubCategory=\'"+item.getItemSubCategory()+"\', itemType=\'"+item.getItemType()+"\', itemBrand=\'"+item.getItemBrand()+"\', itemModel=\'"+item.getItemModel()+"\', itemSerie=\'"+item.getItemSerie()+"\', itemColor=\'"+item.getItemColor()+"\', itemPrice="+item.getItemPrice()+", itemState=\'"+item.getItemState()+"\', itemOwner=\'"+item.getItemOwner()+"\' WHERE itemInventory="+item.getItemInventory()+";";
         try (Connection conn = connect();
             PreparedStatement pstmt = conn.prepareStatement(SQL)){
             pstmt.executeUpdate();
