@@ -15,6 +15,8 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.plaf.metal.MetalLookAndFeel;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 
@@ -33,6 +35,7 @@ public class LoginFrame extends javax.swing.JFrame {
     
     public LoginFrame() {
         initComponents();
+        iniciar();
     }
 
     /**rootPaneCheckingEnabled
@@ -47,11 +50,11 @@ public class LoginFrame extends javax.swing.JFrame {
 
         loginPanel = new javax.swing.JPanel();
         loginButton = new javax.swing.JButton();
-        userLoginField = new javax.swing.JTextField();
         passwordLoginField = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        jComboUsers = new javax.swing.JComboBox<>();
         registerPanel = new javax.swing.JPanel();
         registerButton = new javax.swing.JButton();
         userRegisterText = new javax.swing.JTextField();
@@ -59,6 +62,7 @@ public class LoginFrame extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -77,38 +81,10 @@ public class LoginFrame extends javax.swing.JFrame {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridy = 5;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.insets = new java.awt.Insets(14, 21, 11, 0);
         loginPanel.add(loginButton, gridBagConstraints);
-
-        userLoginField.setForeground(new java.awt.Color(204, 204, 204));
-        userLoginField.setText("Usuario");
-        userLoginField.setToolTipText("");
-        userLoginField.setPreferredSize(new java.awt.Dimension(100, 22));
-        userLoginField.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                userLoginFieldFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                userLoginFieldFocusLost(evt);
-            }
-        });
-        userLoginField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                userLoginFieldActionPerformed(evt);
-            }
-        });
-        userLoginField.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                userLoginFieldKeyPressed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.insets = new java.awt.Insets(5, 0, 10, 0);
-        loginPanel.add(userLoginField, gridBagConstraints);
 
         passwordLoginField.setForeground(new java.awt.Color(204, 204, 204));
         passwordLoginField.setText("Contraseña");
@@ -133,14 +109,14 @@ public class LoginFrame extends javax.swing.JFrame {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.insets = new java.awt.Insets(10, 0, 10, 0);
         loginPanel.add(passwordLoginField, gridBagConstraints);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/contraseña(1).png"))); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridy = 4;
         loginPanel.add(jLabel1, gridBagConstraints);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/user(1).png"))); // NOI18N
@@ -157,6 +133,11 @@ public class LoginFrame extends javax.swing.JFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_START;
         gridBagConstraints.insets = new java.awt.Insets(9, 12, 0, 0);
         loginPanel.add(jLabel5, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        loginPanel.add(jComboUsers, gridBagConstraints);
 
         getContentPane().add(loginPanel, "card2");
 
@@ -246,6 +227,19 @@ public class LoginFrame extends javax.swing.JFrame {
         gridBagConstraints.gridy = 0;
         registerPanel.add(jLabel6, gridBagConstraints);
 
+        jButton1.setBackground(new java.awt.Color(102, 0, 0));
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("Cancelar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 5;
+        registerPanel.add(jButton1, gridBagConstraints);
+
         getContentPane().add(registerPanel, "card3");
 
         setSize(new java.awt.Dimension(414, 307));
@@ -262,7 +256,7 @@ public class LoginFrame extends javax.swing.JFrame {
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
         DBController dbc = new DBController();
-        userLogin = userLoginField.getText();
+        userLogin = (String) jComboUsers.getSelectedItem();
         passwordLogin = passwordLoginField.getText();
         dbc.setUser(userLogin);
         dbc.setPassword(passwordLogin);
@@ -276,7 +270,7 @@ public class LoginFrame extends javax.swing.JFrame {
             this.dispose();
         }
         catch(SQLException ex){
-            JOptionPane.showMessageDialog(null,"Usuario y/o Contraseña son incorrectos","ERROR",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null,"Contraseña incorrecta","ERROR",JOptionPane.ERROR_MESSAGE);
             limpiar();
         }
     }//GEN-LAST:event_loginButtonActionPerformed
@@ -300,26 +294,6 @@ public class LoginFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_registerButtonActionPerformed
 
-    private void userLoginFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_userLoginFieldFocusGained
-    if (userLoginField.getText().isEmpty()) {
-    userLoginField.setText("Usuario");
-    userLoginField.setForeground(Color.gray);
-        
-    }
-    }//GEN-LAST:event_userLoginFieldFocusGained
-
-    private void userLoginFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userLoginFieldActionPerformed
-    passwordLoginField.requestFocus();
-    }//GEN-LAST:event_userLoginFieldActionPerformed
-
-    private void userLoginFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_userLoginFieldFocusLost
-if (userLoginField.getText().isEmpty()) {
-    userLoginField.setText("Usuario");
-    userLoginField.setForeground(Color.GRAY);
-}
-        // TODO add your handling code here:
-    }//GEN-LAST:event_userLoginFieldFocusLost
-
     private void passwordLoginFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_passwordLoginFieldFocusGained
     if (passwordLoginField.getText().equals("Contraseña")) {
     passwordLoginField.setText("");
@@ -334,17 +308,9 @@ if (userLoginField.getText().isEmpty()) {
 }
     }//GEN-LAST:event_passwordLoginFieldFocusLost
 
-    private void userLoginFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_userLoginFieldKeyPressed
-    if (userLoginField.getText().equals("Usuario")) {
-    userLoginField.setText("");
-    userLoginField.setForeground(Color.BLACK);
-}
-        // TODO add your handling code here:
-    }//GEN-LAST:event_userLoginFieldKeyPressed
-
     private void passwordLoginFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordLoginFieldActionPerformed
         DBController dbc = new DBController();
-        userLogin = userLoginField.getText();
+        userLogin = (String)jComboUsers.getSelectedItem();
         passwordLogin = passwordLoginField.getText();
         dbc.setUser(userLogin);
         dbc.setPassword(passwordLogin);
@@ -361,7 +327,7 @@ if (userLoginField.getText().isEmpty()) {
         }
         catch(SQLException ex){
             System.out.println(ex);
-            JOptionPane.showMessageDialog(null,"Usuario y/o Contraseña son incorrectos","ERROR",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null,"Contraseña incorrecta","ERROR",JOptionPane.ERROR_MESSAGE);
             limpiar();
         }
     }//GEN-LAST:event_passwordLoginFieldActionPerformed
@@ -430,6 +396,15 @@ if (passwordRegisterText.getText().equals("Contraseña")) {
 }        // TODO add your handling code here:
     }//GEN-LAST:event_passwordLoginFieldKeyPressed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+     java.awt.EventQueue.invokeLater(new Runnable() {
+                public void run() {
+                    new MainFrame(userLogin,passwordLogin).setVisible(true);
+                }
+            });
+            this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     public JPanel getLoginPanel() {
         return loginPanel;
     }
@@ -439,9 +414,22 @@ if (passwordRegisterText.getText().equals("Contraseña")) {
     }
 
     private void limpiar(){
-        userLoginField.setText("");
+//        userLoginField.setText("");
         passwordLoginField.setText("");
-        userLoginField.requestFocus();
+//        userLoginField.requestFocus();
+    }
+    
+    public void iniciar(){
+        String sql="SELECT rolname FROM pg_roles WHERE rolcanlogin;";
+        ArrayList<Map<String, Object>> nombres;
+        DBController x = new DBController();
+        x.setUser("postgres");
+        x.setPassword("Joan");
+        nombres=x.getQueryResult(sql);
+         for (Map<String, Object> nombre : nombres) {
+             Object y =nombre.get("rolname");
+            jComboUsers.addItem((String) y);
+        }
     }
     /**
      * @param args the command line arguments
@@ -486,6 +474,8 @@ if (passwordRegisterText.getText().equals("Contraseña")) {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JComboBox<String> jComboUsers;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -498,7 +488,6 @@ if (passwordRegisterText.getText().equals("Contraseña")) {
     private javax.swing.JTextField passwordRegisterText;
     private javax.swing.JButton registerButton;
     private javax.swing.JPanel registerPanel;
-    private javax.swing.JTextField userLoginField;
     private javax.swing.JTextField userRegisterText;
     // End of variables declaration//GEN-END:variables
 }

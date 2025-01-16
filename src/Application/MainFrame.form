@@ -41,6 +41,9 @@
                   <Dimension value="[100, 24]"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="startDateInputActionPerformed"/>
+              </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
                   <GridBagConstraints gridX="1" gridY="0" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="10" insetsLeft="0" insetsBottom="10" insetsRight="0" anchor="10" weightX="0.0" weightY="0.0"/>
@@ -53,6 +56,9 @@
                   <Dimension value="[100, 24]"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="personNameInputActionPerformed"/>
+              </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
                   <GridBagConstraints gridX="1" gridY="1" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="10" insetsLeft="0" insetsBottom="10" insetsRight="0" anchor="10" weightX="0.0" weightY="0.0"/>
@@ -65,6 +71,9 @@
                   <Dimension value="[100, 24]"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="personGroupInputActionPerformed"/>
+              </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
                   <GridBagConstraints gridX="1" gridY="2" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="10" insetsLeft="0" insetsBottom="10" insetsRight="0" anchor="10" weightX="0.0" weightY="0.0"/>
@@ -77,6 +86,9 @@
                   <Dimension value="[100, 24]"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="itemInputActionPerformed"/>
+              </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
                   <GridBagConstraints gridX="1" gridY="3" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="10" insetsLeft="0" insetsBottom="10" insetsRight="0" anchor="10" weightX="0.0" weightY="0.0"/>
@@ -160,6 +172,9 @@
                   <Dimension value="[100, 24]"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="personLastNameInputActionPerformed"/>
+              </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
                   <GridBagConstraints gridX="3" gridY="1" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="0.0" weightY="0.0"/>
@@ -210,7 +225,7 @@
           <SubComponents>
             <Component class="javax.swing.JLabel" name="itemInventoryInfoLabel">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Item Inventory:"/>
+                <Property name="text" type="java.lang.String" value="Num Inventario:"/>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -220,7 +235,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="nameInfoLabel">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Name:"/>
+                <Property name="text" type="java.lang.String" value="Nombre:"/>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -230,7 +245,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="lastNameInfoLabel">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Last Name:"/>
+                <Property name="text" type="java.lang.String" value="Apellidos:"/>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -240,7 +255,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="groupInfoLabel">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Group:"/>
+                <Property name="text" type="java.lang.String" value="Grupo:"/>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -250,7 +265,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="startDateInfoLabel">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Start Date:"/>
+                <Property name="text" type="java.lang.String" value="Fecha Inicio:"/>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -260,7 +275,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="endDateInfoLabel">
               <Properties>
-                <Property name="text" type="java.lang.String" value="End Date:"/>
+                <Property name="text" type="java.lang.String" value="Fecha Fin:"/>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -270,7 +285,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="borrowerInfoLabel">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Borrower:"/>
+                <Property name="text" type="java.lang.String" value="Prestatario:"/>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -280,7 +295,7 @@
             </Component>
             <Component class="javax.swing.JButton" name="endBorrowingGoToButton">
               <Properties>
-                <Property name="text" type="java.lang.String" value="End Borrowing"/>
+                <Property name="text" type="java.lang.String" value="Terminar Prestamo"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="endBorrowingGoToButtonActionPerformed"/>
@@ -321,7 +336,7 @@
           <SubComponents>
             <Component class="javax.swing.JButton" name="endBorrowingButton">
               <Properties>
-                <Property name="text" type="java.lang.String" value="End Borrowing"/>
+                <Property name="text" type="java.lang.String" value="Terminar Prestamo"/>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -343,7 +358,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel1">
               <Properties>
-                <Property name="text" type="java.lang.String" value="End Date"/>
+                <Property name="text" type="java.lang.String" value="Fecha Final"/>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -1042,8 +1057,14 @@
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
-                <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="new javax.swing.table.DefaultTableModel(new Object[][] {}, new String[] {&quot;Nombre&quot;,&quot;Apellido&quot;,&quot;Inventario&quot;,&quot;Categor&#xed;a&quot;,&quot;Fecha Inicio&quot;})" type="code"/>
+                <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                  <Table columnCount="5" rowCount="0">
+                    <Column editable="false" title="Nombre" type="java.lang.Object"/>
+                    <Column editable="false" title="Apellido" type="java.lang.Object"/>
+                    <Column editable="false" title="Inventario" type="java.lang.Object"/>
+                    <Column editable="false" title="Categor&#xed;a" type="java.lang.Object"/>
+                    <Column editable="false" title="Fecha Inicio" type="java.lang.Object"/>
+                  </Table>
                 </Property>
                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                   <TableColumnModel selectionModel="0"/>
@@ -1055,6 +1076,9 @@
                   <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="currentBorrowingsFullTableMouseClicked"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -1181,7 +1205,7 @@
             <Component class="javax.swing.JTable" name="inventoryTable">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="new javax.swing.table.DefaultTableModel(new Object[][] {}, new String[] {&quot;Inventario&quot;,&quot;Numero&quot;,&quot;Posesion&quot;,&quot;Grupo&quot;,&quot;Categoria&quot;,&quot;SubCategoria&quot;,&quot;Tipo&quot;,&quot;Marca&quot;,&quot;Modelo&quot;,&quot;Serie&quot;,&quot;Color&quot;,&quot;Precio&quot;,&quot;Estado&quot;,&quot;Propietario&quot;})" type="code"/>
+                  <Connection code="new javax.swing.table.DefaultTableModel(new Object[][] {}, new String[] {&quot;Inventario&quot;,&quot;Posesion&quot;,&quot;Grupo&quot;,&quot;Categoria&quot;,&quot;SubCategoria&quot;,&quot;Tipo&quot;,&quot;Marca&quot;,&quot;Modelo&quot;,&quot;Serie&quot;,&quot;Color&quot;,&quot;Precio&quot;,&quot;Estado&quot;,&quot;Propietario&quot;})" type="code"/>
                 </Property>
                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                   <TableColumnModel selectionModel="0"/>
