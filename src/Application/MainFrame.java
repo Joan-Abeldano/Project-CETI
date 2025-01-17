@@ -4,10 +4,15 @@
  */
 package Application;
 
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Map;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 
@@ -28,6 +33,27 @@ public class MainFrame extends javax.swing.JFrame {
         addItemDialog.setLocationRelativeTo(null);
         this.userLogin = user;
         this.passwordLogin = password;
+                // Agregar un WindowListener para interceptar el cierre
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                // Mostrar el mensaje de confirmación
+                int respuesta = JOptionPane.showConfirmDialog(
+                        MainFrame.this,
+                        "¿Estás seguro de que deseas salir?",
+                        "Confirmar salida",
+                        JOptionPane.YES_NO_OPTION,
+                        JOptionPane.QUESTION_MESSAGE
+                );
+
+                // Si el usuario selecciona "Sí", cerrar el programa
+                if (respuesta == JOptionPane.YES_OPTION) {
+                    System.exit(0);
+                }
+                // Si selecciona "No", no pasa nada (la ventana permanece abierta)
+            }
+        });
+
     }
 
     /**
@@ -354,6 +380,11 @@ public class MainFrame extends javax.swing.JFrame {
         endBorrowingScreenPanel.add(endBorrowingButton, gridBagConstraints);
 
         endDateInput.setPreferredSize(new java.awt.Dimension(100, 24));
+        endDateInput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                endDateInputActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
@@ -406,6 +437,16 @@ public class MainFrame extends javax.swing.JFrame {
         addBorrowingScreenPanel1.add(jLabel3, gridBagConstraints);
 
         inventarioInput.setPreferredSize(new java.awt.Dimension(200, 20));
+        inventarioInput.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                inventarioInputFocusGained(evt);
+            }
+        });
+        inventarioInput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inventarioInputActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 1;
@@ -422,6 +463,16 @@ public class MainFrame extends javax.swing.JFrame {
         addBorrowingScreenPanel1.add(jLabel4, gridBagConstraints);
 
         posesionInput.setPreferredSize(new java.awt.Dimension(200, 20));
+        posesionInput.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                posesionInputFocusGained(evt);
+            }
+        });
+        posesionInput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                posesionInputActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 2;
@@ -438,6 +489,16 @@ public class MainFrame extends javax.swing.JFrame {
         addBorrowingScreenPanel1.add(jLabel5, gridBagConstraints);
 
         grupoInput.setPreferredSize(new java.awt.Dimension(200, 20));
+        grupoInput.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                grupoInputFocusGained(evt);
+            }
+        });
+        grupoInput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                grupoInputActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 3;
@@ -454,6 +515,16 @@ public class MainFrame extends javax.swing.JFrame {
         addBorrowingScreenPanel1.add(jLabel6, gridBagConstraints);
 
         categoriaInput.setPreferredSize(new java.awt.Dimension(200, 20));
+        categoriaInput.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                categoriaInputFocusGained(evt);
+            }
+        });
+        categoriaInput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                categoriaInputActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 4;
@@ -470,6 +541,16 @@ public class MainFrame extends javax.swing.JFrame {
         addBorrowingScreenPanel1.add(jLabel7, gridBagConstraints);
 
         subcategoriaInput.setPreferredSize(new java.awt.Dimension(200, 20));
+        subcategoriaInput.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                subcategoriaInputFocusGained(evt);
+            }
+        });
+        subcategoriaInput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                subcategoriaInputActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 5;
@@ -486,6 +567,16 @@ public class MainFrame extends javax.swing.JFrame {
         addBorrowingScreenPanel1.add(jLabel8, gridBagConstraints);
 
         tipoInput.setPreferredSize(new java.awt.Dimension(200, 20));
+        tipoInput.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                tipoInputFocusGained(evt);
+            }
+        });
+        tipoInput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tipoInputActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 6;
@@ -502,6 +593,16 @@ public class MainFrame extends javax.swing.JFrame {
         addBorrowingScreenPanel1.add(jLabel9, gridBagConstraints);
 
         marcaInput.setPreferredSize(new java.awt.Dimension(200, 20));
+        marcaInput.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                marcaInputFocusGained(evt);
+            }
+        });
+        marcaInput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                marcaInputActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 7;
@@ -518,6 +619,11 @@ public class MainFrame extends javax.swing.JFrame {
         addBorrowingScreenPanel1.add(jLabel10, gridBagConstraints);
 
         modeloInput.setPreferredSize(new java.awt.Dimension(200, 20));
+        modeloInput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                modeloInputActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 8;
@@ -534,6 +640,16 @@ public class MainFrame extends javax.swing.JFrame {
         addBorrowingScreenPanel1.add(jLabel11, gridBagConstraints);
 
         serieInput.setPreferredSize(new java.awt.Dimension(200, 20));
+        serieInput.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                serieInputFocusGained(evt);
+            }
+        });
+        serieInput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                serieInputActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 9;
@@ -550,6 +666,16 @@ public class MainFrame extends javax.swing.JFrame {
         addBorrowingScreenPanel1.add(jLabel12, gridBagConstraints);
 
         colorInput.setPreferredSize(new java.awt.Dimension(200, 20));
+        colorInput.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                colorInputFocusGained(evt);
+            }
+        });
+        colorInput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                colorInputActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 10;
@@ -566,6 +692,16 @@ public class MainFrame extends javax.swing.JFrame {
         addBorrowingScreenPanel1.add(jLabel13, gridBagConstraints);
 
         precioInput.setPreferredSize(new java.awt.Dimension(200, 20));
+        precioInput.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                precioInputFocusGained(evt);
+            }
+        });
+        precioInput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                precioInputActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 11;
@@ -582,6 +718,16 @@ public class MainFrame extends javax.swing.JFrame {
         addBorrowingScreenPanel1.add(jLabel14, gridBagConstraints);
 
         estadoInput.setPreferredSize(new java.awt.Dimension(200, 20));
+        estadoInput.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                estadoInputFocusGained(evt);
+            }
+        });
+        estadoInput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                estadoInputActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 12;
@@ -598,6 +744,16 @@ public class MainFrame extends javax.swing.JFrame {
         addBorrowingScreenPanel1.add(jLabel15, gridBagConstraints);
 
         propietarioInput.setPreferredSize(new java.awt.Dimension(200, 20));
+        propietarioInput.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                propietarioInputFocusGained(evt);
+            }
+        });
+        propietarioInput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                propietarioInputActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 13;
@@ -609,7 +765,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         addBorrowingDialog.setLocationRelativeTo(null);
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setResizable(false);
         getContentPane().setLayout(new java.awt.CardLayout());
 
@@ -1040,31 +1196,7 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_addItemItemActionPerformed
 
     private void addBorrowingConfirmButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBorrowingConfirmButton1ActionPerformed
-        if(validarTipo() && validarVacio()){
-            Item item = new Item(Integer.parseInt(inventarioInput.getText()),
-            posesionInput.getText(),
-            grupoInput.getText(),
-            categoriaInput.getText(),
-            subcategoriaInput.getText(),
-            tipoInput.getText(),
-            marcaInput.getText(),
-            modeloInput.getText(),
-            serieInput.getText(),
-            colorInput.getText(),
-            Float.parseFloat(precioInput.getText()),
-            estadoInput.getText(),
-            propietarioInput.getText());
-            ItemDBController idbc = new ItemDBController();
-            idbc.setUser(userLogin);
-            idbc.setPassword(passwordLogin);
-            idbc.insertItem(item);
-            JOptionPane.showMessageDialog(null, "Insertado exitosamente");
-            limpiar();
-        }
-        else{
-            JOptionPane.showMessageDialog(null, "Algun campo está vacio o algun dato es erroneo");
-        }
-        
+     addItemEvt();
     }//GEN-LAST:event_addBorrowingConfirmButton1ActionPerformed
 
     private void importCsvItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_importCsvItemActionPerformed
@@ -1115,6 +1247,111 @@ public class MainFrame extends javax.swing.JFrame {
         }        // TODO add your handling code here:
     }//GEN-LAST:event_itemInputActionPerformed
 
+    private void inventarioInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inventarioInputActionPerformed
+    posesionInput.requestFocus();        // TODO add your handling code here:
+    }//GEN-LAST:event_inventarioInputActionPerformed
+
+    private void posesionInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_posesionInputActionPerformed
+    grupoInput.requestFocus();        // TODO add your handling code here:
+    }//GEN-LAST:event_posesionInputActionPerformed
+
+    private void grupoInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_grupoInputActionPerformed
+    categoriaInput.requestFocus();        // TODO add your handling code here:
+    }//GEN-LAST:event_grupoInputActionPerformed
+
+    private void categoriaInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_categoriaInputActionPerformed
+    subcategoriaInput.requestFocus();        // TODO add your handling code here:
+    }//GEN-LAST:event_categoriaInputActionPerformed
+
+    private void subcategoriaInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subcategoriaInputActionPerformed
+    tipoInput.requestFocus();        // TODO add your handling code here:
+    }//GEN-LAST:event_subcategoriaInputActionPerformed
+
+    private void tipoInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tipoInputActionPerformed
+    marcaInput.requestFocus();        // TODO add your handling code here:
+    }//GEN-LAST:event_tipoInputActionPerformed
+
+    private void marcaInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_marcaInputActionPerformed
+    modeloInput.requestFocus();        // TODO add your handling code here:
+    }//GEN-LAST:event_marcaInputActionPerformed
+
+    private void modeloInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modeloInputActionPerformed
+    serieInput.requestFocus();        // TODO add your handling code here:
+    }//GEN-LAST:event_modeloInputActionPerformed
+
+    private void serieInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_serieInputActionPerformed
+    colorInput.requestFocus();        // TODO add your handling code here:
+    }//GEN-LAST:event_serieInputActionPerformed
+
+    private void colorInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_colorInputActionPerformed
+    precioInput.requestFocus();        // TODO add your handling code here:
+    }//GEN-LAST:event_colorInputActionPerformed
+
+    private void precioInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_precioInputActionPerformed
+    estadoInput.requestFocus();        // TODO add your handling code here:
+    }//GEN-LAST:event_precioInputActionPerformed
+
+    private void estadoInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_estadoInputActionPerformed
+    propietarioInput.requestFocus();        // TODO add your handling code here:
+    }//GEN-LAST:event_estadoInputActionPerformed
+
+    private void propietarioInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_propietarioInputActionPerformed
+    addItemEvt();        // TODO add your handling code here:
+    }//GEN-LAST:event_propietarioInputActionPerformed
+
+    private void endDateInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_endDateInputActionPerformed
+    fechaActual = LocalDate.now();
+    endDateInput.setText(fechaActual.toString());        // TODO add your handling code here:
+    }//GEN-LAST:event_endDateInputActionPerformed
+
+    private void inventarioInputFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_inventarioInputFocusGained
+    soloNumeros(inventarioInput);        // TODO add your handling code here:
+    }//GEN-LAST:event_inventarioInputFocusGained
+
+    private void posesionInputFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_posesionInputFocusGained
+    letrasYNumeros(posesionInput);        // TODO add your handling code here:
+    }//GEN-LAST:event_posesionInputFocusGained
+
+    private void grupoInputFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_grupoInputFocusGained
+    letrasYNumeros(grupoInput);         // TODO add your handling code here:
+    }//GEN-LAST:event_grupoInputFocusGained
+
+    private void categoriaInputFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_categoriaInputFocusGained
+    letrasYNumeros(categoriaInput);        // TODO add your handling code here:
+    }//GEN-LAST:event_categoriaInputFocusGained
+
+    private void subcategoriaInputFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_subcategoriaInputFocusGained
+    letrasYNumeros(subcategoriaInput);        // TODO add your handling code here:
+    }//GEN-LAST:event_subcategoriaInputFocusGained
+
+    private void tipoInputFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tipoInputFocusGained
+    letrasYNumeros(tipoInput);        // TODO add your handling code here:
+    }//GEN-LAST:event_tipoInputFocusGained
+
+    private void marcaInputFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_marcaInputFocusGained
+    letrasYNumeros(marcaInput);        // TODO add your handling code here:
+    }//GEN-LAST:event_marcaInputFocusGained
+
+    private void serieInputFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_serieInputFocusGained
+    letrasYNumeros(serieInput);        // TODO add your handling code here:
+    }//GEN-LAST:event_serieInputFocusGained
+
+    private void colorInputFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_colorInputFocusGained
+    soloLetras(colorInput);        // TODO add your handling code here:
+    }//GEN-LAST:event_colorInputFocusGained
+
+    private void precioInputFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_precioInputFocusGained
+    soloNumeros(precioInput);        // TODO add your handling code here:
+    }//GEN-LAST:event_precioInputFocusGained
+
+    private void estadoInputFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_estadoInputFocusGained
+    soloLetras(estadoInput);        // TODO add your handling code here:
+    }//GEN-LAST:event_estadoInputFocusGained
+
+    private void propietarioInputFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_propietarioInputFocusGained
+    soloLetras(propietarioInput);        // TODO add your handling code here:
+    }//GEN-LAST:event_propietarioInputFocusGained
+
     private void limpiar() {
         inventarioInput.setText("");
         posesionInput.setText("");
@@ -1162,7 +1399,71 @@ public class MainFrame extends javax.swing.JFrame {
             return false;
         }
     }
-    
+    public static void soloLetras(JTextField textField) {
+        textField.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                char c = e.getKeyChar();
+
+                // Verificar si el carácter no es una letra
+                if (!Character.isLetter(c)) {
+                    e.consume(); // Bloquear el carácter no permitido
+                }
+            }
+        });
+    }
+    public static void soloNumeros(JTextField textField) {
+        textField.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                char c = e.getKeyChar();
+
+                // Verificar si el carácter no es un dígito
+                if (!Character.isDigit(c)) {
+                    e.consume(); // Bloquear el carácter no permitido
+                }
+            }
+        });
+    }
+    public static void letrasYNumeros(JTextField textField) {
+        textField.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                char c = e.getKeyChar();
+
+                // Verificar si el carácter no es una letra ni un número
+                if (!Character.isLetterOrDigit(c)) {
+                    e.consume(); // Bloquear el carácter no permitido
+                }
+            }
+        });
+    }
+    public void addItemEvt(){
+         if(validarTipo() && validarVacio()){
+            Item item = new Item(inventarioInput.getText(),
+            posesionInput.getText(),
+            grupoInput.getText(),
+            categoriaInput.getText(),
+            subcategoriaInput.getText(),
+            tipoInput.getText(),
+            marcaInput.getText(),
+            modeloInput.getText(),
+            serieInput.getText(),
+            colorInput.getText(),
+            Float.parseFloat(precioInput.getText()),
+            estadoInput.getText(),
+            propietarioInput.getText());
+            ItemDBController idbc = new ItemDBController();
+            idbc.setUser(userLogin);
+            idbc.setPassword(passwordLogin);
+            idbc.insertItem(item);
+            JOptionPane.showMessageDialog(null, "Insertado exitosamente");
+            limpiar();
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Algun campo está vacio o algun dato es erroneo");
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu aboutMenu;
     private javax.swing.JMenuItem aboutUsItem;

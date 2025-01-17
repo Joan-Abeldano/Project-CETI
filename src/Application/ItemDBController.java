@@ -17,7 +17,7 @@ public class ItemDBController extends DBController{
         String SQL = "INSERT INTO item_inventory(itemInventory,itemPossesion,itemGroup,itemCategory,itemSubCategory,itemType,itemBrand,itemModel,itemSerie,itemColor,itemPrice,itemState,itemOwner) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?);";
         try (Connection conn = connect();
             PreparedStatement pstmt = conn.prepareStatement(SQL)) {
-            pstmt.setInt(1, item.getItemInventory());
+            pstmt.setString(1, item.getItemInventory());
             pstmt.setString(2, item.getItemPossesion());
             pstmt.setString(3, item.getItemGroup());
             pstmt.setString(4, item.getItemCategory());

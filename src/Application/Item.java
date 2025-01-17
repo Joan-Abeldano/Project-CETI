@@ -9,8 +9,7 @@ package Application;
  * @author Joan
  */
 public class Item {
-    private int itemNumber;
-    private int itemInventory;
+    private String itemInventory;
     private String itemPossesion;
     private String itemGroup;
     private String itemCategory;
@@ -24,7 +23,7 @@ public class Item {
     private String itemState;
     private String itemOwner;
 
-    public Item(int itemInventory, String itemPossesion, String itemGroup, String itemCategory, String itemSubCategory, String itemType, String itemBrand, String itemModel, String itemSerie, String itemColor, float itemPrice, String itemState, String itemOwner) {
+    public Item(String itemInventory, String itemPossesion, String itemGroup, String itemCategory, String itemSubCategory, String itemType, String itemBrand, String itemModel, String itemSerie, String itemColor, float itemPrice, String itemState, String itemOwner) {
         this.itemInventory = itemInventory;
         this.itemPossesion = itemPossesion;
         this.itemGroup = itemGroup;
@@ -40,25 +39,17 @@ public class Item {
         this.itemOwner = itemOwner;
     }
     
-    public Item(int itemInventory,String itemCategory) {
+    public Item(String itemInventory,String itemCategory) {
         //Why items dont have a freaking name
         this.itemInventory = itemInventory;
         this.itemCategory = itemCategory;
     }
 
-    public int getItemNumber() {
-        return itemNumber;
-    }
-
-    public void setItemNumber(int itemNumber) {
-        this.itemNumber = itemNumber;
-    }
-
-    public int getItemInventory() {
+    public String getItemInventory() {
         return itemInventory;
     }
 
-    public void setItemInventory(int itemInventory) {
+    public void setItemInventory(String itemInventory) {
         this.itemInventory = itemInventory;
     }
 

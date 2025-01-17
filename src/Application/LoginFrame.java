@@ -5,6 +5,8 @@
 package Application;
 
 import java.awt.Color;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.logging.Level;
@@ -36,6 +38,27 @@ public class LoginFrame extends javax.swing.JFrame {
     public LoginFrame() {
         initComponents();
         iniciar();
+                // Agregar un WindowListener para interceptar el cierre
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                // Mostrar el mensaje de confirmación
+                int respuesta = JOptionPane.showConfirmDialog(
+                        LoginFrame.this,
+                        "¿Estás seguro de que deseas salir?",
+                        "Confirmar salida",
+                        JOptionPane.YES_NO_OPTION,
+                        JOptionPane.QUESTION_MESSAGE
+                );
+
+                // Si el usuario selecciona "Sí", cerrar el programa
+                if (respuesta == JOptionPane.YES_OPTION) {
+                    System.exit(0);
+                }
+                // Si selecciona "No", no pasa nada (la ventana permanece abierta)
+            }
+        });
+
     }
 
     /**rootPaneCheckingEnabled
@@ -64,7 +87,7 @@ public class LoginFrame extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setResizable(false);
         getContentPane().setLayout(new java.awt.CardLayout());
 
@@ -134,6 +157,11 @@ public class LoginFrame extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(9, 12, 0, 0);
         loginPanel.add(jLabel5, gridBagConstraints);
 
+        jComboUsers.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboUsersActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
@@ -405,6 +433,10 @@ if (passwordRegisterText.getText().equals("Contraseña")) {
             this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jComboUsersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboUsersActionPerformed
+    passwordLoginField.requestFocus();        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboUsersActionPerformed
+
     public JPanel getLoginPanel() {
         return loginPanel;
     }
@@ -431,6 +463,8 @@ if (passwordRegisterText.getText().equals("Contraseña")) {
             jComboUsers.addItem((String) y);
         }
     }
+        
+    
     /**
      * @param args the command line arguments
      */
