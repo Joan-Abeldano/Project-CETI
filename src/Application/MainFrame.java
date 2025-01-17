@@ -155,7 +155,7 @@ public class MainFrame extends javax.swing.JFrame {
         aboutUsItem = new javax.swing.JMenuItem();
 
         addBorrowingDialog.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        addBorrowingDialog.setTitle("Añadir Prestamo");
+        addBorrowingDialog.setTitle("Añadir Préstamo");
         addBorrowingDialog.setMinimumSize(new java.awt.Dimension(338, 300));
         addBorrowingDialog.setModal(true);
         addBorrowingDialog.setResizable(false);
@@ -178,6 +178,11 @@ public class MainFrame extends javax.swing.JFrame {
         addBorrowingScreenPanel.add(startDateInput, gridBagConstraints);
 
         personNameInput.setPreferredSize(new java.awt.Dimension(100, 24));
+        personNameInput.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                personNameInputFocusGained(evt);
+            }
+        });
         personNameInput.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 personNameInputActionPerformed(evt);
@@ -190,6 +195,11 @@ public class MainFrame extends javax.swing.JFrame {
         addBorrowingScreenPanel.add(personNameInput, gridBagConstraints);
 
         personGroupInput.setPreferredSize(new java.awt.Dimension(100, 24));
+        personGroupInput.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                personGroupInputFocusGained(evt);
+            }
+        });
         personGroupInput.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 personGroupInputActionPerformed(evt);
@@ -202,6 +212,11 @@ public class MainFrame extends javax.swing.JFrame {
         addBorrowingScreenPanel.add(personGroupInput, gridBagConstraints);
 
         itemInput.setPreferredSize(new java.awt.Dimension(100, 24));
+        itemInput.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                itemInputFocusGained(evt);
+            }
+        });
         itemInput.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 itemInputActionPerformed(evt);
@@ -261,6 +276,11 @@ public class MainFrame extends javax.swing.JFrame {
         addBorrowingScreenPanel.add(itemLabel, gridBagConstraints);
 
         personLastNameInput.setPreferredSize(new java.awt.Dimension(100, 24));
+        personLastNameInput.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                personLastNameInputFocusGained(evt);
+            }
+        });
         personLastNameInput.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 personLastNameInputActionPerformed(evt);
@@ -284,7 +304,7 @@ public class MainFrame extends javax.swing.JFrame {
         addBorrowingDialog.setLocationRelativeTo(null);
 
         borrowingInfoDialog.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        borrowingInfoDialog.setTitle("Borrowing Information");
+        borrowingInfoDialog.setTitle("Información de Prestamo");
         borrowingInfoDialog.setModal(true);
         borrowingInfoDialog.setResizable(false);
         borrowingInfoDialog.setSize(new java.awt.Dimension(400, 300));
@@ -365,7 +385,7 @@ public class MainFrame extends javax.swing.JFrame {
         borrowingInfoDialog.setLocationRelativeTo(null);
 
         endBorrowingDialog.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        endBorrowingDialog.setTitle("End Borrowing");
+        endBorrowingDialog.setTitle("Finalizar Préstamo");
         endBorrowingDialog.setModal(true);
         endBorrowingDialog.setSize(new java.awt.Dimension(400, 300));
 
@@ -1351,6 +1371,22 @@ public class MainFrame extends javax.swing.JFrame {
     private void propietarioInputFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_propietarioInputFocusGained
     soloLetras(propietarioInput);        // TODO add your handling code here:
     }//GEN-LAST:event_propietarioInputFocusGained
+
+    private void personNameInputFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_personNameInputFocusGained
+    soloLetras(personNameInput);        // TODO add your handling code here:
+    }//GEN-LAST:event_personNameInputFocusGained
+
+    private void personLastNameInputFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_personLastNameInputFocusGained
+    soloLetras(personLastNameInput);        // TODO add your handling code here:
+    }//GEN-LAST:event_personLastNameInputFocusGained
+
+    private void personGroupInputFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_personGroupInputFocusGained
+    letrasYNumeros(personGroupInput);        // TODO add your handling code here:
+    }//GEN-LAST:event_personGroupInputFocusGained
+
+    private void itemInputFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_itemInputFocusGained
+    soloNumeros(itemInput);        // TODO add your handling code here:
+    }//GEN-LAST:event_itemInputFocusGained
 
     private void limpiar() {
         inventarioInput.setText("");
