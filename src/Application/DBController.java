@@ -4,11 +4,14 @@
  */
 package Application;
 
+import java.io.File;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.ResultSet;
 import java.sql.PreparedStatement;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -40,6 +43,20 @@ public class DBController {
     
     public Connection connect() throws SQLException {
         return DriverManager.getConnection(url, user, password);
+    }
+    
+    public int importCSVWithPsql(String filePath,String user,String pass) {
+        String SQL = "psql -h 132.18.53.20 -d PrestamosCETI -U "+user+" -c\"\\copy item_inventory from \'"+filePath+"\' WITH DELIMITER \',\' CSV HEADER\"";
+        
+        try {
+            ProcessBuilder pb = new ProcessBuilder("bash", "-c", SQL);
+            pb.environment().put("PGPASSWORD", pass);
+            pb.inheritIO(); // Output to console
+            Process process = pb.start();
+            return 1;
+        } catch (IOException e) {
+            return 0;
+        }
     }
     
     public ArrayList<Map<String, Object>> getQueryResult(String SQL) {

@@ -7,6 +7,7 @@ package Application;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Map;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
@@ -1069,7 +1070,21 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void importCsvItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_importCsvItemActionPerformed
         // TODO add your handling code here:
-        
+        DBController dbc = new DBController();
+        dbc.setUser(userLogin);
+        dbc.setPassword(passwordLogin);
+        JFileChooser fileChooser = new JFileChooser();
+        int returnVal = fileChooser.showOpenDialog(this);
+        if(returnVal == JFileChooser.APPROVE_OPTION) {
+            System.out.println(fileChooser.getSelectedFile().toString());
+            int check = dbc.importCSVWithPsql(fileChooser.getSelectedFile().toString(),userLogin,passwordLogin);
+            if(check==1) {
+                JOptionPane.showMessageDialog(this, "Importado exitosamente");
+            }
+            else {
+                JOptionPane.showMessageDialog(this, "Error importando el archivo");
+            }
+        }
     }//GEN-LAST:event_importCsvItemActionPerformed
 
     private void currentBorrowingsFullTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_currentBorrowingsFullTableMouseClicked
