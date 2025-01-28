@@ -14,13 +14,15 @@ import java.sql.SQLException;
  */
 public class BorrowingsDBController extends DBController{
     public void insertBorrowing(Borrowing borrowing) {
-        String SQL = "INSERT INTO borrowings(startDate,userId,itemInventory,personId) VALUES (?,?,?,?);";
+        String SQL = "INSERT INTO borrowings(startDate,relativeenddate,itemInventory,personname,personlastname,persongroup) VALUES (?,?,?,?,?,?);";
         try (Connection conn = connect();
             PreparedStatement pstmt = conn.prepareStatement(SQL)) {
             pstmt.setString(1,borrowing.getStartDateString());
-            pstmt.setInt(2, borrowing.getUserBorrower());
+            pstmt.setString(2, borrowing.getRelativeDateEndString());
             pstmt.setInt(3, borrowing.getItemBorrowed());
-            pstmt.setInt(4, borrowing.getPerson());
+            pstmt.setString(4, borrowing.getName());
+            pstmt.setString(5, borrowing.getLastname());
+            pstmt.setString(6, borrowing.getGroup());
             pstmt.execute();
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
@@ -38,7 +40,7 @@ public class BorrowingsDBController extends DBController{
     }
     
     public void updateBorrowing(Borrowing borrowing) {
-        String SQL = "UPDATE borrowings SET startDate=\'"+borrowing.getStartDate()+"\', endDate=\'"+borrowing.getEndDate()+"\', userId="+borrowing.getUserBorrower()+", itemInventory="+borrowing.getItemBorrowed()+", personId="+borrowing.getPerson()+" WHERE borrowingId="+borrowing.getBorrowingId()+";";
+        String SQL = "UPDATE borrowings SET startDate=\'"+borrowing.getStartDate()+"\', relativeenddate=\'"+borrowing.getRelativeDateEndString()+"\', endDate=\'"+borrowing.getEndDate()+",\' itemInventory="+borrowing.getItemBorrowed()+", personname=\'"+borrowing.getName()+"\', personlastname=\'"+borrowing.getLastname()+"\', persongroup=\'"+borrowing.getGroup()+"\' WHERE borrowingId="+borrowing.getBorrowingId()+";";
         try (Connection conn = connect();
             PreparedStatement pstmt = conn.prepareStatement(SQL)){
             pstmt.executeUpdate();
