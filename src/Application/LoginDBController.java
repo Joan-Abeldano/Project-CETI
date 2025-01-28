@@ -3,59 +3,71 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Application;
+import java.io.File;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author labso20
  */
 public class LoginDBController extends DBController{
-    public void insertUserAdmin(User user) {
-        String SQL = "CREATE USER "+user.getUserName()+" WITH PASSWORD \'"+user.getUserPassword()+"\' LOGIN CREATEROLE;";
+    public boolean insertUserAdmin(User user) {
+        String SQL = "CREATE ROLE "+user.getUserName()+" WITH PASSWORD \'"+user.getUserPassword()+"\' LOGIN CREATEROLE SUPERUSER;";
         try (Connection conn = connect();
             PreparedStatement pstmt = conn.prepareStatement(SQL)) {
             pstmt.execute();
-            grantAdminPrivileges(user,conn);
-            grantNoAdminPrivileges(user,conn);
+            assignGroup(user,conn);
+            FileController fc = new FileController(new File("users.txt"));
+            try {
+                fc.updateFile();
+                return true;
+            } catch (IOException ex) {
+                System.out.println(ex);
+                return false;
+            }
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+            return false;
         }
     }
     
     public void insertUserNoAdmin(User user) {
-        String SQL = "CREATE USER "+user.getUserName()+" WITH PASSWORD \'"+user.getUserPassword()+"\' LOGIN;";
+        String SQL = "CREATE ROLE "+user.getUserName()+" WITH PASSWORD \'"+user.getUserPassword()+"\' LOGIN;";
         try (Connection conn = connect();
             PreparedStatement pstmt = conn.prepareStatement(SQL)) {
             pstmt.execute();
             grantNoAdminPrivileges(user,conn);
+            FileController fc = new FileController(new File("users.txt"));
+            try {
+                fc.updateFile();
+            } catch (IOException ex) {
+                System.out.println(ex);
+            }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
     }
-    
-    private void grantAdminPrivileges(User user, Connection conn) {
-        String insertOnItems = "GRANT INSERT ON items TO "+user.getUserName();
-        String deleteOnItems = "GRANT DELETE ON items TO "+user.getUserName();
+
+    private void assignGroup(User user,Connection conn) {
+        String addToGroup = "ALTER GROUP ceti ADD USER "+user.getUserName()+";";
         try {
             PreparedStatement pstmt;
-            pstmt = conn.prepareStatement(insertOnItems);
+            pstmt = conn.prepareStatement(addToGroup);
             pstmt.execute();
-            pstmt = conn.prepareStatement(deleteOnItems);
-            pstmt.execute();
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+        }
+        catch(SQLException ex) {
+            System.out.println(ex);
         }
     }
     
     private void grantNoAdminPrivileges(User user,Connection conn) {
-        String selectOnItems = "GRANT SELECT ON items TO "+user.getUserName();
+        String selectOnItems = "GRANT SELECT ON item_inventory TO "+user.getUserName();
         String insertOnBorrowings = "GRANT INSERT ON borrowings TO "+user.getUserName();
         String deleteOnBorrowings = "GRANT DELETE ON borrowings TO "+user.getUserName();
         String selectOnBorrowings = "GRANT SELECT ON borrowings TO "+user.getUserName();
-        String insertOnPeople = "GRANT INSERT ON people TO "+user.getUserName();
-        String deleteOnPeople = "GRANT DELETE ON people TO "+user.getUserName();
-        String selectOnPeople = "GRANT SELECT ON people TO "+user.getUserName();
         try {
             PreparedStatement pstmt;
             pstmt = conn.prepareStatement(selectOnItems);
@@ -66,32 +78,45 @@ public class LoginDBController extends DBController{
             pstmt.execute();
             pstmt = conn.prepareStatement(selectOnBorrowings);
             pstmt.execute();
-            pstmt = conn.prepareStatement(insertOnPeople);
-            pstmt.execute();
-            pstmt = conn.prepareStatement(deleteOnPeople);
-            pstmt.execute();
-            pstmt = conn.prepareStatement(selectOnPeople);
-            pstmt.execute();
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
     }
     
     public void deleteUser(User user) {
-        String SQL = "DROP USER "+user.getUserName()+";";
+        String quitPriv = "DROP OWNED BY "+user.getUserName()+";";
+        try (Connection conn = connect();
+            PreparedStatement pstmt = conn.prepareStatement(quitPriv)){
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(LoginDBController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        String SQL = "DROP ROLE "+user.getUserName()+";";
         try (Connection conn = connect();
             PreparedStatement pstmt = conn.prepareStatement(SQL)){
             pstmt.executeUpdate();
+            FileController fc = new FileController(new File("users.txt"));
+            try {
+                fc.updateFile();
+            } catch (IOException ex) {
+                System.out.println(ex);
+            }
         } catch(SQLException ex) {
             System.out.println(ex.getMessage());
         }
     }
     
-    public void updateUser(User user) {
-        String SQL = "UPDATE users SET userName=\'"+user.getUserName()+"\', userPassword=\'"+user.getUserPassword()+"\' WHERE userId="+user.getUserId()+";";
+    public void updateUser(User oldUser,User newUser) {
+        String SQL = "ALTER USER "+oldUser.getUserName()+"";
         try (Connection conn = connect();
             PreparedStatement pstmt = conn.prepareStatement(SQL)){
             pstmt.executeUpdate();
+            FileController fc = new FileController(new File("users.txt"));
+            try {
+                fc.updateFile();
+            } catch (IOException ex) {
+                System.out.println(ex);
+            }
         }catch(SQLException ex) {
             System.out.println(ex.getMessage());
         }

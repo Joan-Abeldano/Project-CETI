@@ -5,6 +5,9 @@
 package Application;
 
 import java.awt.Color;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.logging.Level;
@@ -270,6 +273,7 @@ public class LoginFrame extends javax.swing.JFrame {
             this.dispose();
         }
         catch(SQLException ex){
+            System.out.println(ex);
             JOptionPane.showMessageDialog(null,"Contraseña incorrecta","ERROR",JOptionPane.ERROR_MESSAGE);
             limpiar();
         }
@@ -282,7 +286,7 @@ public class LoginFrame extends javax.swing.JFrame {
             User user = new User(userRegisterText.getText(),passwordRegisterText.getText());
             controller.setUser(userLogin);
             controller.setPassword(passwordLogin);
-            controller.insertUserAdmin(user);
+            Boolean done = controller.insertUserAdmin(user);
             java.awt.EventQueue.invokeLater(new Runnable() {
                 public void run() {
                     new MainFrame(userLogin,passwordLogin).setVisible(true);
@@ -377,7 +381,7 @@ public class LoginFrame extends javax.swing.JFrame {
             User user = new User(userRegisterText.getText(),passwordRegisterText.getText());
             controller.setUser(userLogin);
             controller.setPassword(passwordLogin);
-            controller.insertUserAdmin(user);
+            Boolean done = controller.insertUserAdmin(user);
             java.awt.EventQueue.invokeLater(new Runnable() {
                 public void run() {
                     new MainFrame(userLogin,passwordLogin).setVisible(true);
@@ -420,17 +424,22 @@ if (passwordRegisterText.getText().equals("Contraseña")) {
     }
     
     public void iniciar(){
-        String sql="SELECT rolname FROM pg_roles WHERE rolcanlogin;";
-        ArrayList<Map<String, Object>> nombres;
-        DBController x = new DBController();
-        x.setUser("postgres");
-        x.setPassword("Joan");
-        nombres=x.getQueryResult(sql);
-         for (Map<String, Object> nombre : nombres) {
-             Object y =nombre.get("rolname");
-            jComboUsers.addItem((String) y);
+        FileController fc = new FileController(new File("users.txt"));
+        try {
+            fc.updateFile();
+        } catch (IOException ex) {
+            Logger.getLogger(LoginFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            ArrayList<String> allUsers = fc.read();
+            for(String user : allUsers) {
+                jComboUsers.addItem(user);
+            }
+        } catch (FileNotFoundException ex) {
+            System.out.println(ex);
         }
     }
+    
     /**
      * @param args the command line arguments
      */

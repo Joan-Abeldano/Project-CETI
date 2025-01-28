@@ -12,6 +12,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.Scanner;
 
 /**
@@ -20,60 +21,30 @@ import java.util.Scanner;
  */
 public class FileController {
     private File file;
+
+    public FileController(File file) {
+        this.file = file;
+    }
     
-    public void addLine(String newLine) throws IOException {
-        try(BufferedWriter bw = new BufferedWriter(new FileWriter(file, true))) {
-            bw.write(newLine);
-            bw.newLine();
+    public void updateFile() throws IOException {
+        String sql="SELECT m.rolname AS member_name FROM pg_roles r JOIN pg_auth_members am ON r.oid = am.roleid JOIN pg_roles m ON m.oid = am.member WHERE r.rolname = \'ceti\';";
+        ArrayList<Map<String, Object>> nombres;
+        DBController x = new DBController();
+        x.setUser("postgres");
+        x.setPassword("Joan");
+        nombres=x.getQueryResult(sql);
+        try(BufferedWriter bw = new BufferedWriter(new FileWriter(file, false))) {
+            for (Map<String, Object> nombre : nombres) {
+                Object y = nombre.get("member_name");
+                bw.write((String) y);
+                bw.newLine();
+            }
         }
         catch(IOException e) {
             throw e;
         }
     }
-    
-    public void deleteLine(String lineToDelete) throws IOException {
-        ArrayList<String> fileContent = new ArrayList<>();
-        try (Scanner myReader = new Scanner(file)) {
-            while (myReader.hasNextLine()) {
-                String line = myReader.nextLine();
-                if (!line.equals(lineToDelete)) {
-                    fileContent.add(line);
-                }
-            }
-        } catch (FileNotFoundException e) {
-            throw e;
-        }
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(file))) {
-            for (String line : fileContent) {
-                bw.write(line);
-                bw.newLine();
-            }
-        } catch (IOException e) {
-            throw e;
-        }
-    }
-    
-    public void editLine(String oldLine, String newLine) throws IOException {
-        try {
-            File tempFile = new File("temp.txt");
-            BufferedReader reader = new BufferedReader(new FileReader(file));
-            BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile));
-            String currentLine;
-            while ((currentLine = reader.readLine()) != null) {
-                if (currentLine.equals(oldLine)) {
-                    writer.write(newLine);
-                } else {
-                    writer.write(currentLine);
-                }
-                writer.newLine();
-            }
-            writer.close();
-            reader.close();
-        } catch (IOException e) {
-            throw e;
-        }
-    }
-    
+
     public ArrayList<String> read() throws FileNotFoundException {
         ArrayList<String> fileInfo = new ArrayList<>();
         try (Scanner myReader = new Scanner(file)) {
