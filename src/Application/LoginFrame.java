@@ -5,6 +5,8 @@
 package Application;
 
 import java.awt.Color;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -39,6 +41,27 @@ public class LoginFrame extends javax.swing.JFrame {
     public LoginFrame() {
         initComponents();
         iniciar();
+         // Agregar un WindowListener para interceptar el cierre
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                // Mostrar el mensaje de confirmación
+                int respuesta = JOptionPane.showConfirmDialog(
+                        LoginFrame.this,
+                        "¿Estás seguro de que deseas salir?",
+                        "Confirmar salida",
+                        JOptionPane.YES_NO_OPTION,
+                        JOptionPane.QUESTION_MESSAGE
+                );
+
+                // Si el usuario selecciona "Sí", cerrar el programa
+                if (respuesta == JOptionPane.YES_OPTION) {
+                    System.exit(0);
+                }
+                // Si selecciona "No", no pasa nada (la ventana permanece abierta)
+            }
+        });
+
     }
 
     /**rootPaneCheckingEnabled
@@ -53,21 +76,21 @@ public class LoginFrame extends javax.swing.JFrame {
 
         loginPanel = new javax.swing.JPanel();
         loginButton = new javax.swing.JButton();
-        passwordLoginField = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jComboUsers = new javax.swing.JComboBox<>();
+        passwordLoginField = new javax.swing.JPasswordField();
         registerPanel = new javax.swing.JPanel();
         registerButton = new javax.swing.JButton();
         userRegisterText = new javax.swing.JTextField();
-        passwordRegisterText = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        passwordRegisterText = new javax.swing.JPasswordField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setResizable(false);
         getContentPane().setLayout(new java.awt.CardLayout());
 
@@ -89,44 +112,18 @@ public class LoginFrame extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(14, 21, 11, 0);
         loginPanel.add(loginButton, gridBagConstraints);
 
-        passwordLoginField.setForeground(new java.awt.Color(204, 204, 204));
-        passwordLoginField.setText("Contraseña");
-        passwordLoginField.setPreferredSize(new java.awt.Dimension(100, 22));
-        passwordLoginField.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                passwordLoginFieldFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                passwordLoginFieldFocusLost(evt);
-            }
-        });
-        passwordLoginField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passwordLoginFieldActionPerformed(evt);
-            }
-        });
-        passwordLoginField.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                passwordLoginFieldKeyPressed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.insets = new java.awt.Insets(10, 0, 10, 0);
-        loginPanel.add(passwordLoginField, gridBagConstraints);
-
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/contraseña(1).png"))); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.insets = new java.awt.Insets(16, 0, 0, 0);
         loginPanel.add(jLabel1, gridBagConstraints);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/user(1).png"))); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 3);
+        gridBagConstraints.insets = new java.awt.Insets(6, 0, 5, 3);
         loginPanel.add(jLabel2, gridBagConstraints);
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/11zon_cropped.png"))); // NOI18N
@@ -140,7 +137,21 @@ public class LoginFrame extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
+        gridBagConstraints.ipadx = 40;
+        gridBagConstraints.insets = new java.awt.Insets(9, 2, 8, 2);
         loginPanel.add(jComboUsers, gridBagConstraints);
+
+        passwordLoginField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                passwordLoginFieldActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.ipadx = 110;
+        gridBagConstraints.insets = new java.awt.Insets(18, 0, 0, 0);
+        loginPanel.add(passwordLoginField, gridBagConstraints);
 
         getContentPane().add(loginPanel, "card2");
 
@@ -188,28 +199,6 @@ public class LoginFrame extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(10, 0, 10, 0);
         registerPanel.add(userRegisterText, gridBagConstraints);
 
-        passwordRegisterText.setForeground(new java.awt.Color(204, 204, 204));
-        passwordRegisterText.setText("Contraseña");
-        passwordRegisterText.setPreferredSize(new java.awt.Dimension(100, 24));
-        passwordRegisterText.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                passwordRegisterTextFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                passwordRegisterTextFocusLost(evt);
-            }
-        });
-        passwordRegisterText.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passwordRegisterTextActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.insets = new java.awt.Insets(10, 0, 10, 0);
-        registerPanel.add(passwordRegisterText, gridBagConstraints);
-
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/contraseña(1).png"))); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -242,6 +231,11 @@ public class LoginFrame extends javax.swing.JFrame {
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 5;
         registerPanel.add(jButton1, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.ipadx = 90;
+        registerPanel.add(passwordRegisterText, gridBagConstraints);
 
         getContentPane().add(registerPanel, "card3");
 
@@ -298,44 +292,6 @@ public class LoginFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_registerButtonActionPerformed
 
-    private void passwordLoginFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_passwordLoginFieldFocusGained
-    if (passwordLoginField.getText().equals("Contraseña")) {
-    passwordLoginField.setText("");
-    passwordLoginField.setForeground(Color.black);     
-    }
-    }//GEN-LAST:event_passwordLoginFieldFocusGained
-
-    private void passwordLoginFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_passwordLoginFieldFocusLost
-        if (passwordLoginField.getText().isEmpty()) {
-    passwordLoginField.setText("Contraseña");
-    passwordLoginField.setForeground(Color.GRAY);
-}
-    }//GEN-LAST:event_passwordLoginFieldFocusLost
-
-    private void passwordLoginFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordLoginFieldActionPerformed
-        DBController dbc = new DBController();
-        userLogin = (String)jComboUsers.getSelectedItem();
-        passwordLogin = passwordLoginField.getText();
-        dbc.setUser(userLogin);
-        dbc.setPassword(passwordLogin);
-        try {
-            System.out.println(dbc.getUser());
-            System.out.println(dbc.getPassword());
-            Connection conn = dbc.connect();
-            java.awt.EventQueue.invokeLater(new Runnable() {
-                public void run() {
-                    new MainFrame(userLogin,passwordLogin).setVisible(true);
-                }
-            });
-            this.dispose();
-        }
-        catch(SQLException ex){
-            System.out.println(ex);
-            JOptionPane.showMessageDialog(null,"Contraseña incorrecta","ERROR",JOptionPane.ERROR_MESSAGE);
-            limpiar();
-        }
-    }//GEN-LAST:event_passwordLoginFieldActionPerformed
-
     private void userRegisterTextKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_userRegisterTextKeyPressed
      if (userRegisterText.getText().equals("Usuario")) {
     userRegisterText.setText("");
@@ -357,48 +313,9 @@ public class LoginFrame extends javax.swing.JFrame {
 }
     }//GEN-LAST:event_userRegisterTextFocusLost
 
-    private void passwordRegisterTextFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_passwordRegisterTextFocusGained
-    if (passwordRegisterText.getText().equals("Contraseña")) {
-    passwordRegisterText.setText("");
-    passwordRegisterText.setForeground(Color.black);     
-    }
-    }//GEN-LAST:event_passwordRegisterTextFocusGained
-
-    private void passwordRegisterTextFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_passwordRegisterTextFocusLost
-    if (passwordRegisterText.getText().isEmpty()) {
-    passwordRegisterText.setText("Contraseña");
-    passwordRegisterText.setForeground(Color.GRAY);
-}
-    }//GEN-LAST:event_passwordRegisterTextFocusLost
-
     private void userRegisterTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userRegisterTextActionPerformed
     passwordRegisterText.requestFocus();
     }//GEN-LAST:event_userRegisterTextActionPerformed
-
-    private void passwordRegisterTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordRegisterTextActionPerformed
-        LoginDBController controller = new LoginDBController();
-        if(!userRegisterText.getText().equals("Usuario") && !passwordRegisterText.getText().equals("Contraseña")){
-            User user = new User(userRegisterText.getText(),passwordRegisterText.getText());
-            controller.setUser(userLogin);
-            controller.setPassword(passwordLogin);
-            Boolean done = controller.insertUserAdmin(user);
-            java.awt.EventQueue.invokeLater(new Runnable() {
-                public void run() {
-                    new MainFrame(userLogin,passwordLogin).setVisible(true);
-                }
-            });
-            this.dispose();
-        }else{
-            JOptionPane.showMessageDialog(null,"Los campos no pueden estar vacíos","ERROR",JOptionPane.ERROR_MESSAGE);
-        }
-    }//GEN-LAST:event_passwordRegisterTextActionPerformed
-
-    private void passwordLoginFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passwordLoginFieldKeyPressed
-if (passwordRegisterText.getText().equals("Contraseña")) {
-    passwordRegisterText.setText("");
-    passwordRegisterText.setForeground(Color.BLACK);
-}        // TODO add your handling code here:
-    }//GEN-LAST:event_passwordLoginFieldKeyPressed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
      java.awt.EventQueue.invokeLater(new Runnable() {
@@ -408,6 +325,28 @@ if (passwordRegisterText.getText().equals("Contraseña")) {
             });
             this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void passwordLoginFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordLoginFieldActionPerformed
+    DBController dbc = new DBController();
+        userLogin = (String) jComboUsers.getSelectedItem();
+        passwordLogin = passwordLoginField.getText();
+        dbc.setUser(userLogin);
+        dbc.setPassword(passwordLogin);
+        try {
+            Connection conn = dbc.connect();
+            java.awt.EventQueue.invokeLater(new Runnable() {
+                public void run() {
+                    new MainFrame(userLogin,passwordLogin).setVisible(true);
+                }
+            });
+            this.dispose();
+        }
+        catch(SQLException ex){
+            System.out.println(ex);
+            JOptionPane.showMessageDialog(null,"Contraseña incorrecta","ERROR",JOptionPane.ERROR_MESSAGE);
+            limpiar();
+        }
+    }//GEN-LAST:event_passwordLoginFieldActionPerformed
 
     public JPanel getLoginPanel() {
         return loginPanel;
@@ -440,6 +379,8 @@ if (passwordRegisterText.getText().equals("Contraseña")) {
         }
     }
     
+ 
+        
     /**
      * @param args the command line arguments
      */
@@ -493,8 +434,8 @@ if (passwordRegisterText.getText().equals("Contraseña")) {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JButton loginButton;
     private javax.swing.JPanel loginPanel;
-    private javax.swing.JTextField passwordLoginField;
-    private javax.swing.JTextField passwordRegisterText;
+    private javax.swing.JPasswordField passwordLoginField;
+    private javax.swing.JPasswordField passwordRegisterText;
     private javax.swing.JButton registerButton;
     private javax.swing.JPanel registerPanel;
     private javax.swing.JTextField userRegisterText;
