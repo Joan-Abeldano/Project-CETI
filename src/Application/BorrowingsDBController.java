@@ -52,8 +52,8 @@ public class BorrowingsDBController extends DBController{
         }
     }
     
-    public void endBorrowing(Borrowing borrowing) {
-        String SQL = "UPDATE borrowings SET endDate=\'"+borrowing.getEndDate()+"\', ended=true WHERE borrowingId="+borrowing.getBorrowingId()+";";
+    public void endBorrowing(Date endDate, String id) {
+        String SQL = "UPDATE borrowings SET endDate=\'"+endDate+"\', ended=true WHERE borrowingId="+id+";";
         try (Connection conn = connect();
             PreparedStatement pstmt = conn.prepareStatement(SQL)){
             pstmt.executeUpdate();

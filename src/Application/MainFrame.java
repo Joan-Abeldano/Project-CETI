@@ -8,10 +8,12 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Locale;
 import java.util.Map;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -28,6 +30,7 @@ public class MainFrame extends javax.swing.JFrame {
     private String userLogin;
     private String passwordLogin;
     private LocalDate fechaActual;
+    private BorrowingInfo bc;
     /**
      * Creates new form MainFrame
      */
@@ -1123,6 +1126,7 @@ public MainFrame(boolean x, String user, String password) {
         ArrayList<Map<String,Object>> currentBorrowings = dbc.getQueryResult(SQL);
         for(Map<String,Object> item : currentBorrowings) {
             model.addRow(new Object[]{
+                item.get("borrowingid").toString(),
                 item.get("personname"),
                 item.get("personlastname"),
                 item.get("persongroup"),
@@ -1144,6 +1148,7 @@ public MainFrame(boolean x, String user, String password) {
         ArrayList<Map<String,Object>> currentBorrowings = dbc.getQueryResult(SQL);
         for(Map<String,Object> item : currentBorrowings) {
             model.addRow(new Object[]{
+                item.get("borrowingid").toString(),
                 item.get("personname"),
                 item.get("personlastname"),
                 item.get("persongroup"),
@@ -1226,21 +1231,22 @@ public MainFrame(boolean x, String user, String password) {
                     evt.consume(); // Consumir el evento para evitar duplicados
                     int filaSeleccionada = currentBorrowingsFullTable.getSelectedRow();
                     if (filaSeleccionada != -1) { // Verificar que se seleccionó una fila
-                        String numInventario = (String)currentBorrowingsFullTable.getModel().getValueAt(filaSeleccionada, 2);
-                        String nombrePersona = (String)currentBorrowingsFullTable.getModel().getValueAt(filaSeleccionada, 0);
-                        String apellidoPersona = (String)currentBorrowingsFullTable.getModel().getValueAt(filaSeleccionada, 1);
-                        String grupoPersona = (String)currentBorrowingsFullTable.getModel().getValueAt(filaSeleccionada, 3);
-                        String fechaInicio = (String)currentBorrowingsFullTable.getModel().getValueAt(filaSeleccionada, 4);
-                        String fechaFin = (String)currentBorrowingsFullTable.getModel().getValueAt(filaSeleccionada, 5);
+                        String id = (String)currentBorrowingsFullTable.getModel().getValueAt(filaSeleccionada, 0);
+                        String numInventario = (String)currentBorrowingsFullTable.getModel().getValueAt(filaSeleccionada, 3);
+                        String nombrePersona = (String)currentBorrowingsFullTable.getModel().getValueAt(filaSeleccionada, 1);
+                        String apellidoPersona = (String)currentBorrowingsFullTable.getModel().getValueAt(filaSeleccionada, 2);
+                        String grupoPersona = (String)currentBorrowingsFullTable.getModel().getValueAt(filaSeleccionada, 4);
+                        String fechaInicio = (String)currentBorrowingsFullTable.getModel().getValueAt(filaSeleccionada, 5);
+                        String fechaFin = (String)currentBorrowingsFullTable.getModel().getValueAt(filaSeleccionada, 6);
                         String prestatario = userLogin;
-                        BorrowingInfo bi = new BorrowingInfo(numInventario,nombrePersona,apellidoPersona,grupoPersona,fechaInicio,fechaFin,prestatario);
-                        itemInventoryInfoLabel.setText("Num Inventario: "+bi.getNumInventario());
-                        nameInfoLabel.setText("Nombre(s): "+bi.getNombrePersona());
-                        lastNameInfoLabel.setText("Apellido(s): "+bi.getApellidoPersona());
-                        groupInfoLabel.setText("Grupo: "+bi.getGrupoPersona());
-                        startDateInfoLabel.setText("Fecha Inicio: "+bi.getFechaInicio());
-                        endDateInfoLabel.setText("Fecha Fin: "+bi.getFechaFin());
-                        borrowerInfoLabel.setText("Prestatario: "+bi.getPrestatario());
+                        bc = new BorrowingInfo(id,numInventario,nombrePersona,apellidoPersona,grupoPersona,fechaInicio,fechaFin,prestatario);
+                        itemInventoryInfoLabel.setText("Num Inventario: "+bc.getNumInventario());
+                        nameInfoLabel.setText("Nombre(s): "+bc.getNombrePersona());
+                        lastNameInfoLabel.setText("Apellido(s): "+bc.getApellidoPersona());
+                        groupInfoLabel.setText("Grupo: "+bc.getGrupoPersona());
+                        startDateInfoLabel.setText("Fecha Inicio: "+bc.getFechaInicio());
+                        endDateInfoLabel.setText("Fecha Fin: "+bc.getFechaFin());
+                        borrowerInfoLabel.setText("Prestatario: "+bc.getPrestatario());
                         borrowingInfoDialog.setVisible(true);
                     }
                 }
@@ -1298,8 +1304,13 @@ public MainFrame(boolean x, String user, String password) {
     }//GEN-LAST:event_itemInputKeyPressed
 
     private void endBorrowingButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_endBorrowingButtonActionPerformed
-        // TODO add your handling code here:
-        
+         // TODO add your handling code here:
+        BorrowingsDBController bdbc = new BorrowingsDBController();
+        bdbc.setUser(userLogin);
+        bdbc.setPassword(passwordLogin);
+        java.sql.Date sqlStartDate = new java.sql.Date(endDateInput.getDate().getTime());
+        bdbc.endBorrowing(sqlStartDate, bc.getId());
+
     }//GEN-LAST:event_endBorrowingButtonActionPerformed
 
     private void limpiar() {

@@ -9,6 +9,7 @@ package Application;
  * @author labso20
  */
 public class BorrowingInfo {
+    private String id;
     private String numInventario;
     private String nombrePersona;
     private String apellidoPersona;
@@ -17,7 +18,7 @@ public class BorrowingInfo {
     private String fechaFin;
     private String prestatario;
 
-    public BorrowingInfo(String numInventario, String nombrePersona, String apellidoPersona, String grupoPersona, String fechaInicio, String fechaFin, String prestatario) {
+    public BorrowingInfo(String id,String numInventario, String nombrePersona, String apellidoPersona, String grupoPersona, String fechaInicio, String fechaFin, String prestatario) {
         this.numInventario = numInventario;
         this.nombrePersona = nombrePersona;
         this.apellidoPersona = apellidoPersona;
@@ -25,6 +26,14 @@ public class BorrowingInfo {
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
         this.prestatario = prestatario;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getNumInventario() {
