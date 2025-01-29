@@ -4,11 +4,18 @@
  */
 package Application;
 
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Map;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 
@@ -17,7 +24,7 @@ import javax.swing.table.DefaultTableModel;
  * @author Joan
  */
 public class MainFrame extends javax.swing.JFrame {
-
+    
     private String userLogin;
     private String passwordLogin;
     private LocalDate fechaActual;
@@ -30,6 +37,25 @@ public class MainFrame extends javax.swing.JFrame {
         this.userLogin = user;
         this.passwordLogin = password;
         userMenu.setText(userLogin);
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                // Mostrar el mensaje de confirmación
+                int respuesta = JOptionPane.showConfirmDialog(
+                        MainFrame.this,
+                        "¿Estás seguro de que deseas salir?",
+                        "Confirmar salida",
+                        JOptionPane.YES_NO_OPTION,
+                        JOptionPane.QUESTION_MESSAGE
+                );
+
+                // Si el usuario selecciona "Sí", cerrar el programa
+                if (respuesta == JOptionPane.YES_OPTION) {
+                    System.exit(0);
+                }
+                // Si selecciona "No", no pasa nada (la ventana permanece abierta)
+            }
+        });
     }
 
     /**
@@ -44,7 +70,6 @@ public class MainFrame extends javax.swing.JFrame {
 
         addBorrowingDialog = new javax.swing.JDialog();
         addBorrowingScreenPanel = new javax.swing.JPanel();
-        startDateInput = new javax.swing.JTextField();
         personNameInput = new javax.swing.JTextField();
         personGroupInput = new javax.swing.JTextField();
         itemInput = new javax.swing.JTextField();
@@ -55,6 +80,9 @@ public class MainFrame extends javax.swing.JFrame {
         itemLabel = new javax.swing.JLabel();
         personLastNameInput = new javax.swing.JTextField();
         lastNameLabel = new javax.swing.JLabel();
+        startDateInput = new com.toedter.calendar.JDateChooser();
+        jDateChooser2 = new com.toedter.calendar.JDateChooser();
+        jLabel16 = new javax.swing.JLabel();
         borrowingInfoDialog = new javax.swing.JDialog();
         borrowingInfoScreenPanel = new javax.swing.JPanel();
         itemInventoryInfoLabel = new javax.swing.JLabel();
@@ -68,8 +96,8 @@ public class MainFrame extends javax.swing.JFrame {
         endBorrowingDialog = new javax.swing.JDialog();
         endBorrowingScreenPanel = new javax.swing.JPanel();
         endBorrowingButton = new javax.swing.JButton();
-        endDateInput = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+        endDateInput = new com.toedter.calendar.JDateChooser();
         addItemDialog = new javax.swing.JDialog();
         addBorrowingScreenPanel1 = new javax.swing.JPanel();
         addBorrowingConfirmButton1 = new javax.swing.JButton();
@@ -135,23 +163,12 @@ public class MainFrame extends javax.swing.JFrame {
         addBorrowingDialog.setMinimumSize(new java.awt.Dimension(338, 300));
         addBorrowingDialog.setModal(true);
         addBorrowingDialog.setResizable(false);
-        addBorrowingDialog.setSize(new java.awt.Dimension(400, 300));
+        addBorrowingDialog.setSize(new java.awt.Dimension(600, 300));
         addBorrowingDialog.getContentPane().setLayout(new java.awt.CardLayout());
 
         addBorrowingScreenPanel.setBackground(new java.awt.Color(51, 51, 51));
+        addBorrowingScreenPanel.setPreferredSize(new java.awt.Dimension(500, 200));
         addBorrowingScreenPanel.setLayout(new java.awt.GridBagLayout());
-
-        startDateInput.setPreferredSize(new java.awt.Dimension(100, 24));
-        startDateInput.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                startDateInputActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.insets = new java.awt.Insets(10, 0, 10, 0);
-        addBorrowingScreenPanel.add(startDateInput, gridBagConstraints);
 
         personNameInput.setPreferredSize(new java.awt.Dimension(100, 24));
         personNameInput.addActionListener(new java.awt.event.ActionListener() {
@@ -159,9 +176,15 @@ public class MainFrame extends javax.swing.JFrame {
                 personNameInputActionPerformed(evt);
             }
         });
+        personNameInput.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                personNameInputKeyPressed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.ipadx = 90;
         gridBagConstraints.insets = new java.awt.Insets(10, 0, 10, 0);
         addBorrowingScreenPanel.add(personNameInput, gridBagConstraints);
 
@@ -171,9 +194,15 @@ public class MainFrame extends javax.swing.JFrame {
                 personGroupInputActionPerformed(evt);
             }
         });
+        personGroupInput.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                personGroupInputKeyPressed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.ipadx = 90;
         gridBagConstraints.insets = new java.awt.Insets(10, 0, 10, 0);
         addBorrowingScreenPanel.add(personGroupInput, gridBagConstraints);
 
@@ -183,9 +212,15 @@ public class MainFrame extends javax.swing.JFrame {
                 itemInputActionPerformed(evt);
             }
         });
+        itemInput.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                itemInputKeyPressed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.ipadx = 90;
         gridBagConstraints.insets = new java.awt.Insets(10, 0, 10, 0);
         addBorrowingScreenPanel.add(itemInput, gridBagConstraints);
 
@@ -199,24 +234,26 @@ public class MainFrame extends javax.swing.JFrame {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridy = 5;
         gridBagConstraints.gridwidth = 4;
         gridBagConstraints.insets = new java.awt.Insets(10, 0, 10, 0);
         addBorrowingScreenPanel.add(addBorrowingConfirmButton, gridBagConstraints);
 
         dateLabel.setForeground(new java.awt.Color(255, 255, 255));
-        dateLabel.setText("Fecha");
+        dateLabel.setText("Fecha Inicio");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 5);
+        gridBagConstraints.ipadx = 15;
+        gridBagConstraints.insets = new java.awt.Insets(0, 22, 0, 22);
         addBorrowingScreenPanel.add(dateLabel, gridBagConstraints);
 
         nameLabel.setForeground(new java.awt.Color(255, 255, 255));
         nameLabel.setText("Nombre(s)");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.ipadx = 15;
         gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 5);
         addBorrowingScreenPanel.add(nameLabel, gridBagConstraints);
 
@@ -224,7 +261,8 @@ public class MainFrame extends javax.swing.JFrame {
         groupLabel.setText("Grupo");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.ipadx = 15;
         gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 5);
         addBorrowingScreenPanel.add(groupLabel, gridBagConstraints);
 
@@ -232,7 +270,8 @@ public class MainFrame extends javax.swing.JFrame {
         itemLabel.setText("Item");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.ipadx = 15;
         gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 5);
         addBorrowingScreenPanel.add(itemLabel, gridBagConstraints);
 
@@ -242,25 +281,53 @@ public class MainFrame extends javax.swing.JFrame {
                 personLastNameInputActionPerformed(evt);
             }
         });
+        personLastNameInput.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                personLastNameInputKeyPressed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.ipadx = 90;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 15);
         addBorrowingScreenPanel.add(personLastNameInput, gridBagConstraints);
 
         lastNameLabel.setForeground(new java.awt.Color(255, 255, 255));
         lastNameLabel.setText("Apellido(s)");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.ipadx = 15;
         gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 5);
         addBorrowingScreenPanel.add(lastNameLabel, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.ipadx = 90;
+        gridBagConstraints.insets = new java.awt.Insets(0, 4, 0, 4);
+        addBorrowingScreenPanel.add(startDateInput, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.ipadx = 90;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 20);
+        addBorrowingScreenPanel.add(jDateChooser2, gridBagConstraints);
+
+        jLabel16.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel16.setText("Fecha Entrega");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.ipadx = 15;
+        addBorrowingScreenPanel.add(jLabel16, gridBagConstraints);
 
         addBorrowingDialog.getContentPane().add(addBorrowingScreenPanel, "card2");
 
         addBorrowingDialog.setLocationRelativeTo(null);
 
         borrowingInfoDialog.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        borrowingInfoDialog.setTitle("Borrowing Information");
+        borrowingInfoDialog.setTitle("Información de Prestamo");
         borrowingInfoDialog.setModal(true);
         borrowingInfoDialog.setResizable(false);
         borrowingInfoDialog.setSize(new java.awt.Dimension(400, 300));
@@ -350,24 +417,21 @@ public class MainFrame extends javax.swing.JFrame {
         endBorrowingButton.setText("Terminar Prestamo");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridy = 2;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.insets = new java.awt.Insets(5, 0, 5, 0);
         endBorrowingScreenPanel.add(endBorrowingButton, gridBagConstraints);
 
-        endDateInput.setPreferredSize(new java.awt.Dimension(100, 24));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.insets = new java.awt.Insets(5, 0, 5, 0);
-        endBorrowingScreenPanel.add(endDateInput, gridBagConstraints);
-
         jLabel1.setText("Fecha Final");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridy = 1;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         endBorrowingScreenPanel.add(jLabel1, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        endBorrowingScreenPanel.add(endDateInput, gridBagConstraints);
 
         endBorrowingDialog.getContentPane().add(endBorrowingScreenPanel, java.awt.BorderLayout.CENTER);
 
@@ -611,7 +675,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         addBorrowingDialog.setLocationRelativeTo(null);
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setResizable(false);
         getContentPane().setLayout(new java.awt.CardLayout());
 
@@ -701,11 +765,11 @@ public class MainFrame extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Nombre", "Apellido", "Inventario", "Categoría", "Fecha Inicio"
+                "Nombre", "Apellido", "Inventario", "Categoría", "Fecha Inicio", "Fecha Relativa"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -900,7 +964,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void addBorrowingButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBorrowingButtonActionPerformed
         fechaActual = LocalDate.now();
-        startDateInput.setText(fechaActual.toString());
+        startDateInput.setDate(new Date());
         addBorrowingDialog.setVisible(true);
         SwingUtilities.invokeLater(() -> personNameInput.requestFocusInWindow());
     }//GEN-LAST:event_addBorrowingButtonActionPerformed
@@ -911,6 +975,7 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_viewCurrentBorrowingsButtonActionPerformed
 
     private void endBorrowingGoToButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_endBorrowingGoToButtonActionPerformed
+        endDateInput.setDate(new Date());
         endBorrowingDialog.setVisible(true);
     }//GEN-LAST:event_endBorrowingGoToButtonActionPerformed
 
@@ -1006,14 +1071,16 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void addBorrowingConfirmButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBorrowingConfirmButtonActionPerformed
         //This is a placeholder implementation
-        if (!personNameInput.getText().equals("") && !startDateInput.getText().equals("") && !personLastNameInput.getText().equals("") && !personGroupInput.getText().equals("") && !itemInput.getText().equals("")){
+        if (!personNameInput.getText().equals("") && !startDateInput.getDateFormatString().equals("") && !personLastNameInput.getText().equals("") && !personGroupInput.getText().equals("") && !itemInput.getText().equals("")){
+           SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+            String fechaFormateada = formato.format(startDateInput.getDate());
             DefaultTableModel model = (DefaultTableModel) currentBorrowingsFullTable.getModel();
             model.addRow(new Object[]{
                 personNameInput.getText(),
                 personLastNameInput.getText(),
                 itemInput.getText(),
                 "PC",
-                startDateInput.getText()
+                fechaFormateada
             });
             addBorrowingDialog.dispose();
         }
@@ -1098,10 +1165,6 @@ public class MainFrame extends javax.swing.JFrame {
                 }
     }//GEN-LAST:event_currentBorrowingsFullTableMouseClicked
 
-    private void startDateInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startDateInputActionPerformed
-    personNameInput.requestFocus();            // TODO add your handling code here:
-    }//GEN-LAST:event_startDateInputActionPerformed
-
     private void personNameInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_personNameInputActionPerformed
     personLastNameInput.requestFocus();
     }//GEN-LAST:event_personNameInputActionPerformed
@@ -1115,14 +1178,17 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_personGroupInputActionPerformed
 
     private void itemInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemInputActionPerformed
-     if (!personNameInput.getText().equals("") && !startDateInput.getText().equals("") && !personLastNameInput.getText().equals("") && !personGroupInput.getText().equals("") && !itemInput.getText().equals("")){
+    //This is a placeholder implementation
+        if (!personNameInput.getText().equals("") && !startDateInput.getDateFormatString().equals("") && !personLastNameInput.getText().equals("") && !personGroupInput.getText().equals("") && !itemInput.getText().equals("")){
+           SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+            String fechaFormateada = formato.format(startDateInput.getDate());
             DefaultTableModel model = (DefaultTableModel) currentBorrowingsFullTable.getModel();
             model.addRow(new Object[]{
                 personNameInput.getText(),
                 personLastNameInput.getText(),
                 itemInput.getText(),
                 "PC",
-                startDateInput.getText()
+                fechaFormateada
             });
             addBorrowingDialog.dispose();
         }
@@ -1130,6 +1196,22 @@ public class MainFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null,"Rellena todos los campos");
         }        // TODO add your handling code here:
     }//GEN-LAST:event_itemInputActionPerformed
+
+    private void personNameInputKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_personNameInputKeyPressed
+    soloLetras(personNameInput);        // TODO add your handling code here:
+    }//GEN-LAST:event_personNameInputKeyPressed
+
+    private void personLastNameInputKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_personLastNameInputKeyPressed
+    soloLetras(personLastNameInput);        // TODO add your handling code here:
+    }//GEN-LAST:event_personLastNameInputKeyPressed
+
+    private void personGroupInputKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_personGroupInputKeyPressed
+    letrasYNumeros(personGroupInput);        // TODO add your handling code here:
+    }//GEN-LAST:event_personGroupInputKeyPressed
+
+    private void itemInputKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_itemInputKeyPressed
+    soloNumeros(itemInput);        // TODO add your handling code here:
+    }//GEN-LAST:event_itemInputKeyPressed
 
     private void limpiar() {
         inventarioInput.setText("");
@@ -1178,6 +1260,44 @@ public class MainFrame extends javax.swing.JFrame {
             return false;
         }
     }
+     // Función: Solo letras
+    public void soloLetras(JTextField textField) {
+        textField.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                char c = e.getKeyChar();
+                if (!Character.isLetter(c)) {
+                    e.consume(); // Bloquear el carácter no permitido
+                }
+            }
+        });
+    }
+
+    // Función: Solo números
+    public void soloNumeros(JTextField textField) {
+        textField.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                char c = e.getKeyChar();
+                if (!Character.isDigit(c)) {
+                    e.consume(); // Bloquear el carácter no permitido
+                }
+            }
+        });
+    }
+
+    // Función: Letras y números
+    public void letrasYNumeros(JTextField textField) {
+        textField.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                char c = e.getKeyChar();
+                if (!Character.isLetterOrDigit(c)) {
+                    e.consume(); // Bloquear el carácter no permitido
+                }
+            }
+        });
+    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu aboutMenu;
@@ -1210,7 +1330,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton endBorrowingGoToButton;
     private javax.swing.JPanel endBorrowingScreenPanel;
     private javax.swing.JLabel endDateInfoLabel;
-    private javax.swing.JTextField endDateInput;
+    private com.toedter.calendar.JDateChooser endDateInput;
     private javax.swing.JMenuItem endSessionItem;
     private javax.swing.JTextField estadoInput;
     private javax.swing.JLabel groupInfoLabel;
@@ -1225,6 +1345,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JTextField itemInput;
     private javax.swing.JLabel itemInventoryInfoLabel;
     private javax.swing.JLabel itemLabel;
+    private com.toedter.calendar.JDateChooser jDateChooser2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1232,6 +1353,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1259,7 +1381,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JTextField propietarioInput;
     private javax.swing.JTextField serieInput;
     private javax.swing.JLabel startDateInfoLabel;
-    private javax.swing.JTextField startDateInput;
+    private com.toedter.calendar.JDateChooser startDateInput;
     private javax.swing.JTextField subcategoriaInput;
     private javax.swing.JTextField tipoInput;
     private javax.swing.JMenu userMenu;
