@@ -1072,9 +1072,10 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="6" rowCount="0">
+                  <Table columnCount="7" rowCount="0">
                     <Column editable="false" title="Nombre" type="java.lang.Object"/>
                     <Column editable="false" title="Apellido" type="java.lang.Object"/>
+                    <Column editable="false" title="Grupo" type="java.lang.Object"/>
                     <Column editable="false" title="Inventario" type="java.lang.Object"/>
                     <Column editable="false" title="Categor&#xed;a" type="java.lang.Object"/>
                     <Column editable="false" title="Fecha Inicio" type="java.lang.Object"/>

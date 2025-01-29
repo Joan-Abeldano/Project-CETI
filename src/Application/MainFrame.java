@@ -765,11 +765,11 @@ public class MainFrame extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Nombre", "Apellido", "Inventario", "Categoría", "Fecha Inicio", "Fecha Relativa"
+                "Nombre", "Apellido", "Grupo", "Inventario", "Categoría", "Fecha Inicio", "Fecha Relativa"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -970,6 +970,8 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_addBorrowingButtonActionPerformed
 
     private void viewCurrentBorrowingsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewCurrentBorrowingsButtonActionPerformed
+                    updateCurrentBorrowingsTable();
+
         currentBorrowingsScreenPanel.setVisible(true);
         mainScreenPanel.setVisible(false);
     }//GEN-LAST:event_viewCurrentBorrowingsButtonActionPerformed
@@ -1074,14 +1076,13 @@ public class MainFrame extends javax.swing.JFrame {
         if (!personNameInput.getText().equals("") && !startDateInput.getDateFormatString().equals("") && !personLastNameInput.getText().equals("") && !personGroupInput.getText().equals("") && !itemInput.getText().equals("")){
            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
             String fechaFormateada = formato.format(startDateInput.getDate());
-            DefaultTableModel model = (DefaultTableModel) currentBorrowingsFullTable.getModel();
-            model.addRow(new Object[]{
-                personNameInput.getText(),
-                personLastNameInput.getText(),
-                itemInput.getText(),
-                "PC",
-                fechaFormateada
-            });
+            String fechaFinFormateada = formato.format(jDateChooser2.getDate());
+            BorrowingsDBController bdbc = new BorrowingsDBController();
+            bdbc.setUser(userLogin);
+            bdbc.setPassword(passwordLogin);
+            Borrowing borrowing = new Borrowing(itemInput.getText(),startDateInput.getDate(),jDateChooser2.getDate(),personNameInput.getText(),personLastNameInput.getText(),personGroupInput.getText());
+            bdbc.insertBorrowing(borrowing);
+            updateCurrentBorrowingsTable();
             addBorrowingDialog.dispose();
         }
         else{
@@ -1089,6 +1090,27 @@ public class MainFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_addBorrowingConfirmButtonActionPerformed
 
+    private void updateCurrentBorrowingsTable() {
+        DefaultTableModel model = (DefaultTableModel) currentBorrowingsFullTable.getModel();
+        model.setRowCount(0);
+        DBController dbc = new DBController();
+        dbc.setUser(userLogin);
+        dbc.setPassword(passwordLogin);
+        String SQL = "SELECT * FROM borrowings,item_inventory WHERE ended=false AND borrowings.iteminventory=item_inventory.iteminventory";
+        ArrayList<Map<String,Object>> currentBorrowings = dbc.getQueryResult(SQL);
+        for(Map<String,Object> item : currentBorrowings) {
+            model.addRow(new Object[]{
+                item.get("personname"),
+                item.get("personlastname"),
+                item.get("persongroup"),
+                item.get("iteminventory"),
+                item.get("itemcategory"),
+                item.get("startdate").toString(),
+                item.get("relativeenddate").toString()
+            });
+        }
+    }
+    
     private void addUserItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addUserItemActionPerformed
         //Need to put this in its own method...maybe
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -1160,7 +1182,22 @@ public class MainFrame extends javax.swing.JFrame {
                     evt.consume(); // Consumir el evento para evitar duplicados
                     int filaSeleccionada = currentBorrowingsFullTable.getSelectedRow();
                     if (filaSeleccionada != -1) { // Verificar que se seleccionó una fila
-                       borrowingInfoDialog.setVisible(true);
+                        String numInventario = (String)currentBorrowingsFullTable.getModel().getValueAt(filaSeleccionada, 2);
+                        String nombrePersona = (String)currentBorrowingsFullTable.getModel().getValueAt(filaSeleccionada, 0);
+                        String apellidoPersona = (String)currentBorrowingsFullTable.getModel().getValueAt(filaSeleccionada, 1);
+                        String grupoPersona = (String)currentBorrowingsFullTable.getModel().getValueAt(filaSeleccionada, 3);
+                        String fechaInicio = (String)currentBorrowingsFullTable.getModel().getValueAt(filaSeleccionada, 4);
+                        String fechaFin = (String)currentBorrowingsFullTable.getModel().getValueAt(filaSeleccionada, 5);
+                        String prestatario = userLogin;
+                        BorrowingInfo bi = new BorrowingInfo(numInventario,nombrePersona,apellidoPersona,grupoPersona,fechaInicio,fechaFin,prestatario);
+                        itemInventoryInfoLabel.setText("Num Inventario: "+bi.getNumInventario());
+                        nameInfoLabel.setText("Nombre(s): "+bi.getNombrePersona());
+                        lastNameInfoLabel.setText("Apellido(s): "+bi.getApellidoPersona());
+                        groupInfoLabel.setText("Grupo: "+bi.getGrupoPersona());
+                        startDateInfoLabel.setText("Fecha Inicio: "+bi.getFechaInicio());
+                        endDateInfoLabel.setText("Fecha Fin: "+bi.getFechaFin());
+                        borrowerInfoLabel.setText("Prestatario: "+bi.getPrestatario());
+                        borrowingInfoDialog.setVisible(true);
                     }
                 }
     }//GEN-LAST:event_currentBorrowingsFullTableMouseClicked
@@ -1182,13 +1219,16 @@ public class MainFrame extends javax.swing.JFrame {
         if (!personNameInput.getText().equals("") && !startDateInput.getDateFormatString().equals("") && !personLastNameInput.getText().equals("") && !personGroupInput.getText().equals("") && !itemInput.getText().equals("")){
            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
             String fechaFormateada = formato.format(startDateInput.getDate());
+            String fechaFinFormateada = formato.format(jDateChooser2.getDate());
             DefaultTableModel model = (DefaultTableModel) currentBorrowingsFullTable.getModel();
             model.addRow(new Object[]{
                 personNameInput.getText(),
                 personLastNameInput.getText(),
+                personGroupInput.getText(),
                 itemInput.getText(),
                 "PC",
-                fechaFormateada
+                fechaFormateada,
+                fechaFinFormateada
             });
             addBorrowingDialog.dispose();
         }

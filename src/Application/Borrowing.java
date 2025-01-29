@@ -14,7 +14,7 @@ import java.util.Date;
  */
 public class Borrowing {
     private int borrowingId;
-    private int itemBorrowed;
+    private String itemBorrowed;
     private Date startDate;
     private Date relativeDateEnd;
     private Date endDate;
@@ -23,13 +23,10 @@ public class Borrowing {
     private String lastname;
     private String group;
 
-    public Borrowing(int borrowingId, int itemBorrowed, Date startDate, Date relativeDateEnd, Date endDate, boolean ended, String name, String lastname, String group) {
-        this.borrowingId = borrowingId;
+    public Borrowing(String itemBorrowed, Date startDate, Date relativeDateEnd,String name, String lastname, String group) {
         this.itemBorrowed = itemBorrowed;
         this.startDate = startDate;
         this.relativeDateEnd = relativeDateEnd;
-        this.endDate = endDate;
-        this.ended = ended;
         this.name = name;
         this.lastname = lastname;
         this.group = group;
@@ -43,11 +40,11 @@ public class Borrowing {
         this.borrowingId = borrowingId;
     }
 
-    public int getItemBorrowed() {
+    public String getItemBorrowed() {
         return itemBorrowed;
     }
 
-    public void setItemBorrowed(int itemBorrowed) {
+    public void setItemBorrowed(String itemBorrowed) {
         this.itemBorrowed = itemBorrowed;
     }
 
@@ -56,7 +53,7 @@ public class Borrowing {
     }
 
     public String getStartDateString() {
-        String pattern = "MM/dd/yyyy HH:mm:ss";
+        String pattern = "dd/MM/yyyy";
         DateFormat df = new SimpleDateFormat(pattern);      
         String startDateString = df.format(this.startDate);
         return startDateString;
@@ -71,7 +68,7 @@ public class Borrowing {
     }
     
     public String getEndDateString() {
-        String pattern = "MM/dd/yyyy HH:mm:ss";
+        String pattern = "dd/MM/yyyy";
         DateFormat df = new SimpleDateFormat(pattern);      
         String endDateString = df.format(this.endDate);
         return endDateString;
@@ -98,7 +95,7 @@ public class Borrowing {
     }
     
     public String getRelativeDateEndString(){
-        String pattern = "MM/dd/yyyy HH:mm:ss";
+        String pattern = "dd/MM/yyyy";
         DateFormat df = new SimpleDateFormat(pattern);
         String relativeDateEndString = df.format(this.relativeDateEnd);
         return relativeDateEndString;

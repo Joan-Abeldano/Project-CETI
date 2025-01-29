@@ -4,6 +4,7 @@
  */
 package Application;
 
+import java.util.Date;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -17,9 +18,11 @@ public class BorrowingsDBController extends DBController{
         String SQL = "INSERT INTO borrowings(startDate,relativeenddate,itemInventory,personname,personlastname,persongroup) VALUES (?,?,?,?,?,?);";
         try (Connection conn = connect();
             PreparedStatement pstmt = conn.prepareStatement(SQL)) {
-            pstmt.setString(1,borrowing.getStartDateString());
-            pstmt.setString(2, borrowing.getRelativeDateEndString());
-            pstmt.setInt(3, borrowing.getItemBorrowed());
+            java.sql.Date sqlStartDate = new java.sql.Date(borrowing.getStartDate().getTime());
+            java.sql.Date sqlEndDate = new java.sql.Date(borrowing.getRelativeDateEnd().getTime());
+            pstmt.setDate(1, sqlStartDate);
+            pstmt.setDate(2, sqlEndDate);
+            pstmt.setString(3, borrowing.getItemBorrowed());
             pstmt.setString(4, borrowing.getName());
             pstmt.setString(5, borrowing.getLastname());
             pstmt.setString(6, borrowing.getGroup());
