@@ -37,6 +37,7 @@ public class LoginFrame extends javax.swing.JFrame {
     
     private String userLogin;
     private String passwordLogin;
+    private boolean rolsuper;
     
     public LoginFrame() {
         initComponents();
@@ -89,6 +90,7 @@ public class LoginFrame extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         passwordRegisterText = new javax.swing.JPasswordField();
+        jCheckBoxAdmin = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setResizable(false);
@@ -231,11 +233,29 @@ public class LoginFrame extends javax.swing.JFrame {
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 5;
         registerPanel.add(jButton1, gridBagConstraints);
+
+        passwordRegisterText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                passwordRegisterTextActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.ipadx = 90;
         registerPanel.add(passwordRegisterText, gridBagConstraints);
+
+        jCheckBoxAdmin.setText("Administrador");
+        jCheckBoxAdmin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBoxAdminActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.insets = new java.awt.Insets(15, 0, 6, 0);
+        registerPanel.add(jCheckBoxAdmin, gridBagConstraints);
 
         getContentPane().add(registerPanel, "card3");
 
@@ -257,11 +277,14 @@ public class LoginFrame extends javax.swing.JFrame {
         passwordLogin = passwordLoginField.getText();
         dbc.setUser(userLogin);
         dbc.setPassword(passwordLogin);
+        ArrayList<Map<String, Object>> queryResult = dbc.getQueryResult("select rolsuper from pg_roles where rolname=\'"+userLogin+"\';");
+        rolsuper = (boolean) queryResult.get(0).get("rolsuper");
+
         try {
             Connection conn = dbc.connect();
             java.awt.EventQueue.invokeLater(new Runnable() {
                 public void run() {
-                    new MainFrame(userLogin,passwordLogin).setVisible(true);
+                    new MainFrame(rolsuper,userLogin,passwordLogin).setVisible(true);
                 }
             });
             this.dispose();
@@ -280,10 +303,22 @@ public class LoginFrame extends javax.swing.JFrame {
             User user = new User(userRegisterText.getText(),passwordRegisterText.getText());
             controller.setUser(userLogin);
             controller.setPassword(passwordLogin);
-            Boolean done = controller.insertUserAdmin(user);
+            boolean seleccionado = jCheckBoxAdmin.isSelected();
+            boolean done=false;
+            if(seleccionado){
+                done = controller.insertUserAdmin(user);
+            }else{
+                    done = controller.insertUserNoAdmin(user);
+            }
+            if(done){
+                JOptionPane.showMessageDialog(null, "Usuario Agregado Con Exito", "Éxito",JOptionPane.INFORMATION_MESSAGE);
+            }else{
+                    JOptionPane.showMessageDialog(null, "Usuario No Agregado", "Error",JOptionPane.ERROR_MESSAGE);
+
+            }
             java.awt.EventQueue.invokeLater(new Runnable() {
                 public void run() {
-                    new MainFrame(userLogin,passwordLogin).setVisible(true);
+                    new MainFrame(rolsuper,userLogin,passwordLogin).setVisible(true);
                 }
             });
             this.dispose();
@@ -320,7 +355,7 @@ public class LoginFrame extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
      java.awt.EventQueue.invokeLater(new Runnable() {
                 public void run() {
-                    new MainFrame(userLogin,passwordLogin).setVisible(true);
+                    new MainFrame(rolsuper,userLogin,passwordLogin).setVisible(true);
                 }
             });
             this.dispose();
@@ -332,11 +367,13 @@ public class LoginFrame extends javax.swing.JFrame {
         passwordLogin = passwordLoginField.getText();
         dbc.setUser(userLogin);
         dbc.setPassword(passwordLogin);
+        ArrayList<Map<String, Object>> queryResult = dbc.getQueryResult("select rolsuper from pg_roles where rolname=\'"+userLogin+"\';");
+        rolsuper = (boolean) queryResult.get(0).get("rolsuper");
         try {
             Connection conn = dbc.connect();
             java.awt.EventQueue.invokeLater(new Runnable() {
                 public void run() {
-                    new MainFrame(userLogin,passwordLogin).setVisible(true);
+                    new MainFrame(rolsuper,userLogin,passwordLogin).setVisible(true);
                 }
             });
             this.dispose();
@@ -347,6 +384,14 @@ public class LoginFrame extends javax.swing.JFrame {
             limpiar();
         }
     }//GEN-LAST:event_passwordLoginFieldActionPerformed
+
+    private void passwordRegisterTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordRegisterTextActionPerformed
+    jCheckBoxAdmin.requestFocus();        // TODO add your handling code here:
+    }//GEN-LAST:event_passwordRegisterTextActionPerformed
+
+    private void jCheckBoxAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxAdminActionPerformed
+        
+    }//GEN-LAST:event_jCheckBoxAdminActionPerformed
 
     public JPanel getLoginPanel() {
         return loginPanel;
@@ -425,6 +470,7 @@ public class LoginFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JCheckBox jCheckBoxAdmin;
     private javax.swing.JComboBox<String> jComboUsers;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

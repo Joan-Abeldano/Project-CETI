@@ -31,32 +31,41 @@ public class MainFrame extends javax.swing.JFrame {
     /**
      * Creates new form MainFrame
      */
-    public MainFrame(String user,String password) {
-        initComponents();
-        addItemDialog.setLocationRelativeTo(null);
-        this.userLogin = user;
-        this.passwordLogin = password;
-        userMenu.setText(userLogin);
-        addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent e) {
-                // Mostrar el mensaje de confirmación
-                int respuesta = JOptionPane.showConfirmDialog(
-                        MainFrame.this,
-                        "¿Estás seguro de que deseas salir?",
-                        "Confirmar salida",
-                        JOptionPane.YES_NO_OPTION,
-                        JOptionPane.QUESTION_MESSAGE
-                );
+public MainFrame(boolean x, String user, String password) {
+    initComponents();
+    addItemDialog.setLocationRelativeTo(null);
+    this.userLogin = user;
+    this.passwordLogin = password;
+    userMenu.setText(userLogin);
 
-                // Si el usuario selecciona "Sí", cerrar el programa
-                if (respuesta == JOptionPane.YES_OPTION) {
-                    System.exit(0);
-                }
-                // Si selecciona "No", no pasa nada (la ventana permanece abierta)
-            }
-        });
+    // Si x es false, ocultar los elementos del menú
+    if (!x) {
+        addUserItem.setVisible(false);
+        importCsvItem.setVisible(false);
+        addItemItem.setVisible(false);
     }
+
+    addWindowListener(new WindowAdapter() {
+        @Override
+        public void windowClosing(WindowEvent e) {
+            // Mostrar el mensaje de confirmación
+            int respuesta = JOptionPane.showConfirmDialog(
+                    MainFrame.this,
+                    "¿Estás seguro de que deseas salir?",
+                    "Confirmar salida",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.QUESTION_MESSAGE
+            );
+
+            // Si el usuario selecciona "Sí", cerrar el programa
+            if (respuesta == JOptionPane.YES_OPTION) {
+                System.exit(0);
+            }
+            // Si selecciona "No", no pasa nada (la ventana permanece abierta)
+        }
+    });
+}
+
 
     /**
      * This method is called from within the constructor to initialize the form.
