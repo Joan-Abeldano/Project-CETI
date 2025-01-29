@@ -814,13 +814,13 @@ public MainFrame(boolean x, String user, String password) {
 
         borrowingsHistoryTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {},
-                {},
-                {},
-                {}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-
+                "Nombre", "Apellido", "Grupo", "Inventario", "Categoria", "Fecha Inicio", "Fecha Fin"
             }
         ));
         jScrollPane3.setViewportView(borrowingsHistoryTable);
@@ -1019,6 +1019,7 @@ public MainFrame(boolean x, String user, String password) {
     }//GEN-LAST:event_viewInventoryButtonActionPerformed
 
     private void viewHistoryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewHistoryButtonActionPerformed
+        updateHistoryBorrowingsTable();
         historyScreenPanel.setVisible(true);
         mainScreenPanel.setVisible(false);
     }//GEN-LAST:event_viewHistoryButtonActionPerformed
@@ -1106,6 +1107,27 @@ public MainFrame(boolean x, String user, String password) {
         dbc.setUser(userLogin);
         dbc.setPassword(passwordLogin);
         String SQL = "SELECT * FROM borrowings,item_inventory WHERE ended=false AND borrowings.iteminventory=item_inventory.iteminventory";
+        ArrayList<Map<String,Object>> currentBorrowings = dbc.getQueryResult(SQL);
+        for(Map<String,Object> item : currentBorrowings) {
+            model.addRow(new Object[]{
+                item.get("personname"),
+                item.get("personlastname"),
+                item.get("persongroup"),
+                item.get("iteminventory"),
+                item.get("itemcategory"),
+                item.get("startdate").toString(),
+                item.get("relativeenddate").toString()
+            });
+        }
+    }
+    
+    private void updateHistoryBorrowingsTable() {
+        DefaultTableModel model = (DefaultTableModel) borrowingsHistoryTable.getModel();
+        model.setRowCount(0);
+        DBController dbc = new DBController();
+        dbc.setUser(userLogin);
+        dbc.setPassword(passwordLogin);
+        String SQL = "SELECT * FROM borrowings,item_inventory WHERE ended=true AND borrowings.iteminventory=item_inventory.iteminventory";
         ArrayList<Map<String,Object>> currentBorrowings = dbc.getQueryResult(SQL);
         for(Map<String,Object> item : currentBorrowings) {
             model.addRow(new Object[]{
