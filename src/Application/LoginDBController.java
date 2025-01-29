@@ -34,20 +34,24 @@ public class LoginDBController extends DBController{
         }
     }
     
-    public void insertUserNoAdmin(User user) {
+    public boolean insertUserNoAdmin(User user) {
         String SQL = "CREATE ROLE "+user.getUserName()+" WITH PASSWORD \'"+user.getUserPassword()+"\' LOGIN;";
         try (Connection conn = connect();
             PreparedStatement pstmt = conn.prepareStatement(SQL)) {
             pstmt.execute();
             grantNoAdminPrivileges(user,conn);
+            assignGroup(user,conn);
             FileController fc = new FileController(new File("users.txt"));
             try {
                 fc.updateFile();
+                return true;
             } catch (IOException ex) {
                 System.out.println(ex);
+                return false;
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
+            return false;
         }
     }
 
