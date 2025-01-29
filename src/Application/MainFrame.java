@@ -29,6 +29,7 @@ public class MainFrame extends javax.swing.JFrame {
         addItemDialog.setLocationRelativeTo(null);
         this.userLogin = user;
         this.passwordLogin = password;
+        userMenu.setText(userLogin);
     }
 
     /**
