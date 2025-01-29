@@ -424,6 +424,11 @@ public MainFrame(boolean x, String user, String password) {
         endBorrowingScreenPanel.setLayout(new java.awt.GridBagLayout());
 
         endBorrowingButton.setText("Terminar Prestamo");
+        endBorrowingButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                endBorrowingButtonActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
@@ -774,11 +779,11 @@ public MainFrame(boolean x, String user, String password) {
 
             },
             new String [] {
-                "Nombre", "Apellido", "Grupo", "Inventario", "Categoría", "Fecha Inicio", "Fecha Relativa"
+                "Id", "Nombre", "Apellido", "Grupo", "Inventario", "Categoría", "Fecha Inicio", "Fecha Relativa"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -814,15 +819,23 @@ public MainFrame(boolean x, String user, String password) {
 
         borrowingsHistoryTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Nombre", "Apellido", "Grupo", "Inventario", "Categoria", "Fecha Inicio", "Fecha Fin"
+                "Id", "Nombre", "Apellido", "Grupo", "Inventario", "Categoria", "Fecha Inicio", "Fecha Fin"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane3.setViewportView(borrowingsHistoryTable);
 
         historyScreenPanel.add(jScrollPane3, new java.awt.GridBagConstraints());
@@ -1283,6 +1296,11 @@ public MainFrame(boolean x, String user, String password) {
     private void itemInputKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_itemInputKeyPressed
     soloNumeros(itemInput);        // TODO add your handling code here:
     }//GEN-LAST:event_itemInputKeyPressed
+
+    private void endBorrowingButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_endBorrowingButtonActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_endBorrowingButtonActionPerformed
 
     private void limpiar() {
         inventarioInput.setText("");
