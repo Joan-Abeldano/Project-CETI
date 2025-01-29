@@ -67,11 +67,13 @@ public class LoginDBController extends DBController{
         }
     }
     
-    private void grantNoAdminPrivileges(User user,Connection conn) {
-        String selectOnItems = "GRANT SELECT ON item_inventory TO "+user.getUserName();
-        String insertOnBorrowings = "GRANT INSERT ON borrowings TO "+user.getUserName();
-        String deleteOnBorrowings = "GRANT DELETE ON borrowings TO "+user.getUserName();
-        String selectOnBorrowings = "GRANT SELECT ON borrowings TO "+user.getUserName();
+    private void grantNoAdminPrivileges(User user, Connection conn) {
+        String selectOnItems = "GRANT SELECT ON item_inventory TO " + user.getUserName();
+        String insertOnBorrowings = "GRANT INSERT ON borrowings TO " + user.getUserName();
+        String deleteOnBorrowings = "GRANT DELETE ON borrowings TO " + user.getUserName();
+        String selectOnBorrowings = "GRANT SELECT ON borrowings TO " + user.getUserName();
+        String usageOnSeq = "GRANT USAGE, SELECT, UPDATE ON SEQUENCE borrowings_borrowingid_seq TO " + user.getUserName();  // Fix for sequence
+
         try {
             PreparedStatement pstmt;
             pstmt = conn.prepareStatement(selectOnItems);
@@ -82,10 +84,14 @@ public class LoginDBController extends DBController{
             pstmt.execute();
             pstmt = conn.prepareStatement(selectOnBorrowings);
             pstmt.execute();
+            pstmt = conn.prepareStatement(usageOnSeq);
+            pstmt.execute();  // Fix applied here
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
     }
+
+
     
     public void deleteUser(User user) {
         String quitPriv = "DROP OWNED BY "+user.getUserName()+";";

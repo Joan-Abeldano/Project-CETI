@@ -318,7 +318,7 @@ public class LoginFrame extends javax.swing.JFrame {
             }
             java.awt.EventQueue.invokeLater(new Runnable() {
                 public void run() {
-                    new MainFrame(rolsuper,userLogin,passwordLogin).setVisible(true);
+                    new MainFrame(true,userLogin,passwordLogin).setVisible(true);
                 }
             });
             this.dispose();
