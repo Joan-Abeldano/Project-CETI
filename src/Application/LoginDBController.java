@@ -93,15 +93,15 @@ public class LoginDBController extends DBController{
 
 
     
-    public void deleteUser(User user) {
-        String quitPriv = "DROP OWNED BY "+user.getUserName()+";";
+    public void deleteUser(String user) {
+        String quitPriv = "DROP OWNED BY "+user+";";
         try (Connection conn = connect();
             PreparedStatement pstmt = conn.prepareStatement(quitPriv)){
             pstmt.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(LoginDBController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        String SQL = "DROP ROLE "+user.getUserName()+";";
+        String SQL = "DROP ROLE "+user+";";
         try (Connection conn = connect();
             PreparedStatement pstmt = conn.prepareStatement(SQL)){
             pstmt.executeUpdate();

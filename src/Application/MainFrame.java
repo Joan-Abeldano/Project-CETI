@@ -140,6 +140,11 @@ public MainFrame(boolean x, String user, String password) {
         estadoInput = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
         propietarioInput = new javax.swing.JTextField();
+        deleteUserDialog = new javax.swing.JDialog();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel17 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
         mainScreenPanel = new javax.swing.JPanel();
         addBorrowingButton = new javax.swing.JButton();
         viewCurrentBorrowingsButton = new javax.swing.JButton();
@@ -161,6 +166,7 @@ public MainFrame(boolean x, String user, String password) {
         mainMenuBar = new javax.swing.JMenuBar();
         userMenu = new javax.swing.JMenu();
         addUserItem = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         endSessionItem = new javax.swing.JMenuItem();
         borrowingsMenu = new javax.swing.JMenu();
         addBorrowingItem = new javax.swing.JMenuItem();
@@ -690,6 +696,39 @@ public MainFrame(boolean x, String user, String password) {
 
         addBorrowingDialog.setLocationRelativeTo(null);
 
+        deleteUserDialog.setResizable(false);
+        deleteUserDialog.setSize(new java.awt.Dimension(400, 300));
+        deleteUserDialog.getContentPane().setLayout(new java.awt.CardLayout());
+
+        jPanel1.setLayout(new java.awt.GridBagLayout());
+
+        jLabel17.setText("Usuario");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.insets = new java.awt.Insets(20, 20, 20, 20);
+        jPanel1.add(jLabel17, gridBagConstraints);
+
+        jTextField1.setPreferredSize(new java.awt.Dimension(100, 30));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.insets = new java.awt.Insets(20, 20, 20, 20);
+        jPanel1.add(jTextField1, gridBagConstraints);
+
+        jButton1.setText("Eliminar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.insets = new java.awt.Insets(20, 20, 20, 20);
+        jPanel1.add(jButton1, gridBagConstraints);
+
+        deleteUserDialog.getContentPane().add(jPanel1, "card2");
+
+        setLocationRelativeTo(this);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setResizable(false);
         getContentPane().setLayout(new java.awt.CardLayout());
@@ -912,6 +951,14 @@ public MainFrame(boolean x, String user, String password) {
             }
         });
         userMenu.add(addUserItem);
+
+        jMenuItem1.setText("Eliminar Usuario");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        userMenu.add(jMenuItem1);
 
         endSessionItem.setText("Cerrar sesión");
         endSessionItem.addActionListener(new java.awt.event.ActionListener() {
@@ -1326,6 +1373,31 @@ public MainFrame(boolean x, String user, String password) {
         borrowingInfoDialog.dispose();
     }//GEN-LAST:event_endBorrowingButtonActionPerformed
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+        deleteUserDialog.setVisible(true);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        String sql="SELECT m.rolname AS member_name FROM pg_roles r JOIN pg_auth_members am ON r.oid = am.roleid JOIN pg_roles m ON m.oid = am.member WHERE r.rolname = \'ceti\' AND m.rolsuper=true;";
+        ArrayList<Map<String, Object>> nombres;
+        DBController x = new DBController();
+        x.setUser(userLogin);
+        x.setPassword(passwordLogin);
+        nombres=x.getQueryResult(sql);
+        if(!nombres.isEmpty() && !jTextField1.getText().equals(userLogin)) {
+            LoginDBController ldbc = new LoginDBController();
+            ldbc.setUser(userLogin);
+            ldbc.setPassword(passwordLogin);
+            ldbc.deleteUser(jTextField1.getText());
+            JOptionPane.showMessageDialog(this, "Usuario eliminado exitosamente");
+        }
+        else {
+            JOptionPane.showMessageDialog(this, "El usuario no ha podido ser eliminado");
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     private void limpiar() {
         inventarioInput.setText("");
         posesionInput.setText("");
@@ -1445,6 +1517,7 @@ public MainFrame(boolean x, String user, String password) {
     private javax.swing.JTable currentBorrowingsFullTable;
     private javax.swing.JPanel currentBorrowingsScreenPanel;
     private javax.swing.JLabel dateLabel;
+    private javax.swing.JDialog deleteUserDialog;
     private javax.swing.JButton endBorrowingButton;
     private javax.swing.JDialog endBorrowingDialog;
     private javax.swing.JButton endBorrowingGoToButton;
@@ -1465,6 +1538,7 @@ public MainFrame(boolean x, String user, String password) {
     private javax.swing.JTextField itemInput;
     private javax.swing.JLabel itemInventoryInfoLabel;
     private javax.swing.JLabel itemLabel;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1473,6 +1547,7 @@ public MainFrame(boolean x, String user, String password) {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1481,9 +1556,12 @@ public MainFrame(boolean x, String user, String password) {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lastNameInfoLabel;
     private javax.swing.JLabel lastNameLabel;
     private javax.swing.JMenuBar mainMenuBar;
