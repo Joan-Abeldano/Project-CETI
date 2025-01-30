@@ -8,13 +8,16 @@ import java.util.Date;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author labso20
  */
 public class BorrowingsDBController extends DBController{
-    public void insertBorrowing(Borrowing borrowing) {
+    public boolean insertBorrowing(Borrowing borrowing) {
         String SQL = "INSERT INTO borrowings(startDate,relativeenddate,itemInventory,personname,personlastname,persongroup) VALUES (?,?,?,?,?,?);";
         try (Connection conn = connect();
             PreparedStatement pstmt = conn.prepareStatement(SQL)) {
@@ -27,8 +30,17 @@ public class BorrowingsDBController extends DBController{
             pstmt.setString(5, borrowing.getLastname());
             pstmt.setString(6, borrowing.getGroup());
             pstmt.execute();
+            return true;
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+            String message = ex.getMessage();
+            String notFoundId = extractMissingKey(message);
+            JOptionPane.showMessageDialog(
+        null,
+        "El item con ID " + notFoundId + " no existe en el inventario.",
+        "Error de Clave Foránea",
+        JOptionPane.ERROR_MESSAGE);
+            return false;
+            
         }
     }
     
@@ -66,4 +78,17 @@ public class BorrowingsDBController extends DBController{
         String SQL = "SELECT max(borrowingId) FROM borrowings;";
         
     }
+    
+    // Método para extraer la clave foránea faltante
+private String extractMissingKey(String message) {
+    String notFoundId = "desconocido"; // Valor por defecto en caso de no encontrar nada
+    Pattern pattern = Pattern.compile("\\((\\d+)\\)"); // Busca un número entre paréntesis
+    Matcher matcher = pattern.matcher(message);
+
+    if (matcher.find()) {
+        notFoundId = matcher.group(1); // Captura el número encontrado
+    }
+
+    return notFoundId;
+}
 }

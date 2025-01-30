@@ -4,6 +4,8 @@
  */
 package Application;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
@@ -92,9 +94,9 @@ public MainFrame(boolean x, String user, String password) {
         itemLabel = new javax.swing.JLabel();
         personLastNameInput = new javax.swing.JTextField();
         lastNameLabel = new javax.swing.JLabel();
-        startDateInput = new com.toedter.calendar.JDateChooser();
-        jDateChooser2 = new com.toedter.calendar.JDateChooser();
         jLabel16 = new javax.swing.JLabel();
+        startDateInput = new com.toedter.calendar.JDateChooser();
+        endDateInput = new com.toedter.calendar.JDateChooser();
         borrowingInfoDialog = new javax.swing.JDialog();
         borrowingInfoScreenPanel = new javax.swing.JPanel();
         itemInventoryInfoLabel = new javax.swing.JLabel();
@@ -109,7 +111,6 @@ public MainFrame(boolean x, String user, String password) {
         endBorrowingScreenPanel = new javax.swing.JPanel();
         endBorrowingButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        endDateInput = new com.toedter.calendar.JDateChooser();
         addItemDialog = new javax.swing.JDialog();
         addBorrowingScreenPanel1 = new javax.swing.JPanel();
         addBorrowingConfirmButton1 = new javax.swing.JButton();
@@ -313,18 +314,6 @@ public MainFrame(boolean x, String user, String password) {
         gridBagConstraints.ipadx = 15;
         gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 5);
         addBorrowingScreenPanel.add(lastNameLabel, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.ipadx = 90;
-        gridBagConstraints.insets = new java.awt.Insets(0, 4, 0, 4);
-        addBorrowingScreenPanel.add(startDateInput, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.ipadx = 90;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 20);
-        addBorrowingScreenPanel.add(jDateChooser2, gridBagConstraints);
 
         jLabel16.setForeground(new java.awt.Color(255, 255, 255));
         jLabel16.setText("Fecha Entrega");
@@ -333,6 +322,19 @@ public MainFrame(boolean x, String user, String password) {
         gridBagConstraints.gridy = 0;
         gridBagConstraints.ipadx = 15;
         addBorrowingScreenPanel.add(jLabel16, gridBagConstraints);
+
+        startDateInput.setBackground(new java.awt.Color(255, 255, 255));
+        startDateInput.setForeground(new java.awt.Color(0, 0, 0));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.ipadx = 90;
+        addBorrowingScreenPanel.add(startDateInput, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.ipadx = 90;
+        addBorrowingScreenPanel.add(endDateInput, gridBagConstraints);
 
         addBorrowingDialog.getContentPane().add(addBorrowingScreenPanel, "card2");
 
@@ -445,10 +447,6 @@ public MainFrame(boolean x, String user, String password) {
         gridBagConstraints.gridy = 1;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         endBorrowingScreenPanel.add(jLabel1, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
-        endBorrowingScreenPanel.add(endDateInput, gridBagConstraints);
 
         endBorrowingDialog.getContentPane().add(endBorrowingScreenPanel, java.awt.BorderLayout.CENTER);
 
@@ -803,6 +801,8 @@ public MainFrame(boolean x, String user, String password) {
 
         currentBorrowingsScreenPanel.add(jScrollPane2, new java.awt.GridBagConstraints());
 
+        backCurrentBorrowingsScreenButton.setBackground(new java.awt.Color(102, 0, 0));
+        backCurrentBorrowingsScreenButton.setForeground(new java.awt.Color(255, 255, 255));
         backCurrentBorrowingsScreenButton.setText("Atrás");
         backCurrentBorrowingsScreenButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -843,6 +843,8 @@ public MainFrame(boolean x, String user, String password) {
 
         historyScreenPanel.add(jScrollPane3, new java.awt.GridBagConstraints());
 
+        backHistoryScreenButton.setBackground(new java.awt.Color(102, 0, 0));
+        backHistoryScreenButton.setForeground(new java.awt.Color(255, 255, 255));
         backHistoryScreenButton.setText("Atrás");
         backHistoryScreenButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -862,6 +864,8 @@ public MainFrame(boolean x, String user, String password) {
         inventoryTable.setModel(new javax.swing.table.DefaultTableModel(new Object[][] {}, new String[] {"Inventario","Posesion","Grupo","Categoria","SubCategoria","Tipo","Marca","Modelo","Serie","Color","Precio","Estado","Propietario"}));
         jScrollPane4.setViewportView(inventoryTable);
 
+        backInventoryScreenButton.setBackground(new java.awt.Color(102, 0, 0));
+        backInventoryScreenButton.setForeground(new java.awt.Color(255, 255, 255));
         backInventoryScreenButton.setText("Atrás");
         backInventoryScreenButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -990,6 +994,8 @@ public MainFrame(boolean x, String user, String password) {
     private void addBorrowingButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBorrowingButtonActionPerformed
         fechaActual = LocalDate.now();
         startDateInput.setDate(new Date());
+        startDateInput.setEnabled(false);
+        endDateInput.setMinSelectableDate(new Date());
         addBorrowingDialog.setVisible(true);
         SwingUtilities.invokeLater(() -> personNameInput.requestFocusInWindow());
     }//GEN-LAST:event_addBorrowingButtonActionPerformed
@@ -1102,14 +1108,18 @@ public MainFrame(boolean x, String user, String password) {
         if (!personNameInput.getText().equals("") && !startDateInput.getDateFormatString().equals("") && !personLastNameInput.getText().equals("") && !personGroupInput.getText().equals("") && !itemInput.getText().equals("")){
            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
             String fechaFormateada = formato.format(startDateInput.getDate());
-            String fechaFinFormateada = formato.format(jDateChooser2.getDate());
+            String fechaFinFormateada = formato.format(endDateInput.getDate());
             BorrowingsDBController bdbc = new BorrowingsDBController();
             bdbc.setUser(userLogin);
             bdbc.setPassword(passwordLogin);
-            Borrowing borrowing = new Borrowing(itemInput.getText(),startDateInput.getDate(),jDateChooser2.getDate(),personNameInput.getText(),personLastNameInput.getText(),personGroupInput.getText());
-            bdbc.insertBorrowing(borrowing);
-            updateCurrentBorrowingsTable();
-            addBorrowingDialog.dispose();
+            Borrowing borrowing = new Borrowing(itemInput.getText(),startDateInput.getDate(),endDateInput.getDate(),personNameInput.getText(),personLastNameInput.getText(),personGroupInput.getText());
+            boolean B = bdbc.insertBorrowing(borrowing);
+            if(B){
+                JOptionPane.showMessageDialog(null, "Prestamo añadido con Éxito");
+                updateCurrentBorrowingsTable();
+                addBorrowingDialog.dispose();
+                limpiarAddBorrowing();
+            }
         }
         else{
             JOptionPane.showMessageDialog(null,"Rellena todos los campos");
@@ -1266,26 +1276,26 @@ public MainFrame(boolean x, String user, String password) {
     }//GEN-LAST:event_personGroupInputActionPerformed
 
     private void itemInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemInputActionPerformed
-    //This is a placeholder implementation
+        //This is a placeholder implementation
         if (!personNameInput.getText().equals("") && !startDateInput.getDateFormatString().equals("") && !personLastNameInput.getText().equals("") && !personGroupInput.getText().equals("") && !itemInput.getText().equals("")){
            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
             String fechaFormateada = formato.format(startDateInput.getDate());
-            String fechaFinFormateada = formato.format(jDateChooser2.getDate());
-            DefaultTableModel model = (DefaultTableModel) currentBorrowingsFullTable.getModel();
-            model.addRow(new Object[]{
-                personNameInput.getText(),
-                personLastNameInput.getText(),
-                personGroupInput.getText(),
-                itemInput.getText(),
-                "PC",
-                fechaFormateada,
-                fechaFinFormateada
-            });
-            addBorrowingDialog.dispose();
+            String fechaFinFormateada = formato.format(endDateInput.getDate());
+            BorrowingsDBController bdbc = new BorrowingsDBController();
+            bdbc.setUser(userLogin);
+            bdbc.setPassword(passwordLogin);
+            Borrowing borrowing = new Borrowing(itemInput.getText(),startDateInput.getDate(),endDateInput.getDate(),personNameInput.getText(),personLastNameInput.getText(),personGroupInput.getText());
+            boolean B = bdbc.insertBorrowing(borrowing);
+            if(B){
+                JOptionPane.showMessageDialog(null, "Prestamo añadido con Éxito");
+                updateCurrentBorrowingsTable();
+                addBorrowingDialog.dispose();
+                limpiarAddBorrowing();
+            }
         }
         else{
             JOptionPane.showMessageDialog(null,"Rellena todos los campos");
-        }        // TODO add your handling code here:
+        }
     }//GEN-LAST:event_itemInputActionPerformed
 
     private void personNameInputKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_personNameInputKeyPressed
@@ -1352,7 +1362,14 @@ public MainFrame(boolean x, String user, String password) {
             return true;
         }
     }
-    
+    public void limpiarAddBorrowing() {
+    personNameInput.setText("");
+    personLastNameInput.setText("");
+    personGroupInput.setText("");
+    itemInput.setText("");
+    endDateInput.setDate(null); // Limpiar la fecha del JDateChooser
+}
+
     private boolean validarTipo() {
         try{
             Integer.parseInt(inventarioInput.getText());
@@ -1448,7 +1465,6 @@ public MainFrame(boolean x, String user, String password) {
     private javax.swing.JTextField itemInput;
     private javax.swing.JLabel itemInventoryInfoLabel;
     private javax.swing.JLabel itemLabel;
-    private com.toedter.calendar.JDateChooser jDateChooser2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
