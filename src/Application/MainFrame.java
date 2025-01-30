@@ -53,6 +53,7 @@ public MainFrame(boolean x, String user, String password) {
         addUserItem.setVisible(false);
         importCsvItem.setVisible(false);
         addItemItem.setVisible(false);
+        jMenuItem1.setVisible(false);
     }
 
     addWindowListener(new WindowAdapter() {
@@ -1246,7 +1247,7 @@ public MainFrame(boolean x, String user, String password) {
     }//GEN-LAST:event_endSessionItemActionPerformed
 
     private void aboutUsItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutUsItemActionPerformed
-        JOptionPane.showMessageDialog(null, "I'm Batman");
+        JOptionPane.showMessageDialog(null, "Abeldaño Joan Manuel\nPinacho Hernández Manuel Alejandro\nDaniel Bernardino Reyes Nolasco");
     }//GEN-LAST:event_aboutUsItemActionPerformed
 
     private void addBorrowingConfirmButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBorrowingConfirmButtonActionPerformed
