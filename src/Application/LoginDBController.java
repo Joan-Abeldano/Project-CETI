@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 /**
  *
  * @author labso20
@@ -92,30 +93,35 @@ public class LoginDBController extends DBController{
     }
 
 
-    
+
     public void deleteUser(String user) {
-        String quitPriv = "DROP OWNED BY "+user+";";
+        String quitPriv = "DROP OWNED BY ?;";
+        String dropRole = "DROP ROLE ?;";
+
         try (Connection conn = connect();
-            PreparedStatement pstmt = conn.prepareStatement(quitPriv)){
-            pstmt.executeUpdate();
-        } catch (SQLException ex) {
-            Logger.getLogger(LoginDBController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        String SQL = "DROP ROLE "+user+";";
-        try (Connection conn = connect();
-            PreparedStatement pstmt = conn.prepareStatement(SQL)){
-            pstmt.executeUpdate();
+             PreparedStatement pstmt1 = conn.prepareStatement(quitPriv);
+             PreparedStatement pstmt2 = conn.prepareStatement(dropRole)) {
+
+            pstmt1.setString(1, user);
+            pstmt1.executeUpdate();
+
+            pstmt2.setString(1, user);
+            pstmt2.executeUpdate();
+
             FileController fc = new FileController(new File("users.txt"));
-            try {
-                fc.updateFile();
-            } catch (IOException ex) {
-                System.out.println(ex);
-            }
-        } catch(SQLException ex) {
+            fc.updateFile();
+
+            JOptionPane.showMessageDialog(null, "Usuario eliminado exitosamente");
+
+        } catch (SQLException ex) {
             System.out.println(ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al eliminar el usuario");
+        } catch (IOException ex) {
+            System.out.println(ex);
+            JOptionPane.showMessageDialog(null, "Error al actualizar el archivo de usuarios");
         }
     }
-    
+
     public void updateUser(User oldUser,User newUser) {
         String SQL = "ALTER USER "+oldUser.getUserName()+"";
         try (Connection conn = connect();

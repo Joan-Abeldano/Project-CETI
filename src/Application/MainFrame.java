@@ -1140,7 +1140,14 @@ public MainFrame(boolean x, String user, String password) {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addBorrowingItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBorrowingItemActionPerformed
+        fechaActual = LocalDate.now();
+        startDateInput.setDate(new Date());
+        startDateInput.setEnabled(false);
+        endDateInput.setMinSelectableDate(new Date());
+        endDateInput1.setMinSelectableDate(new Date());
         addBorrowingDialog.setVisible(true);
+        SwingUtilities.invokeLater(() -> personNameInput.requestFocusInWindow());
+
     }//GEN-LAST:event_addBorrowingItemActionPerformed
 
     private void addBorrowingButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBorrowingButtonActionPerformed
@@ -1498,8 +1505,8 @@ if (userToDelete.equals(userLogin)) {
             LoginDBController ldbc = new LoginDBController();
             ldbc.setUser(userLogin);
             ldbc.setPassword(passwordLogin);
+            
             ldbc.deleteUser(jTextField1.getText());
-            JOptionPane.showMessageDialog(this, "Usuario eliminado exitosamente");
             jTextField1.setText("");
             deleteUserDialog.setVisible(false);
         }
