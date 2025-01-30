@@ -21,7 +21,7 @@ import java.util.Map;
  * @author labso20
  */
 public class DBController {
-    private final String url = "jdbc:postgresql://132.18.53.20:5432/Prestamos_CETI";
+    private final String url = "jdbc:postgresql://localhost:5432/Prestamos_CETI";
     private String user = "";
     private String password = "";
 

@@ -52,7 +52,7 @@ public class BorrowingsDBController extends DBController{
         }
     }
     
-    public void endBorrowing(Date endDate, String id) {
+    public void endBorrowing(Date endDate, int id) {
         String SQL = "UPDATE borrowings SET endDate=\'"+endDate+"\', ended=true WHERE borrowingId="+id+";";
         try (Connection conn = connect();
             PreparedStatement pstmt = conn.prepareStatement(SQL)){

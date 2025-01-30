@@ -1231,7 +1231,8 @@ public MainFrame(boolean x, String user, String password) {
                     evt.consume(); // Consumir el evento para evitar duplicados
                     int filaSeleccionada = currentBorrowingsFullTable.getSelectedRow();
                     if (filaSeleccionada != -1) { // Verificar que se seleccionó una fila
-                        String id = (String)currentBorrowingsFullTable.getModel().getValueAt(filaSeleccionada, 0);
+                        int id = Integer.parseInt((String) currentBorrowingsFullTable.getModel().getValueAt(filaSeleccionada, 0));
+                        System.out.println((String) currentBorrowingsFullTable.getModel().getValueAt(filaSeleccionada, 0));
                         String numInventario = (String)currentBorrowingsFullTable.getModel().getValueAt(filaSeleccionada, 3);
                         String nombrePersona = (String)currentBorrowingsFullTable.getModel().getValueAt(filaSeleccionada, 1);
                         String apellidoPersona = (String)currentBorrowingsFullTable.getModel().getValueAt(filaSeleccionada, 2);
@@ -1308,9 +1309,11 @@ public MainFrame(boolean x, String user, String password) {
         BorrowingsDBController bdbc = new BorrowingsDBController();
         bdbc.setUser(userLogin);
         bdbc.setPassword(passwordLogin);
+        System.out.println(bc.getId());
         java.sql.Date sqlStartDate = new java.sql.Date(endDateInput.getDate().getTime());
         bdbc.endBorrowing(sqlStartDate, bc.getId());
-
+        endBorrowingDialog.dispose();
+        borrowingInfoDialog.dispose();
     }//GEN-LAST:event_endBorrowingButtonActionPerformed
 
     private void limpiar() {
