@@ -493,6 +493,16 @@ public MainFrame(boolean x, String user, String password) {
         addBorrowingScreenPanel1.add(jLabel3, gridBagConstraints);
 
         inventarioInput.setPreferredSize(new java.awt.Dimension(200, 20));
+        inventarioInput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inventarioInputActionPerformed(evt);
+            }
+        });
+        inventarioInput.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                inventarioInputKeyPressed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 1;
@@ -509,6 +519,11 @@ public MainFrame(boolean x, String user, String password) {
         addBorrowingScreenPanel1.add(jLabel4, gridBagConstraints);
 
         posesionInput.setPreferredSize(new java.awt.Dimension(200, 20));
+        posesionInput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                posesionInputActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 2;
@@ -525,6 +540,11 @@ public MainFrame(boolean x, String user, String password) {
         addBorrowingScreenPanel1.add(jLabel5, gridBagConstraints);
 
         grupoInput.setPreferredSize(new java.awt.Dimension(200, 20));
+        grupoInput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                grupoInputActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 3;
@@ -541,6 +561,11 @@ public MainFrame(boolean x, String user, String password) {
         addBorrowingScreenPanel1.add(jLabel6, gridBagConstraints);
 
         categoriaInput.setPreferredSize(new java.awt.Dimension(200, 20));
+        categoriaInput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                categoriaInputActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 4;
@@ -557,6 +582,11 @@ public MainFrame(boolean x, String user, String password) {
         addBorrowingScreenPanel1.add(jLabel7, gridBagConstraints);
 
         subcategoriaInput.setPreferredSize(new java.awt.Dimension(200, 20));
+        subcategoriaInput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                subcategoriaInputActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 5;
@@ -573,6 +603,11 @@ public MainFrame(boolean x, String user, String password) {
         addBorrowingScreenPanel1.add(jLabel8, gridBagConstraints);
 
         tipoInput.setPreferredSize(new java.awt.Dimension(200, 20));
+        tipoInput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tipoInputActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 6;
@@ -589,6 +624,11 @@ public MainFrame(boolean x, String user, String password) {
         addBorrowingScreenPanel1.add(jLabel9, gridBagConstraints);
 
         marcaInput.setPreferredSize(new java.awt.Dimension(200, 20));
+        marcaInput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                marcaInputActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 7;
@@ -605,6 +645,11 @@ public MainFrame(boolean x, String user, String password) {
         addBorrowingScreenPanel1.add(jLabel10, gridBagConstraints);
 
         modeloInput.setPreferredSize(new java.awt.Dimension(200, 20));
+        modeloInput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                modeloInputActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 8;
@@ -621,6 +666,11 @@ public MainFrame(boolean x, String user, String password) {
         addBorrowingScreenPanel1.add(jLabel11, gridBagConstraints);
 
         serieInput.setPreferredSize(new java.awt.Dimension(200, 20));
+        serieInput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                serieInputActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 9;
@@ -637,6 +687,16 @@ public MainFrame(boolean x, String user, String password) {
         addBorrowingScreenPanel1.add(jLabel12, gridBagConstraints);
 
         colorInput.setPreferredSize(new java.awt.Dimension(200, 20));
+        colorInput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                colorInputActionPerformed(evt);
+            }
+        });
+        colorInput.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                colorInputKeyPressed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 10;
@@ -653,6 +713,16 @@ public MainFrame(boolean x, String user, String password) {
         addBorrowingScreenPanel1.add(jLabel13, gridBagConstraints);
 
         precioInput.setPreferredSize(new java.awt.Dimension(200, 20));
+        precioInput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                precioInputActionPerformed(evt);
+            }
+        });
+        precioInput.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                precioInputKeyPressed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 11;
@@ -669,6 +739,11 @@ public MainFrame(boolean x, String user, String password) {
         addBorrowingScreenPanel1.add(jLabel14, gridBagConstraints);
 
         estadoInput.setPreferredSize(new java.awt.Dimension(200, 20));
+        estadoInput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                estadoInputActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 12;
@@ -1151,26 +1226,7 @@ public MainFrame(boolean x, String user, String password) {
     }//GEN-LAST:event_aboutUsItemActionPerformed
 
     private void addBorrowingConfirmButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBorrowingConfirmButtonActionPerformed
-        //This is a placeholder implementation
-        if (!personNameInput.getText().equals("") && !startDateInput.getDateFormatString().equals("") && !personLastNameInput.getText().equals("") && !personGroupInput.getText().equals("") && !itemInput.getText().equals("")){
-           SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-            String fechaFormateada = formato.format(startDateInput.getDate());
-            String fechaFinFormateada = formato.format(endDateInput.getDate());
-            BorrowingsDBController bdbc = new BorrowingsDBController();
-            bdbc.setUser(userLogin);
-            bdbc.setPassword(passwordLogin);
-            Borrowing borrowing = new Borrowing(itemInput.getText(),startDateInput.getDate(),endDateInput.getDate(),personNameInput.getText(),personLastNameInput.getText(),personGroupInput.getText());
-            boolean B = bdbc.insertBorrowing(borrowing);
-            if(B){
-                JOptionPane.showMessageDialog(null, "Prestamo añadido con Éxito");
-                updateCurrentBorrowingsTable();
-                addBorrowingDialog.dispose();
-                limpiarAddBorrowing();
-            }
-        }
-        else{
-            JOptionPane.showMessageDialog(null,"Rellena todos los campos");
-        }
+        agregarPrestamoEvent();
     }//GEN-LAST:event_addBorrowingConfirmButtonActionPerformed
 
     private void updateCurrentBorrowingsTable() {
@@ -1194,7 +1250,35 @@ public MainFrame(boolean x, String user, String password) {
             });
         }
     }
-    
+    private void agregarPrestamoEvent(){
+                //This is a placeholder implementation
+        if (!personNameInput.getText().equals("") && !startDateInput.getDateFormatString().equals("") && !personLastNameInput.getText().equals("") && !personGroupInput.getText().equals("") && !itemInput.getText().equals("")){
+           SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+            String fechaFormateada = formato.format(startDateInput.getDate());
+            String fechaFinFormateada = formato.format(endDateInput.getDate());
+            BorrowingsDBController bdbc = new BorrowingsDBController();
+            bdbc.setUser(userLogin);
+            bdbc.setPassword(passwordLogin);
+            updateCurrentBorrowingsTable();
+            boolean h = isInventoryNumberPresent(itemInput.getText());
+            if(!h){
+                Borrowing borrowing = new Borrowing(itemInput.getText(),startDateInput.getDate(),endDateInput.getDate(),personNameInput.getText(),personLastNameInput.getText(),personGroupInput.getText());
+                boolean B = bdbc.insertBorrowing(borrowing);
+                if(B){
+                    JOptionPane.showMessageDialog(null, "Prestamo añadido con Éxito");
+                    updateCurrentBorrowingsTable();
+                    addBorrowingDialog.dispose();
+                    limpiarAddBorrowing();
+                }
+            }else{
+            JOptionPane.showMessageDialog(null,"Item ya se encuentra en prestamo");
+                
+            }
+        }
+        else{
+            JOptionPane.showMessageDialog(null,"Rellena todos los campos");
+        }
+    }
     private void updateHistoryBorrowingsTable() {
         DefaultTableModel model = (DefaultTableModel) borrowingsHistoryTable.getModel();
         model.setRowCount(0);
@@ -1323,26 +1407,7 @@ public MainFrame(boolean x, String user, String password) {
     }//GEN-LAST:event_personGroupInputActionPerformed
 
     private void itemInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemInputActionPerformed
-        //This is a placeholder implementation
-        if (!personNameInput.getText().equals("") && !startDateInput.getDateFormatString().equals("") && !personLastNameInput.getText().equals("") && !personGroupInput.getText().equals("") && !itemInput.getText().equals("")){
-           SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-            String fechaFormateada = formato.format(startDateInput.getDate());
-            String fechaFinFormateada = formato.format(endDateInput.getDate());
-            BorrowingsDBController bdbc = new BorrowingsDBController();
-            bdbc.setUser(userLogin);
-            bdbc.setPassword(passwordLogin);
-            Borrowing borrowing = new Borrowing(itemInput.getText(),startDateInput.getDate(),endDateInput.getDate(),personNameInput.getText(),personLastNameInput.getText(),personGroupInput.getText());
-            boolean B = bdbc.insertBorrowing(borrowing);
-            if(B){
-                JOptionPane.showMessageDialog(null, "Prestamo añadido con Éxito");
-                updateCurrentBorrowingsTable();
-                addBorrowingDialog.dispose();
-                limpiarAddBorrowing();
-            }
-        }
-        else{
-            JOptionPane.showMessageDialog(null,"Rellena todos los campos");
-        }
+    agregarPrestamoEvent();
     }//GEN-LAST:event_itemInputActionPerformed
 
     private void personNameInputKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_personNameInputKeyPressed
@@ -1397,6 +1462,84 @@ public MainFrame(boolean x, String user, String password) {
             JOptionPane.showMessageDialog(this, "El usuario no ha podido ser eliminado");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+    private void inventarioInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inventarioInputActionPerformed
+    posesionInput.requestFocus();        // TODO add your handling code here:
+    }//GEN-LAST:event_inventarioInputActionPerformed
+
+    private void posesionInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_posesionInputActionPerformed
+    grupoInput.requestFocus();        // TODO add your handling code here:
+    }//GEN-LAST:event_posesionInputActionPerformed
+
+    private void grupoInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_grupoInputActionPerformed
+    categoriaInput.requestFocus();        // TODO add your handling code here:
+    }//GEN-LAST:event_grupoInputActionPerformed
+
+    private void categoriaInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_categoriaInputActionPerformed
+    subcategoriaInput.requestFocus();        // TODO add your handling code here:
+    }//GEN-LAST:event_categoriaInputActionPerformed
+
+    private void subcategoriaInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subcategoriaInputActionPerformed
+    tipoInput.requestFocus();        // TODO add your handling code here:
+    }//GEN-LAST:event_subcategoriaInputActionPerformed
+
+    private void tipoInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tipoInputActionPerformed
+    marcaInput.requestFocus();        // TODO add your handling code here:
+    }//GEN-LAST:event_tipoInputActionPerformed
+
+    private void marcaInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_marcaInputActionPerformed
+    modeloInput.requestFocus();        // TODO add your handling code here:
+    }//GEN-LAST:event_marcaInputActionPerformed
+
+    private void modeloInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modeloInputActionPerformed
+    serieInput.requestFocus();        // TODO add your handling code here:
+    }//GEN-LAST:event_modeloInputActionPerformed
+
+    private void serieInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_serieInputActionPerformed
+    colorInput.requestFocus();        // TODO add your handling code here:
+    }//GEN-LAST:event_serieInputActionPerformed
+
+    private void colorInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_colorInputActionPerformed
+    precioInput.requestFocus();        // TODO add your handling code here:
+    }//GEN-LAST:event_colorInputActionPerformed
+
+    private void precioInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_precioInputActionPerformed
+    estadoInput.requestFocus();        // TODO add your handling code here:
+    }//GEN-LAST:event_precioInputActionPerformed
+
+    private void estadoInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_estadoInputActionPerformed
+    propietarioInput.requestFocus();        // TODO add your handling code here:
+    }//GEN-LAST:event_estadoInputActionPerformed
+
+    private void inventarioInputKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inventarioInputKeyPressed
+        soloNumeros(inventarioInput);        // TODO add your handling code here:
+    }//GEN-LAST:event_inventarioInputKeyPressed
+
+    private void precioInputKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_precioInputKeyPressed
+    setNumericFilter(precioInput);        // TODO add your handling code here:
+    }//GEN-LAST:event_precioInputKeyPressed
+
+    private void colorInputKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_colorInputKeyPressed
+        soloLetras(colorInput);        // TODO add your handling code here:
+    }//GEN-LAST:event_colorInputKeyPressed
+
+    public void setNumericFilter(JTextField textField) {
+    textField.addKeyListener(new KeyAdapter() {
+        @Override
+        public void keyTyped(KeyEvent e) {
+            char c = e.getKeyChar();
+            
+            // Permitir solo números y un solo punto decimal
+            if (!Character.isDigit(c) && c != '.') {
+                e.consume(); // Bloquea la tecla si no es un número o un punto
+            }
+            
+            // Evitar más de un punto decimal
+            if (c == '.' && textField.getText().contains(".")) {
+                e.consume();
+            }
+        }
+    });
+}
 
     private void limpiar() {
         inventarioInput.setText("");
@@ -1489,8 +1632,22 @@ public MainFrame(boolean x, String user, String password) {
                 }
             }
         });
+       
+    }
+    public boolean isInventoryNumberPresent(String inventoryNumber) {
+    int rowCount = currentBorrowingsFullTable.getRowCount(); // Obtener el número total de filas
+    
+    for (int i = 0; i < rowCount; i++) {
+        String value = currentBorrowingsFullTable.getValueAt(i, 4).toString(); // Obtener valor de la columna Inventario (índice 4)
+        
+        if (value.equals(inventoryNumber)) { // Comparar con el número ingresado
+            return true; // Si lo encuentra, retorna true
+        }
     }
     
+    return false; // Si no lo encuentra, retorna false
+}
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu aboutMenu;
     private javax.swing.JMenuItem aboutUsItem;
