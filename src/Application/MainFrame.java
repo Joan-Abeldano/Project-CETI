@@ -10,6 +10,10 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -21,6 +25,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -174,6 +179,7 @@ public MainFrame(boolean x, String user, String password) {
         viewInventoryItem = new javax.swing.JMenuItem();
         importCsvItem = new javax.swing.JMenuItem();
         addItemItem = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
         aboutMenu = new javax.swing.JMenu();
         aboutUsItem = new javax.swing.JMenuItem();
 
@@ -1087,6 +1093,14 @@ public MainFrame(boolean x, String user, String password) {
         });
         inventoryMenu.add(addItemItem);
 
+        jMenuItem2.setText("Descargar Plantilla");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        inventoryMenu.add(jMenuItem2);
+
         mainMenuBar.add(inventoryMenu);
 
         aboutMenu.setBackground(new java.awt.Color(102, 0, 0));
@@ -1522,6 +1536,53 @@ public MainFrame(boolean x, String user, String password) {
         soloLetras(colorInput);        // TODO add your handling code here:
     }//GEN-LAST:event_colorInputKeyPressed
 
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+        descargarPlantillaCSV();
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    public void descargarPlantillaCSV() {
+    // Crear un JFileChooser para seleccionar la ubicación de guardado
+    JFileChooser fileChooser = new JFileChooser();
+    fileChooser.setDialogTitle("Guardar plantilla CSV");
+    
+    // Filtro para archivos CSV
+    fileChooser.setFileFilter(new FileNameExtensionFilter("Archivos CSV (*.csv)", "csv"));
+    
+    // Sugerir el nombre del archivo
+    fileChooser.setSelectedFile(new File("plantilla.csv"));
+
+    // Mostrar el diálogo de guardado
+    int seleccion = fileChooser.showSaveDialog(null);
+
+    if (seleccion == JFileChooser.APPROVE_OPTION) {
+        File archivoDestino = fileChooser.getSelectedFile();
+
+        // Asegurar que el archivo tenga la extensión .csv
+        if (!archivoDestino.getAbsolutePath().toLowerCase().endsWith(".csv")) {
+            archivoDestino = new File(archivoDestino.getAbsolutePath() + ".csv");
+        }
+
+        // Ruta del archivo fuente (plantilla.csv ya existente en el proyecto o en el sistema)
+        String rutaArchivoFuente = "plantilla.csv"; // Debes asegurarte de que este archivo exista
+
+        // Copiar el archivo al destino seleccionado por el usuario
+        try (FileInputStream fis = new FileInputStream(rutaArchivoFuente);
+             FileOutputStream fos = new FileOutputStream(archivoDestino)) {
+
+            byte[] buffer = new byte[1024];
+            int bytesRead;
+            while ((bytesRead = fis.read(buffer)) != -1) {
+                fos.write(buffer, 0, bytesRead);
+            }
+
+            System.out.println("Archivo descargado exitosamente en: " + archivoDestino.getAbsolutePath());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+    
     public void setNumericFilter(JTextField textField) {
     textField.addKeyListener(new KeyAdapter() {
         @Override
@@ -1714,6 +1775,7 @@ public MainFrame(boolean x, String user, String password) {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
