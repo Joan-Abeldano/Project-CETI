@@ -1148,6 +1148,7 @@ public MainFrame(boolean x, String user, String password) {
         startDateInput.setDate(new Date());
         startDateInput.setEnabled(false);
         endDateInput.setMinSelectableDate(new Date());
+        endDateInput1.setMinSelectableDate(new Date());
         addBorrowingDialog.setVisible(true);
         SwingUtilities.invokeLater(() -> personNameInput.requestFocusInWindow());
     }//GEN-LAST:event_addBorrowingButtonActionPerformed
