@@ -31,7 +31,7 @@ public class FileController {
         ArrayList<Map<String, Object>> nombres;
         DBController x = new DBController();
         x.setUser("postgres");
-        x.setPassword("Joan");
+        x.setPassword("2004");
         nombres=x.getQueryResult(sql);
         try(BufferedWriter bw = new BufferedWriter(new FileWriter(file, false))) {
             for (Map<String, Object> nombre : nombres) {

@@ -777,22 +777,32 @@ public MainFrame(boolean x, String user, String password) {
 
         addBorrowingDialog.setLocationRelativeTo(null);
 
+        deleteUserDialog.setTitle("Eliminar Usuario");
         deleteUserDialog.setResizable(false);
         deleteUserDialog.setSize(new java.awt.Dimension(400, 300));
         deleteUserDialog.getContentPane().setLayout(new java.awt.CardLayout());
 
+        jPanel1.setBackground(new java.awt.Color(0, 0, 0));
         jPanel1.setLayout(new java.awt.GridBagLayout());
 
+        jLabel17.setForeground(new java.awt.Color(255, 255, 255));
         jLabel17.setText("Usuario");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.insets = new java.awt.Insets(20, 20, 20, 20);
         jPanel1.add(jLabel17, gridBagConstraints);
 
         jTextField1.setPreferredSize(new java.awt.Dimension(100, 30));
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.insets = new java.awt.Insets(20, 20, 20, 20);
         jPanel1.add(jTextField1, gridBagConstraints);
 
+        jButton1.setBackground(new java.awt.Color(102, 0, 0));
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Eliminar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1455,11 +1465,22 @@ public MainFrame(boolean x, String user, String password) {
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
         deleteUserDialog.setVisible(true);
+        deleteUserDialog.setLocationRelativeTo(null);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        String sql="SELECT m.rolname AS member_name FROM pg_roles r JOIN pg_auth_members am ON r.oid = am.roleid JOIN pg_roles m ON m.oid = am.member WHERE r.rolname = \'ceti\' AND m.rolsuper=true;";
+            // TODO add your handling code here:
+            String sql = "SELECT m.rolname AS member_name " +
+             "FROM pg_roles r " +
+             "JOIN pg_auth_members am ON r.oid = am.roleid " +
+             "JOIN pg_roles m ON m.oid = am.member " +
+             "WHERE r.rolname = 'ceti' " +
+             "AND m.rolsuper = false;";
+        String userToDelete = jTextField1.getText();
+if (userToDelete.equals(userLogin)) {  
+    JOptionPane.showMessageDialog(this, "No puedes eliminarte a ti mismo.");
+    return;
+}
         ArrayList<Map<String, Object>> nombres;
         DBController x = new DBController();
         x.setUser(userLogin);
@@ -1471,6 +1492,8 @@ public MainFrame(boolean x, String user, String password) {
             ldbc.setPassword(passwordLogin);
             ldbc.deleteUser(jTextField1.getText());
             JOptionPane.showMessageDialog(this, "Usuario eliminado exitosamente");
+            jTextField1.setText("");
+            deleteUserDialog.setVisible(false);
         }
         else {
             JOptionPane.showMessageDialog(this, "El usuario no ha podido ser eliminado");
@@ -1541,6 +1564,38 @@ public MainFrame(boolean x, String user, String password) {
         descargarPlantillaCSV();
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+     // TODO add your handling code here:
+String sql = "SELECT m.rolname AS member_name " +
+             "FROM pg_roles r " +
+             "JOIN pg_auth_members am ON r.oid = am.roleid " +
+             "JOIN pg_roles m ON m.oid = am.member " +
+             "WHERE r.rolname = 'ceti' " +
+             "AND m.rolsuper = false;";
+         String userT = jTextField1.getText();
+if (userT.equals(userLogin)) {  
+    JOptionPane.showMessageDialog(this, "No puedes eliminarte a ti mismo.");
+    return;
+}
+        ArrayList<Map<String, Object>> nombres;
+        DBController x = new DBController();
+        x.setUser(userLogin);
+        x.setPassword(passwordLogin);
+        nombres=x.getQueryResult(sql);
+        if(!nombres.isEmpty() && !jTextField1.getText().equals(userLogin)) {
+            LoginDBController ldbc = new LoginDBController();
+            ldbc.setUser(userLogin);
+            ldbc.setPassword(passwordLogin);
+            ldbc.deleteUser(jTextField1.getText());
+            JOptionPane.showMessageDialog(this, "Usuario eliminado exitosamente");
+            jTextField1.setText("");
+            deleteUserDialog.setVisible(false);
+        }
+        else {
+            JOptionPane.showMessageDialog(this, "El usuario no ha podido ser eliminado");
+        }
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
     public void descargarPlantillaCSV() {
     // Crear un JFileChooser para seleccionar la ubicación de guardado
     JFileChooser fileChooser = new JFileChooser();
@@ -1575,8 +1630,7 @@ public MainFrame(boolean x, String user, String password) {
             while ((bytesRead = fis.read(buffer)) != -1) {
                 fos.write(buffer, 0, bytesRead);
             }
-
-            System.out.println("Archivo descargado exitosamente en: " + archivoDestino.getAbsolutePath());
+            JOptionPane.showMessageDialog(null,"Archivo descargado exitosamente en: " + archivoDestino.getAbsolutePath());
         } catch (IOException e) {
             e.printStackTrace();
         }
