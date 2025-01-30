@@ -30,8 +30,8 @@ public class FileController {
         String sql="SELECT m.rolname AS member_name FROM pg_roles r JOIN pg_auth_members am ON r.oid = am.roleid JOIN pg_roles m ON m.oid = am.member WHERE r.rolname = \'ceti\';";
         ArrayList<Map<String, Object>> nombres;
         DBController x = new DBController();
-        x.setUser("postgres");
-        x.setPassword("Joan");
+        x.setUser("adminceti");
+        x.setPassword("1234");
         nombres=x.getQueryResult(sql);
         try(BufferedWriter bw = new BufferedWriter(new FileWriter(file, false))) {
             for (Map<String, Object> nombre : nombres) {

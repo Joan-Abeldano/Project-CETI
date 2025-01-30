@@ -92,8 +92,6 @@ public MainFrame(boolean x, String user, String password) {
         itemLabel = new javax.swing.JLabel();
         personLastNameInput = new javax.swing.JTextField();
         lastNameLabel = new javax.swing.JLabel();
-        startDateInput = new com.toedter.calendar.JDateChooser();
-        jDateChooser2 = new com.toedter.calendar.JDateChooser();
         jLabel16 = new javax.swing.JLabel();
         borrowingInfoDialog = new javax.swing.JDialog();
         borrowingInfoScreenPanel = new javax.swing.JPanel();
@@ -109,7 +107,6 @@ public MainFrame(boolean x, String user, String password) {
         endBorrowingScreenPanel = new javax.swing.JPanel();
         endBorrowingButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        endDateInput = new com.toedter.calendar.JDateChooser();
         addItemDialog = new javax.swing.JDialog();
         addBorrowingScreenPanel1 = new javax.swing.JPanel();
         addBorrowingConfirmButton1 = new javax.swing.JButton();
@@ -139,6 +136,11 @@ public MainFrame(boolean x, String user, String password) {
         estadoInput = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
         propietarioInput = new javax.swing.JTextField();
+        deleteUserDialog = new javax.swing.JDialog();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel17 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jTextField1 = new javax.swing.JTextField();
         mainScreenPanel = new javax.swing.JPanel();
         addBorrowingButton = new javax.swing.JButton();
         viewCurrentBorrowingsButton = new javax.swing.JButton();
@@ -160,6 +162,7 @@ public MainFrame(boolean x, String user, String password) {
         mainMenuBar = new javax.swing.JMenuBar();
         userMenu = new javax.swing.JMenu();
         addUserItem = new javax.swing.JMenuItem();
+        deleteUserItem = new javax.swing.JMenuItem();
         endSessionItem = new javax.swing.JMenuItem();
         borrowingsMenu = new javax.swing.JMenu();
         addBorrowingItem = new javax.swing.JMenuItem();
@@ -313,18 +316,6 @@ public MainFrame(boolean x, String user, String password) {
         gridBagConstraints.ipadx = 15;
         gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 5);
         addBorrowingScreenPanel.add(lastNameLabel, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.ipadx = 90;
-        gridBagConstraints.insets = new java.awt.Insets(0, 4, 0, 4);
-        addBorrowingScreenPanel.add(startDateInput, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.ipadx = 90;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 20);
-        addBorrowingScreenPanel.add(jDateChooser2, gridBagConstraints);
 
         jLabel16.setForeground(new java.awt.Color(255, 255, 255));
         jLabel16.setText("Fecha Entrega");
@@ -445,10 +436,6 @@ public MainFrame(boolean x, String user, String password) {
         gridBagConstraints.gridy = 1;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         endBorrowingScreenPanel.add(jLabel1, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
-        endBorrowingScreenPanel.add(endDateInput, gridBagConstraints);
 
         endBorrowingDialog.getContentPane().add(endBorrowingScreenPanel, java.awt.BorderLayout.CENTER);
 
@@ -692,6 +679,42 @@ public MainFrame(boolean x, String user, String password) {
 
         addBorrowingDialog.setLocationRelativeTo(null);
 
+        deleteUserDialog.setResizable(false);
+        deleteUserDialog.setSize(new java.awt.Dimension(400, 300));
+        deleteUserDialog.getContentPane().setLayout(new java.awt.CardLayout());
+
+        jPanel1.setLayout(new java.awt.GridBagLayout());
+
+        jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel17.setText("Usuario");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.ipadx = 90;
+        gridBagConstraints.insets = new java.awt.Insets(0, 16, 0, 12);
+        jPanel1.add(jLabel17, gridBagConstraints);
+
+        jButton1.setText("Eliminar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.insets = new java.awt.Insets(20, 16, 20, 12);
+        jPanel1.add(jButton1, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.ipadx = 90;
+        gridBagConstraints.insets = new java.awt.Insets(20, 16, 20, 12);
+        jPanel1.add(jTextField1, gridBagConstraints);
+
+        deleteUserDialog.getContentPane().add(jPanel1, "card2");
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setResizable(false);
         getContentPane().setLayout(new java.awt.CardLayout());
@@ -900,6 +923,11 @@ public MainFrame(boolean x, String user, String password) {
         userMenu.setBackground(new java.awt.Color(102, 0, 0));
         userMenu.setForeground(new java.awt.Color(255, 255, 255));
         userMenu.setText("Usuario");
+        userMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                userMenuActionPerformed(evt);
+            }
+        });
 
         addUserItem.setText("Añadir usuario");
         addUserItem.addActionListener(new java.awt.event.ActionListener() {
@@ -908,6 +936,14 @@ public MainFrame(boolean x, String user, String password) {
             }
         });
         userMenu.add(addUserItem);
+
+        deleteUserItem.setText("Eliminar Usuario");
+        deleteUserItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteUserItemActionPerformed(evt);
+            }
+        });
+        userMenu.add(deleteUserItem);
 
         endSessionItem.setText("Cerrar sesión");
         endSessionItem.addActionListener(new java.awt.event.ActionListener() {
@@ -1316,6 +1352,31 @@ public MainFrame(boolean x, String user, String password) {
         borrowingInfoDialog.dispose();
     }//GEN-LAST:event_endBorrowingButtonActionPerformed
 
+    private void deleteUserItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteUserItemActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_deleteUserItemActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        LoginDBController ldbc = new LoginDBController();
+        String sql="SELECT m.rolname AS member_name FROM pg_roles r JOIN pg_auth_members am ON r.oid = am.roleid JOIN pg_roles m ON m.oid = am.member WHERE r.rolname = \'ceti\' AND rolsuper=true;";
+        ArrayList<Map<String, Object>> nombres;
+        DBController x = new DBController();
+        x.setUser(userLogin);
+        x.setPassword(passwordLogin);
+        nombres=x.getQueryResult(sql);
+        if(!nombres.isEmpty()){
+            ldbc.deleteUser(jTextField1.getText());
+            deleteUserDialog.dispose();
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void userMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userMenuActionPerformed
+        // TODO add your handling code here:
+        deleteUserDialog.setVisible(true);
+    }//GEN-LAST:event_userMenuActionPerformed
+
     private void limpiar() {
         inventarioInput.setText("");
         posesionInput.setText("");
@@ -1428,12 +1489,13 @@ public MainFrame(boolean x, String user, String password) {
     private javax.swing.JTable currentBorrowingsFullTable;
     private javax.swing.JPanel currentBorrowingsScreenPanel;
     private javax.swing.JLabel dateLabel;
+    private javax.swing.JDialog deleteUserDialog;
+    private javax.swing.JMenuItem deleteUserItem;
     private javax.swing.JButton endBorrowingButton;
     private javax.swing.JDialog endBorrowingDialog;
     private javax.swing.JButton endBorrowingGoToButton;
     private javax.swing.JPanel endBorrowingScreenPanel;
     private javax.swing.JLabel endDateInfoLabel;
-    private com.toedter.calendar.JDateChooser endDateInput;
     private javax.swing.JMenuItem endSessionItem;
     private javax.swing.JTextField estadoInput;
     private javax.swing.JLabel groupInfoLabel;
@@ -1448,7 +1510,7 @@ public MainFrame(boolean x, String user, String password) {
     private javax.swing.JTextField itemInput;
     private javax.swing.JLabel itemInventoryInfoLabel;
     private javax.swing.JLabel itemLabel;
-    private com.toedter.calendar.JDateChooser jDateChooser2;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1457,6 +1519,7 @@ public MainFrame(boolean x, String user, String password) {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1465,9 +1528,11 @@ public MainFrame(boolean x, String user, String password) {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lastNameInfoLabel;
     private javax.swing.JLabel lastNameLabel;
     private javax.swing.JMenuBar mainMenuBar;
@@ -1484,7 +1549,6 @@ public MainFrame(boolean x, String user, String password) {
     private javax.swing.JTextField propietarioInput;
     private javax.swing.JTextField serieInput;
     private javax.swing.JLabel startDateInfoLabel;
-    private com.toedter.calendar.JDateChooser startDateInput;
     private javax.swing.JTextField subcategoriaInput;
     private javax.swing.JTextField tipoInput;
     private javax.swing.JMenu userMenu;
