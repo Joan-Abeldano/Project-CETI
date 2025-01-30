@@ -117,6 +117,7 @@ public MainFrame(boolean x, String user, String password) {
         endBorrowingScreenPanel = new javax.swing.JPanel();
         endBorrowingButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        endDateInput1 = new com.toedter.calendar.JDateChooser();
         addItemDialog = new javax.swing.JDialog();
         addBorrowingScreenPanel1 = new javax.swing.JPanel();
         addBorrowingConfirmButton1 = new javax.swing.JButton();
@@ -460,6 +461,10 @@ public MainFrame(boolean x, String user, String password) {
         gridBagConstraints.gridy = 1;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         endBorrowingScreenPanel.add(jLabel1, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        endBorrowingScreenPanel.add(endDateInput1, gridBagConstraints);
 
         endBorrowingDialog.getContentPane().add(endBorrowingScreenPanel, java.awt.BorderLayout.CENTER);
 
@@ -1321,7 +1326,7 @@ public MainFrame(boolean x, String user, String password) {
                 item.get("iteminventory"),
                 item.get("itemcategory"),
                 item.get("startdate").toString(),
-                item.get("relativeenddate").toString()
+                item.get("enddate").toString()
             });
         }
     }
@@ -1457,8 +1462,9 @@ public MainFrame(boolean x, String user, String password) {
         bdbc.setUser(userLogin);
         bdbc.setPassword(passwordLogin);
         System.out.println(bc.getId());
-        java.sql.Date sqlStartDate = new java.sql.Date(endDateInput.getDate().getTime());
+        java.sql.Date sqlStartDate = new java.sql.Date(endDateInput1.getDate().getTime());
         bdbc.endBorrowing(sqlStartDate, bc.getId());
+        updateCurrentBorrowingsTable();
         endBorrowingDialog.dispose();
         borrowingInfoDialog.dispose();
     }//GEN-LAST:event_endBorrowingButtonActionPerformed
@@ -1797,6 +1803,7 @@ if (userT.equals(userLogin)) {
     private javax.swing.JPanel endBorrowingScreenPanel;
     private javax.swing.JLabel endDateInfoLabel;
     private com.toedter.calendar.JDateChooser endDateInput;
+    private com.toedter.calendar.JDateChooser endDateInput1;
     private javax.swing.JMenuItem endSessionItem;
     private javax.swing.JTextField estadoInput;
     private javax.swing.JLabel groupInfoLabel;
